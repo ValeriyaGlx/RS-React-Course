@@ -17,13 +17,14 @@ module.exports = {
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module",
-        "project": './tsconfig.json',
+        "project": "./tsconfig.json",
+        "extraFileExtensions": [".css"]
     },
     "ignorePatterns": ["vite.config.ts", "dist"],
     "plugins": [
         "react",
         "@typescript-eslint",
-      "prettier",
+        "prettier",
     ],
     "rules": {
         "react/react-in-jsx-scope": "off",
@@ -42,5 +43,7 @@ module.exports = {
         "@typescript-eslint/no-var-requires": "off",
         "react/jsx-uses-react": "off",
         "react/prefer-stateless-function": "off",
+        "class-methods-use-this": "off",
+        "react/jsx-no-constructed-context-values": "off"
     }
 }
