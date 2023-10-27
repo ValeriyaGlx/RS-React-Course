@@ -1,16 +1,24 @@
 import { Component, createContext, ReactNode } from 'react';
 import { IResponse } from '../../types/types';
 
-interface DataContextProps {
-  data?: IResponse[];
-  request?: string;
-  updateData?: (field: string, newData: IResponse[]) => void;
+type DataContextProps = {
   children?: ReactNode;
-}
+};
 
-const DataContext = createContext<DataContextProps | undefined>(undefined);
+type DataContextState = {
+  data: IResponse[];
+  request: string;
+};
 
-class DataProvider extends Component<DataContextProps> {
+type DataContextType = {
+  data: IResponse[];
+  request: string;
+  updateData: (field: string, newData: string | IResponse[]) => void;
+};
+
+const DataContext = createContext<DataContextType | undefined>(undefined);
+
+class DataProvider extends Component<DataContextProps, DataContextState> {
   constructor(props: DataContextProps) {
     super(props);
 

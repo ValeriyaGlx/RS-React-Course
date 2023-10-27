@@ -3,20 +3,22 @@ import styles from './SearchSection.module.css';
 import getCharacters from '../../serveces/API';
 import { DataContext } from '../DataProvider/DataProvider';
 
-interface SearchSectionState {
+type SearchSectionState = {
   inputValue: string;
-}
+};
 
-class SearchSection extends Component<
-  Record<string, never>,
-  SearchSectionState
-> {
-  constructor(props: Record<string, never>) {
+class SearchSection extends Component<object, SearchSectionState> {
+  constructor(props: object) {
     super(props);
 
     this.state = {
       inputValue: '',
     };
+  }
+
+  componentDidMount() {
+    this.handleClick('te').then(() => {});
+    // ???
   }
 
   handleChange = (value: string) => {
