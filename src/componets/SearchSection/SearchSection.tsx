@@ -17,7 +17,7 @@ class SearchSection extends Component<object, SearchSectionState> {
   }
 
   componentDidMount() {
-    this.handleClick('te').then(() => {});
+    this.handleClick('tefffff').then(() => {});
     // ???
   }
 
@@ -31,20 +31,26 @@ class SearchSection extends Component<object, SearchSectionState> {
     const characters = await getCharacters(api);
     updateData('data', characters.results);
     updateData('request', res);
+    updateData('loading', false);
   };
 
   render() {
     const { inputValue } = this.state;
 
     return (
-      <div>
+      <div className={styles.searchContainer}>
         <input
           className={styles.searchInput}
           placeholder="Enter Character Name"
           value={inputValue}
           onChange={(e) => this.handleChange(e.target.value)}
         />
-        <button onClick={() => this.handleClick(inputValue)}>Find</button>
+        <button
+          className={styles.searchButton}
+          onClick={() => this.handleClick(inputValue)}
+        >
+          Find
+        </button>
       </div>
     );
   }

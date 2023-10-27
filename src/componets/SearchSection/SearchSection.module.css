@@ -1,10 +1,14 @@
+.searchContainer {
+  display: flex;
+  height: 50px;
+}
+
 .searchInput {
   width: 250px;
   font-family: 'Teko', sans-serif;
   letter-spacing: 1px;
   font-size: 20px;
   padding: 2px;
-  /*border-radius: 15px;*/
   outline: none;
   background-color: rgba(0, 0, 0, 0.9);
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
@@ -22,4 +26,12 @@
 .searchInput:focus {
   border-color: #00b5cc;
   box-shadow: 0 0 5px rgba(178, 223, 39, 0.5);
+}
+
+.searchButton {
+  cursor: pointer;
+  font-family: 'Teko', sans-serif;
+  letter-spacing: 1px;
+  font-size: 20px;
+  padding: 0 4px;
 }

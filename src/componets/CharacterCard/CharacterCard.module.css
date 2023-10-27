@@ -2,6 +2,11 @@
   width: 280px;
 }
 
+.image-container {
+  height: 280px;
+  width: 280px;
+}
+
 .card-image {
   display: block;
   border-top-right-radius: 10px;

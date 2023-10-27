@@ -2,8 +2,14 @@ import { Component } from 'react';
 import { DataContext } from '../DataProvider/DataProvider';
 import styles from './MainSection.module.css';
 import CharacterCard from '../CharacterCard/CharacterCard';
+import NotFoundSection from '../NotFoundSection/NotFoundSection';
+import Spinner from '../Spinner/Spinner';
 
-class MainSection extends Component {
+type MainSectionState = {
+  loading: boolean;
+};
+
+class MainSection extends Component<MainSectionState> {
   render() {
     return (
       <DataContext.Consumer>
@@ -13,11 +19,16 @@ class MainSection extends Component {
               Search Results{' '}
               <span className={styles.request}>{context?.request}</span>:
             </h1>
-            <section className={styles['cards-container']}>
-              {context?.data?.map((character) => (
-                <CharacterCard key={character.id} character={character} />
-              ))}
-            </section>
+            {context?.loading ? (
+              <Spinner />
+            ) : (
+              <section className={styles['cards-container']}>
+                {context?.data?.map((character) => (
+                  <CharacterCard key={character.id} character={character} />
+                ))}
+                {!context?.data && <NotFoundSection />}
+              </section>
+            )}
           </main>
         )}
       </DataContext.Consumer>

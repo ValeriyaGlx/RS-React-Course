@@ -8,12 +8,14 @@ type DataContextProps = {
 type DataContextState = {
   data: IResponse[];
   request: string;
+  loading: boolean;
 };
 
 type DataContextType = {
   data: IResponse[];
   request: string;
   updateData: (field: string, newData: string | IResponse[]) => void;
+  loading: boolean;
 };
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -25,6 +27,7 @@ class DataProvider extends Component<DataContextProps, DataContextState> {
     this.state = {
       data: [],
       request: '',
+      loading: true,
     };
   }
 
@@ -38,7 +41,7 @@ class DataProvider extends Component<DataContextProps, DataContextState> {
   };
 
   render() {
-    const { data, request } = this.state;
+    const { data, request, loading } = this.state;
     const { children } = this.props;
 
     return (
@@ -46,6 +49,7 @@ class DataProvider extends Component<DataContextProps, DataContextState> {
         value={{
           data,
           request,
+          loading,
           updateData: this.updateData,
         }}
       >
