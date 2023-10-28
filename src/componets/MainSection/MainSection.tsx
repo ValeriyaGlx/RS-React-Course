@@ -24,7 +24,11 @@ class MainSection extends Component<MainSectionState> {
             ) : (
               <section className={styles['cards-container']}>
                 {context?.data?.map((character) => (
-                  <CharacterCard key={character.id} character={character} />
+                  <CharacterCard
+                    key={character.id}
+                    character={character}
+                    request={context?.request}
+                  />
                 ))}
                 {!context?.data && <NotFoundSection />}
               </section>
