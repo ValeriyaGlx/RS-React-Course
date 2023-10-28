@@ -6,4 +6,8 @@ const setDataLocalStorage = (name: string, data: string) => {
   );
 };
 
+export const getDataLocalStorage = (name: string) => {
+  return localStorage.getItem(name) || '';
+};
+
 export default setDataLocalStorage;

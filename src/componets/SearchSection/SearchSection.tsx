@@ -2,6 +2,9 @@ import { Component } from 'react';
 import styles from './SearchSection.module.css';
 import getCharacters from '../../serveces/API';
 import { DataContext } from '../DataProvider/DataProvider';
+import setDataLocalStorage, {
+  getDataLocalStorage,
+} from '../../serveces/localStorage';
 
 type SearchSectionState = {
   inputValue: string;
@@ -12,13 +15,13 @@ class SearchSection extends Component<object, SearchSectionState> {
     super(props);
 
     this.state = {
-      inputValue: '',
+      inputValue: getDataLocalStorage('characterSearch'),
     };
   }
 
   componentDidMount() {
-    this.handleClick('tefffff').then(() => {});
-    // ???
+    const value = getDataLocalStorage('characterSearch');
+    this.handleClick(value);
   }
 
   handleChange = (value: string) => {
@@ -32,6 +35,13 @@ class SearchSection extends Component<object, SearchSectionState> {
     updateData('data', characters.results);
     updateData('request', res);
     updateData('loading', false);
+    setDataLocalStorage('characterSearch', res);
+  };
+
+  handleKeyPress = (event: KeyboardEvent, res: string) => {
+    if (event.key === 'Enter') {
+      this.handleClick(res);
+    }
   };
 
   render() {
@@ -44,12 +54,13 @@ class SearchSection extends Component<object, SearchSectionState> {
           placeholder="Enter Character Name"
           value={inputValue}
           onChange={(e) => this.handleChange(e.target.value)}
+          onKeyDown={(e) => this.handleKeyPress(e, inputValue)}
         />
         <button
           className={styles.searchButton}
           onClick={() => this.handleClick(inputValue)}
         >
-          Find
+          Search
         </button>
       </div>
     );
