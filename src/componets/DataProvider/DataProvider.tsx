@@ -1,4 +1,5 @@
 import { Component, createContext, ReactNode } from 'react';
+
 import { IResponse } from '../../types/types';
 
 type DataContextProps = {

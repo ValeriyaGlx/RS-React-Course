@@ -1,5 +1,7 @@
 import { Component } from 'react';
+
 import image from '../../assets/images/notfound.png';
+
 import styles from './NotFoundSection.module.css';
 
 class NotFoundSection extends Component {

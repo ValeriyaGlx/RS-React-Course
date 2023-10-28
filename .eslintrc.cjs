@@ -22,6 +22,7 @@ module.exports = {
     },
     "ignorePatterns": ["vite.config.ts", "dist"],
     "plugins": [
+        "import",
         "react",
         "@typescript-eslint",
         "prettier",
@@ -44,6 +45,20 @@ module.exports = {
         "react/jsx-uses-react": "off",
         "react/prefer-stateless-function": "off",
         "class-methods-use-this": "off",
-        "react/jsx-no-constructed-context-values": "off"
+        "react/jsx-no-constructed-context-values": "off",
+        "import/order": [
+            2,
+            {
+                "groups": [
+                    "builtin",
+                    "external",
+                    "internal",
+                    "parent",
+                    "sibling",
+                    "index"
+                ],
+                "newlines-between": "always"
+            }
+        ]
     }
 }

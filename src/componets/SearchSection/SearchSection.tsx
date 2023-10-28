@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import styles from './SearchSection.module.css';
+
 import getCharacters from '../../serveces/API';
 import { DataContext } from '../DataProvider/DataProvider';
 import setDataLocalStorage, {
   getDataLocalStorage,
 } from '../../serveces/localStorage';
+
+import styles from './SearchSection.module.css';
 
 type SearchSectionState = {
   inputValue: string;

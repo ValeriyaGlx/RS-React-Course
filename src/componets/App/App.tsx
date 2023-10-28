@@ -1,4 +1,5 @@
 import { Component } from 'react';
+
 import MainSection from '../MainSection/MainSection';
 import Header from '../Header/Header';
 import { DataProvider } from '../DataProvider/DataProvider';

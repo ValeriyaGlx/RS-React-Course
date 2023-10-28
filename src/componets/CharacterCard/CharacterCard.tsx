@@ -1,7 +1,9 @@
 import { Component, Fragment } from 'react';
-import { IResponse } from '../../types/types';
-import styles from './CharacterCard.module.css';
+
 import Spinner from '../Spinner/Spinner';
+import { IResponse } from '../../types/types';
+
+import styles from './CharacterCard.module.css';
 
 type CharacterCardProps = {
   character: IResponse;

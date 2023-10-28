@@ -1,15 +1,17 @@
 import { Component } from 'react';
+
 import { DataContext } from '../DataProvider/DataProvider';
-import styles from './MainSection.module.css';
 import CharacterCard from '../CharacterCard/CharacterCard';
 import NotFoundSection from '../NotFoundSection/NotFoundSection';
 import Spinner from '../Spinner/Spinner';
+
+import styles from './MainSection.module.css';
 
 type MainSectionState = {
   loading: boolean;
 };
 
-class MainSection extends Component<MainSectionState> {
+class MainSection extends Component<object, MainSectionState> {
   render() {
     return (
       <DataContext.Consumer>

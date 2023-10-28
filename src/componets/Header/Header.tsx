@@ -1,7 +1,9 @@
 import { Component } from 'react';
+
 import logo from '../../assets/images/logo.png';
-import styles from './Header.module.css';
 import SearchSection from '../SearchSection/SearchSection';
+
+import styles from './Header.module.css';
 
 class Header extends Component {
   render() {
