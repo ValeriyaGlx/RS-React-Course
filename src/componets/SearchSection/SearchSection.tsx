@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import styles from './SearchSection.module.css';
 import getCharacters from '../../serveces/API';
 import { DataContext } from '../DataProvider/DataProvider';
@@ -9,6 +9,10 @@ import setDataLocalStorage, {
 type SearchSectionState = {
   inputValue: string;
 };
+
+interface MyContext {
+  updateData: (key: string, value: string | boolean) => void;
+}
 
 class SearchSection extends Component<object, SearchSectionState> {
   constructor(props: object) {
@@ -29,7 +33,8 @@ class SearchSection extends Component<object, SearchSectionState> {
   };
 
   handleClick = async (res: string) => {
-    const { updateData } = this.context;
+    const { updateData } = this.context as MyContext;
+
     const api = `https://rickandmortyapi.com/api/character/?name=${res}`;
     const characters = await getCharacters(api);
     updateData('data', characters.results);
@@ -38,7 +43,10 @@ class SearchSection extends Component<object, SearchSectionState> {
     setDataLocalStorage('characterSearch', res);
   };
 
-  handleKeyPress = (event: KeyboardEvent, res: string) => {
+  handleKeyPress = (
+    event: React.KeyboardEvent<HTMLInputElement>,
+    res: string
+  ) => {
     if (event.key === 'Enter') {
       this.handleClick(res);
     }
