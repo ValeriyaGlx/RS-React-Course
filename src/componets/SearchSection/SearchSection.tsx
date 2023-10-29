@@ -64,11 +64,11 @@ class SearchSection extends Component<object, SearchSectionState> {
           placeholder="Enter Character Name"
           value={inputValue}
           onChange={(e) => this.handleChange(e.target.value)}
-          onKeyDown={(e) => this.handleKeyPress(e, inputValue)}
+          onKeyDown={(e) => this.handleKeyPress(e, inputValue.trim())}
         />
         <button
           className={styles.searchButton}
-          onClick={() => this.handleClick(inputValue)}
+          onClick={() => this.handleClick(inputValue.trim())}
         >
           Search
         </button>
