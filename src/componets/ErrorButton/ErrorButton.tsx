@@ -1,5 +1,7 @@
 import { Component } from 'react';
 
+import styles from './ErrorButton.module.css';
+
 type ErrorButtonState = {
   isError: boolean;
 };
@@ -23,7 +25,11 @@ class ErrorButton extends Component<object, ErrorButtonState> {
       throw new Error('I crashed!');
     }
 
-    return <button onClick={this.throwError}>Throw Error</button>;
+    return (
+      <button className={styles.errorButton} onClick={this.throwError}>
+        Break It All Down
+      </button>
+    );
   }
 }
 

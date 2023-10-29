@@ -32,7 +32,7 @@ class DataProvider extends Component<DataContextProps, DataContextState> {
     };
   }
 
-  updateData = (field: string, newData: IResponse[] | string) => {
+  updateData = (field: string, newData: IResponse[] | string | undefined) => {
     this.setState((prevState) => {
       return {
         ...prevState,

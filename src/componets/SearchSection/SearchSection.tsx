@@ -14,7 +14,10 @@ type SearchSectionState = {
 };
 
 interface MyContext {
-  updateData: (key: string, value: string | boolean | IResponse[]) => void;
+  updateData: (
+    key: string,
+    value: string | boolean | IResponse[] | undefined
+  ) => void;
 }
 
 class SearchSection extends Component<object, SearchSectionState> {
@@ -40,8 +43,11 @@ class SearchSection extends Component<object, SearchSectionState> {
 
     const api = `https://rickandmortyapi.com/api/character/?name=${res}`;
     const characters = await getCharacters(api);
+
     if (typeof characters !== 'number') {
       updateData('data', characters.results);
+    } else {
+      updateData('data', undefined);
     }
     updateData('request', res);
     updateData('loading', false);
