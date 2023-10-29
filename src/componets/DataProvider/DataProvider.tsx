@@ -1,6 +1,6 @@
 import { Component, createContext, ReactNode } from 'react';
 
-import { IResponse } from '../../types/types';
+import { DataContextType, IResponse } from '../../types/types';
 
 type DataContextProps = {
   children?: ReactNode;
@@ -9,13 +9,6 @@ type DataContextProps = {
 type DataContextState = {
   data: IResponse[];
   request: string;
-  loading: boolean;
-};
-
-type DataContextType = {
-  data: IResponse[];
-  request: string;
-  updateData: (field: string, newData: string | IResponse[]) => void;
   loading: boolean;
 };
 

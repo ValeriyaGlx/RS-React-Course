@@ -13,3 +13,10 @@ export type IResponse = {
 export type IResult = {
   results: IResponse[];
 };
+
+export type DataContextType = {
+  data: IResponse[];
+  request: string;
+  updateData: (field: string, newData: string | IResponse[]) => void;
+  loading: boolean;
+};
