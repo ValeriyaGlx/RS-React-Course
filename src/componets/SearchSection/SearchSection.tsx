@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-import getCharacters from '../../serveces/API';
+import getCharacters from '../../services/API';
 import { DataContext } from '../DataProvider/DataProvider';
 import setDataLocalStorage, {
   getDataLocalStorage,
-} from '../../serveces/localStorage';
+} from '../../services/localStorage';
 import { IResponse } from '../../types/types';
 
 import styles from './SearchSection.module.css';
@@ -41,6 +41,7 @@ class SearchSection extends Component<object, SearchSectionState> {
   handleClick = async (res: string) => {
     const { updateData } = this.context as MyContext;
 
+    updateData('loading', true);
     const api = `https://rickandmortyapi.com/api/character/?name=${res}`;
     const characters = await getCharacters(api);
 
