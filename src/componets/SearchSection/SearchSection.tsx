@@ -5,6 +5,7 @@ import { DataContext } from '../DataProvider/DataProvider';
 import setDataLocalStorage, {
   getDataLocalStorage,
 } from '../../serveces/localStorage';
+import { IResponse } from '../../types/types';
 
 import styles from './SearchSection.module.css';
 
@@ -13,7 +14,7 @@ type SearchSectionState = {
 };
 
 interface MyContext {
-  updateData: (key: string, value: string | boolean) => void;
+  updateData: (key: string, value: string | boolean | IResponse[]) => void;
 }
 
 class SearchSection extends Component<object, SearchSectionState> {
@@ -39,7 +40,9 @@ class SearchSection extends Component<object, SearchSectionState> {
 
     const api = `https://rickandmortyapi.com/api/character/?name=${res}`;
     const characters = await getCharacters(api);
-    updateData('data', characters.results);
+    if (typeof characters !== 'number') {
+      updateData('data', characters.results);
+    }
     updateData('request', res);
     updateData('loading', false);
     setDataLocalStorage('characterSearch', res);

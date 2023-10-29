@@ -9,3 +9,7 @@ export type IResponse = {
     name: string;
   };
 };
+
+export type IResult = {
+  results: IResponse[];
+};
