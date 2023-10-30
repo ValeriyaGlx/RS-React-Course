@@ -1,0 +1,15 @@
+.main {
+  padding: 0 30px;
+}
+
+.request {
+  background-color: #00b5cc;
+}
+
+.cards-container {
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}

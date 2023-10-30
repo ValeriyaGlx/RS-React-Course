@@ -1,0 +1,56 @@
+import { Component, createContext, ReactNode } from 'react';
+
+import { DataContextType, IResponse } from '../../types/types';
+
+type DataContextProps = {
+  children?: ReactNode;
+};
+
+type DataContextState = {
+  data: IResponse[];
+  request: string;
+  loading: boolean;
+};
+
+const DataContext = createContext<DataContextType | undefined>(undefined);
+
+class DataProvider extends Component<DataContextProps, DataContextState> {
+  constructor(props: DataContextProps) {
+    super(props);
+
+    this.state = {
+      data: [],
+      request: '',
+      loading: true,
+    };
+  }
+
+  updateData = (field: string, newData: IResponse[] | string | undefined) => {
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        [field]: newData,
+      };
+    });
+  };
+
+  render() {
+    const { data, request, loading } = this.state;
+    const { children } = this.props;
+
+    return (
+      <DataContext.Provider
+        value={{
+          data,
+          request,
+          loading,
+          updateData: this.updateData,
+        }}
+      >
+        {children}
+      </DataContext.Provider>
+    );
+  }
+}
+
+export { DataContext, DataProvider };
