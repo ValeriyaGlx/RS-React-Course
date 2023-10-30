@@ -23,7 +23,7 @@ module.exports = {
         "ecmaVersion": "latest",
         "sourceType": "module",
     },
-    "ignorePatterns": ["vite.config.ts", "dist"],
+    "ignorePatterns": ["vite.config.ts", "dist", ".eslintrc.cjs"],
     "plugins": [
         "import",
         "react",
