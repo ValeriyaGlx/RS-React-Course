@@ -15,10 +15,11 @@ module.exports = {
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true,
+        },
         "ecmaVersion": "latest",
         "sourceType": "module",
-        "project": ["tsconfig.json"],
-        "extraFileExtensions": [".css"]
     },
     "ignorePatterns": ["vite.config.ts", "dist"],
     "plugins": [
