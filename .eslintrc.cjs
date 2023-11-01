@@ -49,6 +49,7 @@ module.exports = {
         "react/prefer-stateless-function": "off",
         "class-methods-use-this": "off",
         "react/jsx-no-constructed-context-values": "off",
+        "react/function-component-definition": "off",
         "import/order": [
             2,
             {

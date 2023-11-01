@@ -1,32 +1,27 @@
-import { Component, createContext, ReactNode } from 'react';
+import { createContext, FC, ReactNode, useState } from 'react';
 
 import { DataContextType, IResponse } from '../../types/types';
 
 type DataContextProps = {
-  children?: ReactNode;
+  children: ReactNode;
 };
 
-type DataContextState = {
-  data: IResponse[];
-  request: string;
-  loading: boolean;
+const initialState = {
+  data: [],
+  request: '',
+  loading: true,
 };
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
 
-class DataProvider extends Component<DataContextProps, DataContextState> {
-  constructor(props: DataContextProps) {
-    super(props);
+const DataProvider: FC<DataContextProps> = ({ children }) => {
+  const [dataContext, setDataContext] = useState(initialState);
 
-    this.state = {
-      data: [],
-      request: '',
-      loading: true,
-    };
-  }
-
-  updateData = (field: string, newData: IResponse[] | string | undefined) => {
-    this.setState((prevState) => {
+  const updateData = (
+    field: string,
+    newData: IResponse[] | string | undefined
+  ) => {
+    setDataContext((prevState) => {
       return {
         ...prevState,
         [field]: newData,
@@ -34,23 +29,20 @@ class DataProvider extends Component<DataContextProps, DataContextState> {
     });
   };
 
-  render() {
-    const { data, request, loading } = this.state;
-    const { children } = this.props;
+  const { data, request, loading } = dataContext;
 
-    return (
-      <DataContext.Provider
-        value={{
-          data,
-          request,
-          loading,
-          updateData: this.updateData,
-        }}
-      >
-        {children}
-      </DataContext.Provider>
-    );
-  }
-}
+  return (
+    <DataContext.Provider
+      value={{
+        data,
+        request,
+        loading,
+        updateData,
+      }}
+    >
+      {children}
+    </DataContext.Provider>
+  );
+};
 
 export { DataContext, DataProvider };

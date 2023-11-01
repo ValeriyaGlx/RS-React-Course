@@ -1,54 +1,28 @@
-import { Component } from 'react';
+import { useContext } from 'react';
 
 import { DataContext } from '../DataProvider/DataProvider';
-import CharacterCard from '../CharacterCard/CharacterCard';
-import NotFoundSection from '../NotFoundSection/NotFoundSection';
 import Spinner from '../Spinner/Spinner';
-import { DataContextType, IResponse } from '../../types/types';
+import { DataContextType } from '../../types/types';
+import CardsContainer from '../CardsContainer/CardsContainer';
 
 import styles from './MainSection.module.css';
 
-type MainSectionState = {
-  loading: boolean;
+const MainSection = () => {
+  const context = useContext(DataContext);
+
+  const renderCharacterCards = (cnx: DataContextType | undefined) => {
+    return cnx?.loading ? <Spinner /> : <CardsContainer context={context} />;
+  };
+
+  return (
+    <main className={styles.main}>
+      <h1>
+        Search Results{' '}
+        <span className={styles.request}>{context?.request}</span>:
+      </h1>
+      {renderCharacterCards(context)}
+    </main>
+  );
 };
-
-class MainSection extends Component<object, MainSectionState> {
-  renderCharacterCards(context: DataContextType | undefined) {
-    if (context?.loading) {
-      return <Spinner />;
-    }
-    return context?.data ? (
-      <section className={styles['cards-container']}>
-        {context.data.map((character: IResponse) => (
-          <CharacterCard
-            key={character.id}
-            character={character}
-            request={context.request}
-          />
-        ))}
-      </section>
-    ) : (
-      <section className={styles['cards-container']}>
-        <NotFoundSection />
-      </section>
-    );
-  }
-
-  render() {
-    return (
-      <DataContext.Consumer>
-        {(context) => (
-          <main className={styles.main}>
-            <h1>
-              Search Results{' '}
-              <span className={styles.request}>{context?.request}</span>:
-            </h1>
-            {this.renderCharacterCards(context)}
-          </main>
-        )}
-      </DataContext.Consumer>
-    );
-  }
-}
 
 export default MainSection;
