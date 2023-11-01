@@ -8,7 +8,6 @@ import NotFoundSection from '../NotFoundSection/NotFoundSection';
 type CardsContainerProps = {
   context: DataContextType | undefined;
 };
-
 const CardsContainer: FC<CardsContainerProps> = ({ context }) => {
   return (
     <section className={styles['cards-container']}>
