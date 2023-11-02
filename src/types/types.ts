@@ -17,6 +17,9 @@ export type IResult = {
 export type DataContextType = {
   data: IResponse[];
   request: string;
-  updateData: (field: string, newData: string | IResponse[]) => void;
+  updateData: (
+    field: string,
+    newData: string | IResponse[] | undefined | boolean
+  ) => void;
   loading: boolean;
 };

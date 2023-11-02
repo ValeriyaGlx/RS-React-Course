@@ -19,7 +19,7 @@ const DataProvider: FC<DataContextProps> = ({ children }) => {
 
   const updateData = (
     field: string,
-    newData: IResponse[] | string | undefined
+    newData: IResponse[] | string | undefined | boolean
   ) => {
     setDataContext((prevState) => {
       return {

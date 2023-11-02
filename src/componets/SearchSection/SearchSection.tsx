@@ -1,92 +1,69 @@
-import React, { Component } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import getCharacters from '../../services/API';
 import { DataContext } from '../DataProvider/DataProvider';
 import setDataLocalStorage, {
   getDataLocalStorage,
 } from '../../services/localStorage';
-import { IResponse } from '../../types/types';
 
 import styles from './SearchSection.module.css';
 
-type SearchSectionState = {
-  inputValue: string;
-};
+const SearchSection = () => {
+  const [inputValue, setInputValue] = useState(
+    getDataLocalStorage('characterSearch')
+  );
+  const context = useContext(DataContext);
 
-interface MyContext {
-  updateData: (
-    key: string,
-    value: string | boolean | IResponse[] | undefined
-  ) => void;
-}
+  const handleClick = async (res: string) => {
+    const updateData = context?.updateData;
 
-class SearchSection extends Component<object, SearchSectionState> {
-  constructor(props: object) {
-    super(props);
+    if (updateData) {
+      updateData('loading', true);
+      const api = `https://rickandmortyapi.com/api/character/?name=${res}`;
+      const characters = await getCharacters(api);
 
-    this.state = {
-      inputValue: getDataLocalStorage('characterSearch'),
-    };
-  }
-
-  componentDidMount() {
-    const value = getDataLocalStorage('characterSearch');
-    this.handleClick(value);
-  }
-
-  handleChange = (value: string) => {
-    this.setState({ inputValue: value });
-  };
-
-  handleClick = async (res: string) => {
-    const { updateData } = this.context as MyContext;
-
-    updateData('loading', true);
-    const api = `https://rickandmortyapi.com/api/character/?name=${res}`;
-    const characters = await getCharacters(api);
-
-    if (typeof characters !== 'number') {
-      updateData('data', characters.results);
-    } else {
-      updateData('data', undefined);
+      if (typeof characters !== 'number') {
+        updateData('data', characters.results);
+      } else {
+        updateData('data', undefined);
+      }
+      updateData('request', res);
+      updateData('loading', false);
+      setDataLocalStorage('characterSearch', res);
     }
-    updateData('request', res);
-    updateData('loading', false);
-    setDataLocalStorage('characterSearch', res);
   };
 
-  handleKeyPress = (
+  useEffect(() => {
+    const value = getDataLocalStorage('characterSearch');
+    handleClick(value);
+  }, []);
+
+  const handleKeyPress = (
     event: React.KeyboardEvent<HTMLInputElement>,
     res: string
   ) => {
     if (event.key === 'Enter') {
-      this.handleClick(res);
+      handleClick(res);
     }
   };
 
-  render() {
-    const { inputValue } = this.state;
-
-    return (
-      <div className={styles.searchContainer}>
-        <input
-          className={styles.searchInput}
-          placeholder="Enter Character Name"
-          value={inputValue}
-          onChange={(e) => this.handleChange(e.target.value)}
-          onKeyDown={(e) => this.handleKeyPress(e, inputValue.trim())}
-        />
-        <button
-          className={styles.searchButton}
-          onClick={() => this.handleClick(inputValue.trim())}
-        >
-          Search
-        </button>
-      </div>
-    );
-  }
-}
-
-SearchSection.contextType = DataContext;
+  return (
+    <div className={styles.searchContainer}>
+      <input
+        className={styles.searchInput}
+        placeholder="Enter Character Name"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        onKeyDown={(e) => handleKeyPress(e, inputValue.trim())}
+      />
+      <button
+        className={styles.searchButton}
+        onClick={() => handleClick(inputValue.trim())}
+      >
+        Search
+      </button>
+    </div>
+  );
+};
 
 export default SearchSection;
