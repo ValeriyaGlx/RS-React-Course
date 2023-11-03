@@ -18,7 +18,7 @@ const Pagination: FC<PaginationProps> = ({
         onClick={() => onPageChange(1)}
         disabled={currentPage === 1}
       >
-        Первая страница
+        &lt;&lt;
       </button>
 
       <button
@@ -26,17 +26,19 @@ const Pagination: FC<PaginationProps> = ({
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
-        Предыдущая страница
+        &lt;
       </button>
 
-      <span className="pagination-current-page">{currentPage}</span>
+      <span className="pagination-current-page">
+        {currentPage} из {totalPages}
+      </span>
 
       <button
         className="pagination-button"
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
       >
-        Следующая страница
+        &gt;
       </button>
 
       <button
@@ -44,7 +46,7 @@ const Pagination: FC<PaginationProps> = ({
         onClick={() => onPageChange(totalPages)}
         disabled={currentPage === totalPages}
       >
-        Последняя страница
+        &gt;&gt;
       </button>
     </div>
   );

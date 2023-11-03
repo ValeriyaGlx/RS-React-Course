@@ -4,7 +4,7 @@ import { DataContext } from '../../App/DataProvider/DataProvider';
 import setDataLocalStorage, {
   getDataLocalStorage,
 } from '../../shared/lib/localStorage';
-import { getObject } from '../../shared/api/getBigAmountCharacters';
+import { getCharacters } from '../../shared/api';
 
 import styles from './SearchSection.module.css';
 
@@ -19,9 +19,9 @@ const SearchSection = () => {
 
     if (updateData) {
       updateData('loading', true);
-      const characters = await getObject(res);
+      const characters = await getCharacters(res);
       if (typeof characters !== 'number') {
-        updateData('data', characters);
+        updateData('data', characters.data);
       } else {
         updateData('data', undefined);
       }

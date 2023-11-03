@@ -3,6 +3,7 @@ import { FC, Fragment, useState } from 'react';
 import Spinner from '../../shared/UI/Spinner/Spinner';
 import { IResponse } from '../../../types/types';
 import stringMatching from '../../shared/lib/stringMatching';
+import imageIfNull from '../../../assets/images/incognito.png';
 
 import styles from './CharacterCard.module.css';
 
@@ -25,7 +26,9 @@ const CharacterCard: FC<CharacterCardProps> = ({ character, request }) => {
     ));
   };
 
-  const titleWords = character.name.split(' ');
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  const { name, image, gender, species, blood_status } = character.attributes;
+  const titleWords = name.split(' ');
 
   return (
     <div className={styles['card-container']}>
@@ -33,17 +36,16 @@ const CharacterCard: FC<CharacterCardProps> = ({ character, request }) => {
         {!isImageLoaded && <Spinner />}
         <img
           className={styles['card-image']}
-          src={character.image}
+          src={image ?? imageIfNull}
           alt="character"
           onLoad={() => setIsImageLoaded(true)}
         />
       </div>
       <div className={styles['card-info']}>
         <h4>{titleWords.map((word) => isMatchColor(word, request))}</h4>
-        <div>Status: {character.status}</div>
-        <div>Gender: {character.gender}</div>
-        <div>Species: {character.species}</div>
-        <div>Location: {character.location.name}</div>
+        <div>Gender: {gender ?? 'unknown'} </div>
+        <div>Species: {species ?? 'unknown'}</div>
+        <div>Blood Status: {blood_status ?? 'unknown'}</div>
       </div>
     </div>
   );

@@ -1,17 +1,16 @@
 export type IResponse = {
-  id: number;
-  name: string;
-  status: string;
-  gender: string;
-  image: string;
-  species: string;
-  location: {
+  attributes: {
+    id: number;
     name: string;
+    gender: string;
+    image?: string;
+    species: string;
+    blood_status: string;
   };
 };
 
 export type IResult = {
-  results: IResponse[];
+  data: IResponse[];
   error: string;
 };
 

@@ -1,8 +1,12 @@
 import { IResult } from '../../../types/types';
 import URL from '../constants/constants';
 
-async function getCharacters(str: string): Promise<number | IResult> {
-  const api = `${URL}?page=1&name=${str}`;
+async function getCharacters(
+  str: string,
+  page = 1,
+  size = 10
+): Promise<number | IResult> {
+  const api = `${URL}?filter[name_cont]=${str}&page[number]=${page}&page[size]=${size}`;
   const res = await fetch(api);
   if (!res.ok) {
     return res.status;
