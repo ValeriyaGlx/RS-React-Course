@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import getCharacters from '../../shared/api/getItems';
 import { DataContext } from '../../App/DataProvider/DataProvider';
 import setDataLocalStorage, {
   getDataLocalStorage,
 } from '../../shared/lib/localStorage';
+import { getObject } from '../../shared/api/getBigAmountCharacters';
 
 import styles from './SearchSection.module.css';
 
@@ -19,10 +19,9 @@ const SearchSection = () => {
 
     if (updateData) {
       updateData('loading', true);
-      const api = `https://rickandmortyapi.com/api/character/?page=1&name=${res}&limit=10`;
-      const characters = await getCharacters(api);
+      const characters = await getObject(res);
       if (typeof characters !== 'number') {
-        updateData('data', characters.results);
+        updateData('data', characters);
       } else {
         updateData('data', undefined);
       }

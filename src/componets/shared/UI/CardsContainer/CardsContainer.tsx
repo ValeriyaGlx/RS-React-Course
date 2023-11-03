@@ -11,7 +11,7 @@ type CardsContainerProps = {
 const CardsContainer: FC<CardsContainerProps> = ({ context }) => {
   return (
     <section className={styles['cards-container']}>
-      {context?.data ? (
+      {context?.data.length !== 0 ? (
         context?.data.map((character: IResponse) => (
           <CharacterCard
             key={character.id}

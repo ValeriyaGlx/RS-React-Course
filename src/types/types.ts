@@ -12,6 +12,7 @@ export type IResponse = {
 
 export type IResult = {
   results: IResponse[];
+  error: string;
 };
 
 export type DataContextType = {
