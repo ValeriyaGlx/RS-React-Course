@@ -11,15 +11,19 @@ export type IResponse = {
 
 export type IResult = {
   data: IResponse[];
-  error: string;
+  meta: {
+    pagination: {
+      last: number;
+    };
+  };
 };
 
 export type DataContextType = {
   data: IResponse[];
   request: string;
-  updateData: (
-    field: string,
-    newData: string | IResponse[] | undefined | boolean
-  ) => void;
+  updateData: (newData: {
+    [key: string]: string | number | boolean | IResponse[] | undefined;
+  }) => void;
   loading: boolean;
+  totalPages: number;
 };

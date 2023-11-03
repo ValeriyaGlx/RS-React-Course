@@ -1,14 +1,14 @@
-import MainSection from '../widgets/MainSection/MainSection';
-import Header from '../widgets/Header/Header';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { DataProvider } from './DataProvider/DataProvider';
+import MainPage from '../pages/MainPage';
 
 const App = () => {
   return (
-    <DataProvider>
-      <Header />
-      <MainSection />
-    </DataProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

@@ -1,6 +1,6 @@
 import { createContext, FC, ReactNode, useState } from 'react';
 
-import { DataContextType, IResponse } from '../../../types/types';
+import { DataContextType } from '../../../types/types';
 
 type DataContextProps = {
   children: ReactNode;
@@ -10,6 +10,7 @@ const initialState = {
   data: [],
   request: '',
   loading: true,
+  totalPages: 1,
 };
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -17,19 +18,16 @@ const DataContext = createContext<DataContextType | undefined>(undefined);
 const DataProvider: FC<DataContextProps> = ({ children }) => {
   const [dataContext, setDataContext] = useState(initialState);
 
-  const updateData = (
-    field: string,
-    newData: IResponse[] | string | undefined | boolean
-  ) => {
+  const updateData = (newData: Partial<typeof DataContext>) => {
     setDataContext((prevState) => {
       return {
         ...prevState,
-        [field]: newData,
+        ...newData,
       };
     });
   };
 
-  const { data, request, loading } = dataContext;
+  const { data, request, loading, totalPages } = dataContext;
 
   return (
     <DataContext.Provider
@@ -38,6 +36,7 @@ const DataProvider: FC<DataContextProps> = ({ children }) => {
         request,
         loading,
         updateData,
+        totalPages,
       }}
     >
       {children}

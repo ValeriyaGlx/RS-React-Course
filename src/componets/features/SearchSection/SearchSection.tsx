@@ -4,7 +4,7 @@ import { DataContext } from '../../App/DataProvider/DataProvider';
 import setDataLocalStorage, {
   getDataLocalStorage,
 } from '../../shared/lib/localStorage';
-import { getCharacters } from '../../shared/api';
+import getCharacters from '../../shared/api';
 
 import styles from './SearchSection.module.css';
 
@@ -18,15 +18,19 @@ const SearchSection = () => {
     const updateData = context?.updateData;
 
     if (updateData) {
-      updateData('loading', true);
+      updateData({ loading: true });
       const characters = await getCharacters(res);
+
       if (typeof characters !== 'number') {
-        updateData('data', characters.data);
+        updateData({
+          data: characters.data,
+          totalPages: characters.meta.pagination.last,
+          request: res,
+        });
       } else {
-        updateData('data', undefined);
+        updateData({ data: undefined });
       }
-      updateData('request', res);
-      updateData('loading', false);
+      updateData({ loading: false });
       setDataLocalStorage('characterSearch', res);
     }
   };
