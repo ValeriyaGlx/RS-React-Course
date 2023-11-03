@@ -1,8 +1,8 @@
 import { FC, Fragment, useState } from 'react';
 
-import Spinner from '../Spinner/Spinner';
-import { IResponse } from '../../types/types';
-import stringMatching from '../../services/stringMatching';
+import Spinner from '../../shared/UI/Spinner/Spinner';
+import { IResponse } from '../../../types/types';
+import stringMatching from '../../shared/lib/stringMatching';
 
 import styles from './CharacterCard.module.css';
 

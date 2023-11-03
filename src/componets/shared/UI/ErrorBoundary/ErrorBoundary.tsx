@@ -1,6 +1,6 @@
 import { Component, ReactNode } from 'react';
 
-import image from '../../assets/images/break.png';
+import image from '../../../../assets/images/break.png';
 
 import styles from './ErrorBoundary.module.css';
 

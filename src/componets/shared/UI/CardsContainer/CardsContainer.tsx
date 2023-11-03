@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { DataContextType, IResponse } from '../../types/types';
-import styles from '../MainSection/MainSection.module.css';
-import CharacterCard from '../CharacterCard/CharacterCard';
+import { DataContextType, IResponse } from '../../../../types/types';
+import styles from '../../../widgets/MainSection/MainSection.module.css';
+import CharacterCard from '../../../entities/CharacterCard/CharacterCard';
 import NotFoundSection from '../NotFoundSection/NotFoundSection';
 
 type CardsContainerProps = {

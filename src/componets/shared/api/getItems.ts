@@ -1,4 +1,4 @@
-import { IResult } from '../types/types';
+import { IResult } from '../../../types/types';
 
 async function getCharacters(api: string): Promise<number | IResult> {
   const res = await fetch(api);

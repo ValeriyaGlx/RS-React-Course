@@ -1,6 +1,7 @@
-import MainSection from '../MainSection/MainSection';
-import Header from '../Header/Header';
-import { DataProvider } from '../DataProvider/DataProvider';
+import MainSection from '../widgets/MainSection/MainSection';
+import Header from '../widgets/Header/Header';
+
+import { DataProvider } from './DataProvider/DataProvider';
 
 const App = () => {
   return (

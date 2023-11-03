@@ -1,4 +1,4 @@
-import image from '../../assets/images/spinner.png';
+import image from '../../../../assets/images/spinner.png';
 
 import styles from './Spinner.module.css';
 

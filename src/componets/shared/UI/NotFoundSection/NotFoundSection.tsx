@@ -1,4 +1,4 @@
-import image from '../../assets/images/notfound.png';
+import image from '../../../../assets/images/notfound.png';
 
 import styles from './NotFoundSection.module.css';
 

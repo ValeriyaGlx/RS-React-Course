@@ -1,6 +1,6 @@
-import logo from '../../assets/images/logo.png';
-import SearchSection from '../SearchSection/SearchSection';
-import ErrorButton from '../ErrorButton/ErrorButton';
+import logo from '../../../assets/images/logo.png';
+import SearchSection from '../../features/SearchSection/SearchSection';
+import ErrorButton from '../../shared/UI/ErrorButton/ErrorButton';
 
 import styles from './Header.module.css';
 

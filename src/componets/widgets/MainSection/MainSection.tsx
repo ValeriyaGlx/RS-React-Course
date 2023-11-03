@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 
-import { DataContext } from '../DataProvider/DataProvider';
-import Spinner from '../Spinner/Spinner';
-import { DataContextType } from '../../types/types';
-import CardsContainer from '../CardsContainer/CardsContainer';
+import { DataContext } from '../../App/DataProvider/DataProvider';
+import Spinner from '../../shared/UI/Spinner/Spinner';
+import { DataContextType } from '../../../types/types';
+import CardsContainer from '../../shared/UI/CardsContainer/CardsContainer';
 
 import styles from './MainSection.module.css';
 

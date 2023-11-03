@@ -1,6 +1,6 @@
 import { createContext, FC, ReactNode, useState } from 'react';
 
-import { DataContextType, IResponse } from '../../types/types';
+import { DataContextType, IResponse } from '../../../types/types';
 
 type DataContextProps = {
   children: ReactNode;
