@@ -4,7 +4,7 @@ import URL from '../constants/constants';
 async function getCharacters(
   str: string,
   page = 1,
-  size = 10
+  size = 5
 ): Promise<number | IResult> {
   const api = `${URL}?filter[name_cont]=${str}&page[number]=${page}&page[size]=${size}`;
   const res = await fetch(api);

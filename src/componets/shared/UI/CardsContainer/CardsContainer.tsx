@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 
 import { DataContextType, IResponse, IResult } from '../../../../types/types';
 import styles from '../../../widgets/MainSection/MainSection.module.css';
-import CharacterCard from '../../../entities/CharacterCard/CharacterCard';
+import CharacterCard from '../CharacterCard/CharacterCard';
 import NotFoundSection from '../NotFoundSection/NotFoundSection';
 import Pagination from '../Pagination/Pagination';
 import getCharacters from '../../api';

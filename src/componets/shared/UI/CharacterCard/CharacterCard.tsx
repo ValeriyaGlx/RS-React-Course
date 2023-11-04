@@ -1,9 +1,9 @@
 import { FC, Fragment, useState } from 'react';
 
-import Spinner from '../../shared/UI/Spinner/Spinner';
-import { IResponse } from '../../../types/types';
-import stringMatching from '../../shared/lib/stringMatching';
-import imageIfNull from '../../../assets/images/incognito.png';
+import Spinner from '../Spinner/Spinner';
+import { IResponse } from '../../../../types/types';
+import stringMatching from '../../lib/stringMatching';
+import imageIfNull from '../../../../assets/images/incognito.png';
 
 import styles from './CharacterCard.module.css';
 
