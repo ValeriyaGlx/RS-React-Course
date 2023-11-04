@@ -21,7 +21,7 @@ const MainSection = () => {
   };
 
   return (
-    <main className={styles.main}>
+    <section>
       <h1>
         Search Results{' '}
         <span className={styles.request}>{context?.request}</span> (
@@ -41,7 +41,7 @@ const MainSection = () => {
         ))}
       </div>
       {renderCharacterCards(context)}
-    </main>
+    </section>
   );
 };
 

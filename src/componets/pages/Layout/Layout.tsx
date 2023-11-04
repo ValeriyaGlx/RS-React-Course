@@ -4,18 +4,17 @@ import { DataProvider } from '../../App/DataProvider/DataProvider';
 import Header from '../../widgets/Header/Header';
 import MainSection from '../../widgets/MainSection/MainSection';
 
+import styles from './Layout.module.css';
+
 const Layout = () => {
   return (
-    <>
-      <DataProvider>
-        <Header />
+    <DataProvider>
+      <Header />
+      <main className={styles.main}>
         <MainSection />
-      </DataProvider>
-      <aside>
-        IM OUTLET
         <Outlet />
-      </aside>
-    </>
+      </main>
+    </DataProvider>
   );
 };
 

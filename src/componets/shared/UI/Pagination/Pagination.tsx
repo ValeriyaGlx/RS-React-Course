@@ -1,4 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+
+import styles from './Pagination.module.css';
 
 type PaginationProps = {
   currentPage: number;
@@ -11,39 +14,52 @@ const Pagination: FC<PaginationProps> = ({
   totalPages,
   onPageChange,
 }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    if (!searchParams.has('page')) {
+      setSearchParams({ page: '1' });
+    }
+  }, [searchParams, setSearchParams]);
+
+  const handleClick = (page: number) => {
+    onPageChange(page);
+    setSearchParams({ page: String(page) });
+  };
+
   return (
-    <div className="pagination">
+    <div className={styles.pagination}>
       <button
-        className="pagination-button"
-        onClick={() => onPageChange(1)}
+        className={styles.paginationButton}
+        onClick={() => handleClick(1)}
         disabled={currentPage === 1}
       >
         &lt;&lt;
       </button>
 
       <button
-        className="pagination-button"
-        onClick={() => onPageChange(currentPage - 1)}
+        className={styles.paginationButton}
+        onClick={() => handleClick(currentPage - 1)}
         disabled={currentPage === 1}
       >
         &lt;
       </button>
 
-      <span className="pagination-current-page">
+      <span className={styles.paginationPageInfo}>
         {currentPage} из {totalPages}
       </span>
 
       <button
-        className="pagination-button"
-        onClick={() => onPageChange(currentPage + 1)}
+        className={styles.paginationButton}
+        onClick={() => handleClick(currentPage + 1)}
         disabled={currentPage === totalPages}
       >
         &gt;
       </button>
 
       <button
-        className="pagination-button"
-        onClick={() => onPageChange(totalPages)}
+        className={styles.paginationButton}
+        onClick={() => handleClick(totalPages)}
         disabled={currentPage === totalPages}
       >
         &gt;&gt;

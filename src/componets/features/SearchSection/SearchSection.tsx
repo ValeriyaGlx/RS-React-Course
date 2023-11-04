@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import { DataContext } from '../../App/DataProvider/DataProvider';
 import setDataLocalStorage, {
@@ -13,6 +14,13 @@ const SearchSection = () => {
     getDataLocalStorage('characterSearch')
   );
   const context = useContext(DataContext);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const setInitSearchParams = () => {
+    if (searchParams.has('page')) {
+      setSearchParams({ page: '1' });
+    }
+  };
 
   const handleClick = async (res: string) => {
     const updateData = context?.updateData;
@@ -34,7 +42,6 @@ const SearchSection = () => {
       setDataLocalStorage('characterSearch', res);
     }
   };
-
   useEffect(() => {
     const value = getDataLocalStorage('characterSearch');
     handleClick(value);
@@ -46,6 +53,7 @@ const SearchSection = () => {
   ) => {
     if (event.key === 'Enter') {
       handleClick(res);
+      setInitSearchParams();
     }
   };
 
@@ -60,7 +68,10 @@ const SearchSection = () => {
       />
       <button
         className={styles.searchButton}
-        onClick={() => handleClick(inputValue.trim())}
+        onClick={() => {
+          handleClick(inputValue.trim());
+          setInitSearchParams();
+        }}
       >
         Search
       </button>
