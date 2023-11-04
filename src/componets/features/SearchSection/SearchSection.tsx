@@ -5,7 +5,7 @@ import { DataContext } from '../../App/DataProvider/DataProvider';
 import setDataLocalStorage, {
   getDataLocalStorage,
 } from '../../shared/lib/localStorage';
-import getCharacters from '../../shared/api';
+import { getCharacters } from '../../shared/api';
 
 import styles from './SearchSection.module.css';
 
@@ -15,6 +15,7 @@ const SearchSection = () => {
   );
   const context = useContext(DataContext);
   const [searchParams, setSearchParams] = useSearchParams();
+  const page = searchParams.get('page') as string;
 
   const setInitSearchParams = () => {
     if (searchParams.has('page')) {
@@ -27,13 +28,14 @@ const SearchSection = () => {
 
     if (updateData) {
       updateData({ loading: true });
-      const characters = await getCharacters(res);
+      const characters = await getCharacters(res, page);
 
       if (typeof characters !== 'number') {
         updateData({
           data: characters.data,
           totalPages: characters.meta.pagination.last,
           request: res,
+          currentPage: characters.meta.pagination.current,
         });
       } else {
         updateData({ data: undefined });

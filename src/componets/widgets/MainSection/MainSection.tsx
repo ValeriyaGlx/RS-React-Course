@@ -4,7 +4,7 @@ import { DataContext } from '../../App/DataProvider/DataProvider';
 import Spinner from '../../shared/UI/Spinner/Spinner';
 import { DataContextType } from '../../../types/types';
 import CardsContainer from '../../shared/UI/CardsContainer/CardsContainer';
-import { CARDS_AMOUNT as buttons } from '../../shared/constants/constants';
+import NumbersOfCardsButtons from '../../shared/UI/NumbersOfCardsButtons/NumbersOfCardsButtons';
 
 import styles from './MainSection.module.css';
 
@@ -20,6 +20,10 @@ const MainSection = () => {
     );
   };
 
+  const changeNumberOfCards = (btn: number) => {
+    setPageSize(btn);
+  };
+
   return (
     <section>
       <h1>
@@ -28,17 +32,7 @@ const MainSection = () => {
         {context?.data.length} results):
       </h1>
       <div>
-        Cards amount
-        {buttons.map((btn) => (
-          <button
-            key={btn}
-            onClick={() => {
-              setPageSize(btn);
-            }}
-          >
-            {btn}
-          </button>
-        ))}
+        <NumbersOfCardsButtons changeNumberOfCards={changeNumberOfCards} />
       </div>
       {renderCharacterCards(context)}
     </section>

@@ -1,3 +1,4 @@
 import getCharacters from './getCharacters';
+import getSingleCharacter from './getSingleCharacter';
 
-export default getCharacters;
+export { getCharacters, getSingleCharacter };

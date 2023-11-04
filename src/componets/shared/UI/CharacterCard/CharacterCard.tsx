@@ -1,4 +1,5 @@
 import { FC, Fragment, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import Spinner from '../Spinner/Spinner';
 import { IResponse } from '../../../../types/types';
@@ -26,12 +27,12 @@ const CharacterCard: FC<CharacterCardProps> = ({ character, request }) => {
     ));
   };
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  const { name, image, gender, species, blood_status } = character.attributes;
+  const { name, image, gender, species, blood_status, slug } =
+    character.attributes;
   const titleWords = name.split(' ');
 
   return (
-    <div className={styles['card-container']}>
+    <Link to={`/${slug}`} className={styles['card-container']}>
       <div className={styles['image-container']}>
         {!isImageLoaded && <Spinner />}
         <img
@@ -47,7 +48,7 @@ const CharacterCard: FC<CharacterCardProps> = ({ character, request }) => {
         <div>Species: {species ?? 'unknown'}</div>
         <div>Blood Status: {blood_status ?? 'unknown'}</div>
       </div>
-    </div>
+    </Link>
   );
 };
 

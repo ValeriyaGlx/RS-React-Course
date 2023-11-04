@@ -11,6 +11,7 @@ const initialState = {
   request: '',
   loading: true,
   totalPages: 1,
+  currentPage: 1,
 };
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -27,7 +28,7 @@ const DataProvider: FC<DataContextProps> = ({ children }) => {
     });
   };
 
-  const { data, request, loading, totalPages } = dataContext;
+  const { data, request, loading, totalPages, currentPage } = dataContext;
 
   return (
     <DataContext.Provider
@@ -37,6 +38,7 @@ const DataProvider: FC<DataContextProps> = ({ children }) => {
         loading,
         updateData,
         totalPages,
+        currentPage,
       }}
     >
       {children}

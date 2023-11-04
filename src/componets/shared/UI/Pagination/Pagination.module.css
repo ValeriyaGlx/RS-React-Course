@@ -6,14 +6,22 @@
 }
 
 .paginationButton {
-  margin: 0 5px;
-  font-size: 18px;
+  display: flex;
+  margin: 0 2px;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 5px 10px;
+  border-radius: 10px;
+  padding: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
   background-color: transparent;
+}
+
+.paginationButton img {
+  height: 20px;
+}
+
+.rotate {
+  transform: rotate(180deg);
 }
 
 .paginationButton:active {
@@ -23,6 +31,11 @@
 
 .paginationButton:hover {
   background-color: #ecdf5d;
+}
+
+.paginationButton:disabled {
+  background-color: #e0e0e0;
+  opacity: 0.5;
 }
 
 .paginationPageInfo {

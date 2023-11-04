@@ -47,6 +47,8 @@ module.exports = {
         "@typescript-eslint/no-var-requires": "off",
         "react/jsx-uses-react": "off",
         "react/prefer-stateless-function": "off",
+        "import/no-extraneous-dependencies": "off",
+        "@typescript-eslint/naming-convention": "off",
         "class-methods-use-this": "off",
         "react/jsx-no-constructed-context-values": "off",
         "react/function-component-definition": "off",

@@ -1,5 +1,7 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+
+import arrowIcon from '../../../../assets/icons/arrow-icon.svg';
 
 import styles from './Pagination.module.css';
 
@@ -15,54 +17,59 @@ const Pagination: FC<PaginationProps> = ({
   onPageChange,
 }) => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [page, setPage] = useState(currentPage);
 
   useEffect(() => {
     if (!searchParams.has('page')) {
       setSearchParams({ page: '1' });
+    } else {
+      setPage(Number(searchParams.get('page')));
     }
   }, [searchParams, setSearchParams]);
 
-  const handleClick = (page: number) => {
-    onPageChange(page);
-    setSearchParams({ page: String(page) });
+  const handleClick = (curPage: number) => {
+    onPageChange(curPage);
+    setSearchParams({ page: String(curPage) });
   };
 
   return (
     <div className={styles.pagination}>
       <button
-        className={styles.paginationButton}
+        className={[styles.paginationButton, styles.rotate].join(' ')}
         onClick={() => handleClick(1)}
-        disabled={currentPage === 1}
+        disabled={page === 1}
       >
-        &lt;&lt;
+        <img src={arrowIcon} alt="arrow" />
+        <img src={arrowIcon} alt="arrow" />
       </button>
 
       <button
-        className={styles.paginationButton}
-        onClick={() => handleClick(currentPage - 1)}
-        disabled={currentPage === 1}
+        className={[styles.paginationButton, styles.rotate].join(' ')}
+        onClick={() => handleClick(page - 1)}
+        disabled={page === 1}
       >
-        &lt;
+        <img src={arrowIcon} alt="arrow" />
       </button>
 
       <span className={styles.paginationPageInfo}>
-        {currentPage} из {totalPages}
+        {page} из {totalPages}
       </span>
 
       <button
         className={styles.paginationButton}
-        onClick={() => handleClick(currentPage + 1)}
-        disabled={currentPage === totalPages}
+        onClick={() => handleClick(page + 1)}
+        disabled={page === totalPages}
       >
-        &gt;
+        <img src={arrowIcon} alt="arrow" />
       </button>
 
       <button
         className={styles.paginationButton}
         onClick={() => handleClick(totalPages)}
-        disabled={currentPage === totalPages}
+        disabled={page === totalPages}
       >
-        &gt;&gt;
+        <img src={arrowIcon} alt="arrow" />
+        <img src={arrowIcon} alt="arrow" />
       </button>
     </div>
   );

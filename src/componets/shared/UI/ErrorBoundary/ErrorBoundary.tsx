@@ -1,8 +1,6 @@
 import { Component, ReactNode } from 'react';
 
-import image from '../../../../assets/images/break.png';
-
-import styles from './ErrorBoundary.module.css';
+import FallDownUI from '../FallDownUI/FallDownUI';
 
 interface ErrorBoundaryState {
   hasError: boolean;
@@ -26,12 +24,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     const { hasError } = this.state;
     const { children } = this.props;
     if (hasError) {
-      return (
-        <div className={styles.breakContainer}>
-          <h2>Something went wrong. Refresh the page, please.</h2>
-          <img className={styles.image} src={image} alt="break" />
-        </div>
-      );
+      return <FallDownUI />;
     }
     return children;
   }

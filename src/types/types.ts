@@ -1,6 +1,6 @@
 export type IResponse = {
   attributes: {
-    id: number;
+    slug: string;
     name: string;
     gender: string;
     image?: string;
@@ -14,7 +14,23 @@ export type IResult = {
   meta: {
     pagination: {
       last: number;
+      current: number;
     };
+  };
+};
+
+export type ISingleResponse = {
+  slug: string;
+  name: string;
+  gender: string;
+  image?: string;
+  species: string;
+  blood_status: string;
+};
+
+export type ISingleResult = {
+  data: {
+    attributes: ISingleResponse;
   };
 };
 
@@ -26,4 +42,5 @@ export type DataContextType = {
   }) => void;
   loading: boolean;
   totalPages: number;
+  currentPage: number;
 };

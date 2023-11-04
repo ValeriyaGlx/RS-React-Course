@@ -1,11 +1,12 @@
 import { FC, useState } from 'react';
 
 import { DataContextType, IResponse, IResult } from '../../../../types/types';
-import styles from '../../../widgets/MainSection/MainSection.module.css';
 import CharacterCard from '../CharacterCard/CharacterCard';
 import NotFoundSection from '../NotFoundSection/NotFoundSection';
 import Pagination from '../Pagination/Pagination';
-import getCharacters from '../../api';
+import { getCharacters } from '../../api';
+
+import styles from './CardsContainer.module.css';
 
 type CardsContainerProps = {
   context: DataContextType | undefined;
@@ -15,7 +16,7 @@ const CardsContainer: FC<CardsContainerProps> = ({ context, size }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [cards, setCards] = useState(context?.data);
 
-  const totalPages = context?.totalPages;
+  const totalPages = context?.totalPages ?? context?.currentPage;
 
   const onPageChange = async (page: number) => {
     const characters = await getCharacters(
@@ -30,10 +31,10 @@ const CardsContainer: FC<CardsContainerProps> = ({ context, size }) => {
   return (
     <>
       <section className={styles['cards-container']}>
-        {context?.data ? (
+        {context?.data.length !== 0 ? (
           cards?.map((character: IResponse) => (
             <CharacterCard
-              key={character.attributes.id}
+              key={character.attributes.slug}
               character={character}
               request={context?.request || ''}
             />
