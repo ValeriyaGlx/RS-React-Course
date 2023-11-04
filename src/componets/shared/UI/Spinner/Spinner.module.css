@@ -9,15 +9,17 @@
 
 .spinner {
   display: block;
-  width: 50px;
-  animation: spin 2s linear infinite;
+  width: 100px;
+  animation: move 1s linear infinite;
 }
 
-@keyframes spin {
+@keyframes move {
   0% {
-    transform: rotate(0deg);
+    transform: translateX(10px);
+    transform: translateY(20px);
   }
   100% {
-    transform: rotate(360deg);
+    transform: translateX(0);
+    transform: translateY(0px);
   }
 }

@@ -11,7 +11,7 @@ const ErrorButton = () => {
 
   return (
     <button className={styles.errorButton} onClick={() => setIsError(true)}>
-      Break It All Down
+      Avada Kedavra!
     </button>
   );
 };

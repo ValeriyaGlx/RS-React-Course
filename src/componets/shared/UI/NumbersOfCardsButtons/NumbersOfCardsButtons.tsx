@@ -19,7 +19,7 @@ const NumbersOfCardsButtons: FC<NumbersOfCardsButtonsProps> = ({
   };
 
   return (
-    <>
+    <div>
       Cards amount
       {buttons.map((btn) => (
         <button
@@ -31,7 +31,7 @@ const NumbersOfCardsButtons: FC<NumbersOfCardsButtonsProps> = ({
           {btn}
         </button>
       ))}
-    </>
+    </div>
   );
 };
 

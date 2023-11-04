@@ -1,51 +1,44 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
-import { DataContextType, IResponse, IResult } from '../../../../types/types';
+import { IResponse } from '../../../../types/types';
 import CharacterCard from '../CharacterCard/CharacterCard';
-import NotFoundSection from '../NotFoundSection/NotFoundSection';
 import Pagination from '../Pagination/Pagination';
-import { getCharacters } from '../../api';
+import NumbersOfCardsButtons from '../NumbersOfCardsButtons/NumbersOfCardsButtons';
 
 import styles from './CardsContainer.module.css';
 
 type CardsContainerProps = {
-  context: DataContextType | undefined;
-  size: number;
+  cards: IResponse[] | undefined;
+  request: string;
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+  changeNumberOfCards: (btn: number) => void;
 };
-const CardsContainer: FC<CardsContainerProps> = ({ context, size }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [cards, setCards] = useState(context?.data);
 
-  const totalPages = context?.totalPages ?? context?.currentPage;
-
-  const onPageChange = async (page: number) => {
-    const characters = await getCharacters(
-      context?.request as string,
-      page,
-      size
-    );
-    setCards((characters as IResult).data);
-    setCurrentPage(page);
-  };
-
+const CardsContainer: FC<CardsContainerProps> = ({
+  cards,
+  request,
+  currentPage,
+  totalPages,
+  onPageChange,
+  changeNumberOfCards,
+}) => {
   return (
     <>
-      <section className={styles['cards-container']}>
-        {context?.data.length !== 0 ? (
-          cards?.map((character: IResponse) => (
-            <CharacterCard
-              key={character.attributes.slug}
-              character={character}
-              request={context?.request || ''}
-            />
-          ))
-        ) : (
-          <NotFoundSection />
-        )}
-      </section>
+      <NumbersOfCardsButtons changeNumberOfCards={changeNumberOfCards} />
+      <div className={styles.cardsContainer}>
+        {cards?.map((character: IResponse) => (
+          <CharacterCard
+            key={character.attributes.slug}
+            character={character}
+            request={request || ''}
+          />
+        ))}
+      </div>
       <Pagination
         currentPage={currentPage}
-        totalPages={totalPages ?? 1}
+        totalPages={totalPages}
         onPageChange={onPageChange}
       />
     </>
