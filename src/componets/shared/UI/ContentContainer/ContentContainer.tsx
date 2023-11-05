@@ -13,25 +13,27 @@ type CardsContainerProps = {
 const ContentContainer: FC<CardsContainerProps> = ({ context }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [cards, setCards] = useState(context?.data);
-  const [pageSize, setPageSize] = useState(5);
   const totalPages = context?.totalPages ?? context?.currentPage;
-
-  const changeNumberOfCards = (btn: number) => {
-    setPageSize(btn);
+  const onPageChange = async (page: number) => {
+    await getCharacters(context?.request as string, page, 5).then(
+      (characters) => {
+        setCards((characters as IResult).data);
+        setCurrentPage(page);
+      }
+    );
   };
 
-  const onPageChange = async (page: number) => {
-    const characters = await getCharacters(
-      context?.request as string,
-      page,
-      pageSize
+  const changeNumberOfCards = async (size: number) => {
+    await getCharacters(context?.request as string, 1, size).then(
+      (characters) => {
+        setCards((characters as IResult).data);
+        setCurrentPage(1);
+      }
     );
-    setCards((characters as IResult).data);
-    setCurrentPage(page);
   };
 
   return (
-    <section className={styles['content-container']}>
+    <section className={styles.contentContainer}>
       {context?.data.length !== 0 ? (
         <CardsContainer
           cards={cards}

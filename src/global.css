@@ -10,12 +10,13 @@ body {
   letter-spacing: 1px;
   font-size: 16px;
   overflow-x: hidden;
+  background-color: #414040;
+  color: #e5e2e2;
 }
 
 a {
   text-decoration: none;
   color: inherit;
-  cursor: pointer;
 }
 
 button {

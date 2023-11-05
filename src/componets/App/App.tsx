@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     errorElement: <FallDownUI />,
     children: [
       {
-        path: '/:id',
+        path: ':id',
         element: <CardInfo />,
       },
     ],

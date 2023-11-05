@@ -1,13 +1,23 @@
-.card-container {
+.cardContainer {
   width: 250px;
+  height: 330px;
   border: 1px solid #d9d6d6;
   border-radius: 10px;
   cursor: pointer;
+  animation: enterAnimation 0.5s forwards;
+  transition: all 0.4s;
+}
+
+.cardContainer:hover {
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
 }
 
 .image-container {
   height: 250px;
-  width: 249px;
+  width: 248px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #706f6f;
 }
 
 .card-image {
@@ -21,9 +31,23 @@
 }
 
 .card-info {
-  padding: 0 10px;
+  padding: 10px;
 }
 
 .search {
-  background-color: #f5d24b;
+  background-color: #740001;
+}
+
+@keyframes enterAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

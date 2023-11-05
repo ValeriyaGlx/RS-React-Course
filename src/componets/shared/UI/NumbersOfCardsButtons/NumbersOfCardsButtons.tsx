@@ -1,8 +1,9 @@
-import { FC, useContext } from 'react';
+import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { CARDS_AMOUNT as buttons } from '../../constants/constants';
-import { getCharacters } from '../../api';
-import { DataContext } from '../../../App/DataProvider/DataProvider';
+
+import styles from './NumbersOfCardsButtons.module.css';
 
 type NumbersOfCardsButtonsProps = {
   changeNumberOfCards: (number: number) => void;
@@ -11,11 +12,11 @@ type NumbersOfCardsButtonsProps = {
 const NumbersOfCardsButtons: FC<NumbersOfCardsButtonsProps> = ({
   changeNumberOfCards,
 }) => {
-  const context = useContext(DataContext);
+  const navigate = useNavigate();
 
-  const handleClick = async (size: number) => {
-    await getCharacters(context?.request as string, 1, size);
+  const handleClick = (size: number) => {
     changeNumberOfCards(size);
+    navigate(`/`);
   };
 
   return (
@@ -23,6 +24,7 @@ const NumbersOfCardsButtons: FC<NumbersOfCardsButtonsProps> = ({
       Cards amount
       {buttons.map((btn) => (
         <button
+          className={styles.button}
           key={btn}
           onClick={() => {
             handleClick(btn);

@@ -1,5 +1,5 @@
 import { FC, Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import Spinner from '../Spinner/Spinner';
 import { IResponse } from '../../../../types/types';
@@ -15,9 +15,10 @@ type CharacterCardProps = {
 
 const CharacterCard: FC<CharacterCardProps> = ({ character, request }) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const { search } = useLocation();
 
-  const isMatchColor = (word: string, search: string) => {
-    const result = stringMatching(word, search);
+  const isMatchColor = (word: string, searchValue: string) => {
+    const result = stringMatching(word, searchValue);
     const { parts, newPart } = result;
     return parts.map((part, partIndex) => (
       <Fragment key={Math.random()}>
@@ -27,12 +28,11 @@ const CharacterCard: FC<CharacterCardProps> = ({ character, request }) => {
     ));
   };
 
-  const { name, image, gender, species, blood_status, slug } =
-    character.attributes;
+  const { name, image, slug } = character.attributes;
   const titleWords = name.split(' ');
 
   return (
-    <Link to={`/${slug}`} className={styles['card-container']}>
+    <Link to={`/${slug}${search}`} className={styles.cardContainer}>
       <div className={styles['image-container']}>
         {!isImageLoaded && <Spinner />}
         <img
@@ -44,9 +44,6 @@ const CharacterCard: FC<CharacterCardProps> = ({ character, request }) => {
       </div>
       <div className={styles['card-info']}>
         <h4>{titleWords.map((word) => isMatchColor(word, request))}</h4>
-        <div>Gender: {gender ?? 'unknown'} </div>
-        <div>Species: {species ?? 'unknown'}</div>
-        <div>Blood Status: {blood_status ?? 'unknown'}</div>
       </div>
     </Link>
   );
