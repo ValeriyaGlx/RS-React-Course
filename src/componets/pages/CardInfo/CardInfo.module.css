@@ -13,10 +13,11 @@
   align-items: center;
   color: white;
   position: fixed;
-  top: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
   right: -100%;
-  width: 50%;
-  height: 100%;
+  width: fit-content;
+  height: fit-content;
   transition: right 0.3s;
   z-index: 2;
 }

@@ -38,6 +38,8 @@ const CardInfo = () => {
     >
       <aside
         className={[styles.container, openCard ? styles.opened : ''].join(' ')}
+        onClick={(e) => e.stopPropagation()}
+        aria-hidden="true"
       >
         {cardInfo && (
           <div className={styles.card}>
