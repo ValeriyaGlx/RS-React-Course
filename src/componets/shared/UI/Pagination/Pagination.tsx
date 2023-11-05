@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import arrowIcon from '../../../../assets/icons/arrow-icon.svg';
+import { DEFAULT_PAGE } from '../../constants/constants';
 
 import styles from './Pagination.module.css';
 
@@ -21,7 +22,7 @@ const Pagination: FC<PaginationProps> = ({
 
   useEffect(() => {
     if (!searchParams.has('page')) {
-      setSearchParams({ page: '1' });
+      setSearchParams({ page: String(DEFAULT_PAGE) });
     } else {
       setPage(Number(searchParams.get('page')));
     }
@@ -36,8 +37,8 @@ const Pagination: FC<PaginationProps> = ({
     <div className={styles.pagination}>
       <button
         className={[styles.paginationButton, styles.rotate].join(' ')}
-        onClick={() => handleClick(1)}
-        disabled={page === 1}
+        onClick={() => handleClick(DEFAULT_PAGE)}
+        disabled={page === DEFAULT_PAGE}
       >
         <img src={arrowIcon} alt="arrow" />
         <img src={arrowIcon} alt="arrow" />

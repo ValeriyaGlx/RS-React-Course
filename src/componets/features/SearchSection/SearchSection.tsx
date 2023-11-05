@@ -6,6 +6,7 @@ import setDataLocalStorage, {
   getDataLocalStorage,
 } from '../../shared/lib/localStorage';
 import { getCharacters } from '../../shared/api';
+import { DEFAULT_PAGE } from '../../shared/constants/constants';
 
 import styles from './SearchSection.module.css';
 
@@ -19,7 +20,7 @@ const SearchSection = () => {
 
   const setInitSearchParams = () => {
     if (searchParams.has('page')) {
-      setSearchParams({ page: '1' });
+      setSearchParams({ page: String(DEFAULT_PAGE) });
     }
   };
 

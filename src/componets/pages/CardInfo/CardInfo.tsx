@@ -22,7 +22,6 @@ const CardInfo = () => {
         setOpenCard(true);
       }
     };
-
     fetchData();
   }, [pathname]);
 
