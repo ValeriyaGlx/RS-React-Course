@@ -1,6 +1,7 @@
 import { createContext, FC, ReactNode, useState } from 'react';
 
 import { DataContextType } from '../../../types/types';
+import { DEFAULT_CARDS, DEFAULT_PAGE } from '../../shared/constants/constants';
 
 type DataContextProps = {
   children: ReactNode;
@@ -10,8 +11,9 @@ const initialState = {
   data: [],
   request: '',
   loading: true,
-  totalPages: 1,
-  currentPage: 1,
+  totalPages: DEFAULT_PAGE,
+  currentPage: DEFAULT_PAGE,
+  numberOfCards: DEFAULT_CARDS,
 };
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -28,7 +30,8 @@ const DataProvider: FC<DataContextProps> = ({ children }) => {
     });
   };
 
-  const { data, request, loading, totalPages, currentPage } = dataContext;
+  const { data, request, loading, totalPages, currentPage, numberOfCards } =
+    dataContext;
 
   return (
     <DataContext.Provider
@@ -39,6 +42,7 @@ const DataProvider: FC<DataContextProps> = ({ children }) => {
         updateData,
         totalPages,
         currentPage,
+        numberOfCards,
       }}
     >
       {children}

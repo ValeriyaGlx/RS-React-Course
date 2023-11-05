@@ -7,6 +7,7 @@ import setDataLocalStorage, {
 } from '../../shared/lib/localStorage';
 import { getCharacters } from '../../shared/api';
 import { DEFAULT_PAGE } from '../../shared/constants/constants';
+import { DataContextType } from '../../../types/types';
 
 import styles from './SearchSection.module.css';
 
@@ -17,6 +18,7 @@ const SearchSection = () => {
   const context = useContext(DataContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const page = searchParams.get('page') as string;
+  const { numberOfCards } = context as DataContextType;
 
   const setInitSearchParams = () => {
     if (searchParams.has('page')) {
@@ -29,7 +31,7 @@ const SearchSection = () => {
 
     if (updateData) {
       updateData({ loading: true });
-      const characters = await getCharacters(res, page);
+      const characters = await getCharacters(res, page, numberOfCards);
 
       if (typeof characters !== 'number') {
         updateData({

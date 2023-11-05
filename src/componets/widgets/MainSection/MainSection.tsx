@@ -15,7 +15,7 @@ const MainSection = () => {
   };
 
   return (
-    <section>
+    <section className={styles.container}>
       <h1>
         Search Results{' '}
         <span className={styles.request}>{context?.request}</span>:

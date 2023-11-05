@@ -1,5 +1,5 @@
 .container {
-  width: 50%;
+  font-size: 20px;
 }
 
 .button {
@@ -15,4 +15,12 @@
   );
   color: white;
   text-align: center;
+}
+
+.active {
+  background-color: #740001;
+  background-image: linear-gradient(
+    rgba(116, 0, 1, 0.8),
+    rgba(204, 95, 17, 0.8)
+  );
 }

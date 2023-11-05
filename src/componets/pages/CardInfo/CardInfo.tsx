@@ -31,38 +31,37 @@ const CardInfo = () => {
   };
 
   return (
-    <div
-      className={styles.background}
-      onClick={closeSideBar}
+    <aside
+      className={[styles.container, openCard ? styles.opened : ''].join(' ')}
+      onClick={(e) => e.stopPropagation()}
       aria-hidden="true"
     >
-      <aside
-        className={[styles.container, openCard ? styles.opened : ''].join(' ')}
-        onClick={(e) => e.stopPropagation()}
+      <div
+        className={styles.background}
+        onClick={closeSideBar}
         aria-hidden="true"
-      >
-        {cardInfo && (
-          <div className={styles.card}>
-            <button
-              onClick={closeSideBar}
-              className={styles.closeButton}
-              aria-hidden="true"
+      />
+      {cardInfo && (
+        <div className={styles.card}>
+          <button
+            onClick={closeSideBar}
+            className={styles.closeButton}
+            aria-hidden="true"
+          />
+          <div className={styles.imageContainer}>
+            <img
+              className={styles.image}
+              src={cardInfo.image ?? logoIfNull}
+              alt="card"
             />
-            <div className={styles.imageContainer}>
-              <img
-                className={styles.image}
-                src={cardInfo.image ?? logoIfNull}
-                alt="card"
-              />
-            </div>
-            <h2 className={styles.inner}>{cardInfo.name}</h2>
-            <div>Gender: {cardInfo.gender ?? 'unknown'}</div>
-            <div>Species: {cardInfo.species ?? 'unknown'}</div>
-            <div>Blood status: {cardInfo.blood_status ?? 'unknown'}</div>
           </div>
-        )}
-      </aside>
-    </div>
+          <h2 className={styles.inner}>{cardInfo.name}</h2>
+          <div>Gender: {cardInfo.gender ?? 'unknown'}</div>
+          <div>Species: {cardInfo.species ?? 'unknown'}</div>
+          <div>Blood status: {cardInfo.blood_status ?? 'unknown'}</div>
+        </div>
+      )}
+    </aside>
   );
 };
 

@@ -43,4 +43,5 @@ export type DataContextType = {
   loading: boolean;
   totalPages: number;
   currentPage: number;
+  numberOfCards: number;
 };

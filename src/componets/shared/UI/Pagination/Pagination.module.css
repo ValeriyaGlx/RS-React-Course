@@ -8,12 +8,13 @@
 .paginationButton {
   display: flex;
   margin: 0 2px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
   padding: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
-  background-color: transparent;
+  background-image: linear-gradient(
+    rgba(224, 188, 9, 0.8),
+    rgba(204, 95, 17, 0.8)
+  );
 }
 
 .paginationButton img {
@@ -24,18 +25,13 @@
   transform: rotate(180deg);
 }
 
-.paginationButton:active {
-  background-color: #007bff;
-  color: #fff;
-}
-
 .paginationButton:hover {
-  background-color: #ecdf5d;
+  background-color: #c5a640;
 }
 
 .paginationButton:disabled {
-  background-color: #e0e0e0;
-  opacity: 0.5;
+  background-color: transparent;
+  opacity: 0.2;
 }
 
 .paginationPageInfo {
