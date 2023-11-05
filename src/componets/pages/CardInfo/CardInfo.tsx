@@ -4,6 +4,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { getSingleCharacter } from '../../shared/api';
 import { ISingleResponse, ISingleResult } from '../../../types/types';
 import logoIfNull from '../../../assets/images/incognito.png';
+import NotFoundSection from '../../shared/UI/NotFoundSection/NotFoundSection';
+import Spinner from '../../shared/UI/Spinner/Spinner';
 
 import styles from './CardInfo.module.css';
 
@@ -12,12 +14,20 @@ const CardInfo = () => {
   const navigate = useNavigate();
   const [cardInfo, setCardInfo] = useState<ISingleResponse | null>(null);
   const [openCard, setOpenCard] = useState(false);
+  const [notFound, setNotFound] = useState(false);
+  const [onLoad, setOnLoad] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
+      setOnLoad(true);
       const res: ISingleResult = await getSingleCharacter(pathname);
+      if (typeof res === 'number') {
+        setNotFound(true);
+        return;
+      }
       const card: ISingleResponse = res.data.attributes;
       setCardInfo(card);
+      setOnLoad(false);
       if (pathname) {
         setOpenCard(true);
       }
@@ -40,7 +50,10 @@ const CardInfo = () => {
         className={styles.background}
         onClick={closeSideBar}
         aria-hidden="true"
-      />
+      >
+        {notFound && <NotFoundSection />}
+        {onLoad && <Spinner />}
+      </div>
       {cardInfo && (
         <div className={styles.card}>
           <button
