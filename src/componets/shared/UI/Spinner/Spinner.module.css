@@ -1,0 +1,25 @@
+.loading-spinner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  display: block;
+  width: 100px;
+  animation: move 1s linear infinite;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(10px);
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateX(0);
+    transform: translateY(0px);
+  }
+}
