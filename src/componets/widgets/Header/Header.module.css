@@ -2,12 +2,19 @@
   padding: 0 30px;
   margin-bottom: 10px;
   height: 120px;
-  background-color: #313030;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .logo {
   width: 250px;
+}
+
+.smoke {
+  position: absolute;
+  bottom: -140px;
+  right: 0;
+  z-index: -1;
 }

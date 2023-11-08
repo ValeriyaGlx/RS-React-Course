@@ -5,11 +5,11 @@
 }
 
 body {
-  font-family: 'Teko', sans-serif;
+  font-family: 'Vollkorn SC', serif;
   letter-spacing: 1px;
   font-size: 16px;
   overflow-x: hidden;
-  background-color: #414040;
+  background-color: #00040b;
   color: #e5e2e2;
 }
 
@@ -19,6 +19,7 @@ a {
 }
 
 button {
+  font-family: 'Vollkorn SC', serif;
   border: none;
   background-color: inherit;
   cursor: pointer;

@@ -36,6 +36,7 @@ const CharacterCard: FC<CharacterCardProps> = ({ character, request }) => {
       <div className={styles['image-container']}>
         {!isImageLoaded && <Spinner />}
         <img
+          loading="lazy"
           className={styles['card-image']}
           src={image ?? imageIfNull}
           alt="character"

@@ -37,7 +37,7 @@ const CardInfo = () => {
 
   const closeSideBar = () => {
     setOpenCard(false);
-    setTimeout(() => navigate(`/${search}`), 100);
+    setTimeout(() => navigate(`/${search}`), 300);
   };
 
   return (

@@ -39,10 +39,10 @@ const DataProvider: FC<DataContextProps> = ({ children }) => {
         data,
         request,
         loading,
-        updateData,
         totalPages,
         currentPage,
         numberOfCards,
+        updateData,
       }}
     >
       {children}
