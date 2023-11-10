@@ -55,6 +55,7 @@ module.exports = {
         "class-methods-use-this": "off",
         "react/jsx-no-constructed-context-values": "off",
         "react/function-component-definition": "off",
+        "jest/no-mocks-import": "off",
         "import/order": [
             2,
             {

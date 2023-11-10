@@ -1,12 +1,14 @@
 import { ReactElement, useEffect, useState } from 'react';
 
+import { STARS_NUMBER } from '../../constants/constants';
+
 import styles from './StarBackground.module.css';
 
 const StarBackground = () => {
   const [stars, setStars] = useState<ReactElement[]>([]);
 
   const generateStars = () => {
-    const numStars = 100;
+    const numStars = STARS_NUMBER;
     const starElements: ReactElement[] = [];
 
     for (let i = 0; i < numStars; i += 1) {

@@ -6,4 +6,6 @@ export const DEFAULT_PAGE = 1;
 
 export const DEFAULT_CARDS = 5;
 
+export const STARS_NUMBER = 100;
+
 export default URL;
