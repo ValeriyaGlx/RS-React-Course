@@ -2,7 +2,7 @@ import { IResult } from '../../../types/types';
 import URL, { DEFAULT_CARDS, DEFAULT_PAGE } from '../constants/constants';
 
 async function getCharacters(
-  str: string,
+  str: string = '',
   page: number | string = DEFAULT_PAGE,
   size = DEFAULT_CARDS
 ): Promise<number | IResult> {

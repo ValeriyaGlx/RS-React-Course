@@ -48,6 +48,7 @@ const Pagination: FC<PaginationProps> = ({
         className={[styles.paginationButton, styles.rotate].join(' ')}
         onClick={() => handleClick(page - 1)}
         disabled={page === 1}
+        data-testid="prev-page"
       >
         <img src={arrowIcon} alt="arrow" />
       </button>
@@ -60,6 +61,7 @@ const Pagination: FC<PaginationProps> = ({
         className={styles.paginationButton}
         onClick={() => handleClick(page + 1)}
         disabled={page === totalPages}
+        data-testid="next-page"
       >
         <img src={arrowIcon} alt="arrow" />
       </button>
