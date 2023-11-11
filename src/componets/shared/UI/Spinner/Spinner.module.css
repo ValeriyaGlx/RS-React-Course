@@ -14,7 +14,7 @@
 .spinner {
   display: block;
   width: 100px;
-  animation: move 1s linear infinite;
+  animation: move .8s ease infinite;
 }
 
 @keyframes move {
