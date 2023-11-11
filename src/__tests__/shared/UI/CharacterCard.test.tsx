@@ -69,14 +69,3 @@ describe('Click on CharacterCard', () => {
     expect(fetchMock).toHaveBeenCalledWith(`${URL}/slug`);
   });
 });
-
-// const { name, image } = mockSingleResult.data.attributes;
-//
-// const card = container.querySelector('.card');
-// const innerContent = container.querySelector('.inner');
-// const imageContent = container.querySelector('.image');
-// const genderContent = screen.getByText(/gender/i);
-// expect(card).toBeInTheDocument();
-// expect(innerContent).toHaveTextContent(name);
-// expect(imageContent).toHaveAttribute('src', image);
-// expect(genderContent).toBeInTheDocument();
