@@ -1,7 +1,6 @@
-import { FC, Fragment, useState } from 'react';
+import { FC, Fragment } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import Spinner from '../Spinner/Spinner';
 import { IResponse } from '../../../../types/types';
 import stringMatching from '../../lib/stringMatching';
 import imageIfNull from '../../../../assets/images/incognito.png';
@@ -14,7 +13,6 @@ type CharacterCardProps = {
 };
 
 const CharacterCard: FC<CharacterCardProps> = ({ character, request }) => {
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
   const { search } = useLocation();
 
   const isMatchColor = (word: string, searchValue: string) => {
@@ -34,13 +32,11 @@ const CharacterCard: FC<CharacterCardProps> = ({ character, request }) => {
   return (
     <Link to={`/${slug}${search}`} className={styles.cardContainer}>
       <div className={styles['image-container']}>
-        {!isImageLoaded && <Spinner />}
         <img
           loading="lazy"
           className={styles['card-image']}
           src={image ?? imageIfNull}
           alt="character"
-          onLoad={() => setIsImageLoaded(true)}
         />
       </div>
       <div className={styles['card-info']}>
