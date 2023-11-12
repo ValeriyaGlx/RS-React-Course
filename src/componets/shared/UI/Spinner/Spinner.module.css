@@ -14,16 +14,20 @@
 .spinner {
   display: block;
   width: 100px;
-  animation: move 0.8s ease infinite;
+  animation: move 1s ease infinite;
 }
 
 @keyframes move {
   0% {
-    transform: translateX(10px);
-    transform: translateY(20px);
+    transform: translateX(0px) translateY(5px);
+  }
+  25% {
+    transform: translateX(5px) translateY(-5px);
+  }
+  50% {
+    transform: translateX(10px) translateY(5px);
   }
   100% {
-    transform: translateX(0);
-    transform: translateY(0px);
+    transform: translateX(0px) translateY(5px);
   }
 }
