@@ -4,6 +4,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import renderWithRouteAndContext from '../utils/renderWithRouteAndContext';
 import { mockResult } from '../../__mocks__/mockResponce';
 import SearchSection from '../../componets/features/SearchSection/SearchSection';
+import { getCharacters } from '../../componets/shared/api';
 
 jest.mock('../../componets/shared/api', () => ({
   getCharacters: jest.fn(() => Promise.resolve(mockResult)),
@@ -41,5 +42,12 @@ describe('SearchSection', () => {
     renderWithRouteAndContext(<SearchSection />);
     const input = screen.getByPlaceholderText('Enter Character Name');
     expect(input).toHaveValue('Stored Value');
+  });
+  test('Verify that pushing on the Enter keyboard button sends request', () => {
+    renderWithRouteAndContext(<SearchSection />);
+    const input = screen.getByPlaceholderText('Enter Character Name');
+    fireEvent.change(input, { target: { value: 'Testing Value' } });
+    fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
+    expect(getCharacters).toHaveBeenCalledWith('Testing Value', null, 5);
   });
 });

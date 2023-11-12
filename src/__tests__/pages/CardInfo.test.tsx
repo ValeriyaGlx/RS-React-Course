@@ -3,9 +3,9 @@ import { act } from 'react-dom/test-utils';
 import { fireEvent, screen } from '@testing-library/react';
 import fetchMock from 'jest-fetch-mock';
 
-import { mockSingleResult } from '../../../__mocks__/mockResponce';
-import CardInfo from '../../../componets/pages/CardInfo/CardInfo';
-import renderWithRouteAndContext from '../../utils/renderWithRouteAndContext';
+import { mockSingleResult } from '../../__mocks__/mockResponce';
+import CardInfo from '../../componets/pages/CardInfo/CardInfo';
+import renderWithRouteAndContext from '../utils/renderWithRouteAndContext';
 
 describe('CardInfo', () => {
   let container: HTMLElement;

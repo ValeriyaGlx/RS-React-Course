@@ -14,12 +14,12 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('Pagination', () => {
-  test('The Pagination updates URL query parameter when page changes', () => {
+  test('The Pagination updates URL query parameter when page changes', async () => {
     const { container } = renderWithRouteAndContext(
       <Pagination
         currentPage={DEFAULT_PAGE}
-        onPageChange={jest.fn}
-        totalPages={DEFAULT_PAGE + 1}
+        onPageChange={jest.fn((page) => page + 1)}
+        totalPages={10}
       />
     );
     expect(container).toBeInTheDocument();
@@ -27,12 +27,12 @@ describe('Pagination', () => {
     const nextPage = screen.getByTestId('next-page');
     fireEvent.click(nextPage);
     expect(mockSearchParams).toHaveBeenCalledWith({ page: '2' });
-    fireEvent.click(nextPage);
-    // expect(mockSearchParams).toHaveBeenCalledWith({ page: '3' });
-    // TODO: solve issue
-
+    const lastPage = screen.getByTestId('last-page');
+    fireEvent.click(lastPage);
+    expect(mockSearchParams).toHaveBeenCalledWith({ page: '10' });
     // const prevPage = screen.getByTestId('prev-page');
     // fireEvent.click(prevPage);
-    // expect(mockSearchParams).toHaveBeenCalledWith({ page: '1' });
+    // expect(mockSearchParams).toHaveBeenCalledWith({ page: '9' });
+    screen.debug();
   });
 });

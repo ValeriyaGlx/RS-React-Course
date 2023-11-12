@@ -70,6 +70,7 @@ const Pagination: FC<PaginationProps> = ({
         className={styles.paginationButton}
         onClick={() => handleClick(totalPages)}
         disabled={page === totalPages}
+        data-testid="last-page"
       >
         <img src={arrowIcon} alt="arrow" />
         <img src={arrowIcon} alt="arrow" />
