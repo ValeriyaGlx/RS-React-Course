@@ -1,8 +1,7 @@
 import '@testing-library/jest-dom';
 import fetchMock from 'jest-fetch-mock';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, act } from '@testing-library/react';
 import { Route, Routes } from 'react-router-dom';
-import { act } from 'react-dom/test-utils';
 
 import URL from '../../../componets/shared/constants/constants';
 import renderWithRouteAndContext from '../../utils/renderWithRouteAndContext';

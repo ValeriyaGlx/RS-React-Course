@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom';
 
-import { fireEvent, screen } from '@testing-library/react';
-import { act } from 'react-dom/test-utils';
+import { fireEvent, screen, act } from '@testing-library/react';
 
 import ContentContainer from '../../../componets/shared/UI/ContentContainer/ContentContainer';
 import { DataContextType } from '../../../types/types';

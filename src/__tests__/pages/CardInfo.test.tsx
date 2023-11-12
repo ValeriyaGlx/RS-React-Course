@@ -1,6 +1,5 @@
 import '@testing-library/jest-dom';
-import { act } from 'react-dom/test-utils';
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, act } from '@testing-library/react';
 import fetchMock from 'jest-fetch-mock';
 
 import { mockSingleResult } from '../../__mocks__/mockResponce';
