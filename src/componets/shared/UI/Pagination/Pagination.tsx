@@ -39,6 +39,7 @@ const Pagination: FC<PaginationProps> = ({
         className={[styles.paginationButton, styles.rotate].join(' ')}
         onClick={() => handleClick(DEFAULT_PAGE)}
         disabled={page === DEFAULT_PAGE}
+        data-testid="first-page"
       >
         <img src={arrowIcon} alt="arrow" />
         <img src={arrowIcon} alt="arrow" />

@@ -22,7 +22,7 @@ describe('NotFound Page', () => {
     const inner = screen.getByText(/Oh dear. Are you lost?/i);
     expect(inner).toBeInTheDocument();
   });
-  test("Click on the 404-page's button redirects to main page", () => {
+  test("Click on the 404-page's button redirects to the main page", () => {
     const button = screen.getByRole('link');
     fireEvent.click(button);
     const mainImage = container.querySelector('.spinner');
