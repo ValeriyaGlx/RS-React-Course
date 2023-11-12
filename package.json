@@ -53,11 +53,6 @@
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm test"
-    }
-  },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
       "npx prettier --write",
