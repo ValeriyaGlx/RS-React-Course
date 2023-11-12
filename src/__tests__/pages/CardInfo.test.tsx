@@ -51,3 +51,15 @@ describe('CardInfo', () => {
     expect(cardInfo).not.toHaveClass('opened');
   });
 });
+
+describe('CardInfo if response returns with error', () => {
+  test('Show notFound section if response returns with error', async () => {
+    fetchMock.enableMocks();
+    fetchMock.mockResponseOnce(JSON.stringify({}), { status: 404 });
+    await act(async () => {
+      renderWithRouteAndContext(<CardInfo />);
+    });
+    const message = screen.getByText(/Nothing Not Found/i);
+    expect(message).toBeInTheDocument();
+  });
+});

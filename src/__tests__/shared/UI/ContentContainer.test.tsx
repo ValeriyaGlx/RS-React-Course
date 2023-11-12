@@ -1,28 +1,37 @@
 import '@testing-library/jest-dom';
 
-import { screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
 
 import ContentContainer from '../../../componets/shared/UI/ContentContainer/ContentContainer';
 import { DataContextType } from '../../../types/types';
 import {
   mockAddedCharacters,
   mockCharactersList,
+  mockResult,
 } from '../../../__mocks__/mockResponce';
 import {
   DEFAULT_CARDS,
   DEFAULT_PAGE,
 } from '../../../componets/shared/constants/constants';
 import renderWithRouteAndContext from '../../utils/renderWithRouteAndContext';
+import * as api from '../../../componets/shared/api';
 
 const mockContextIfCardsFound: DataContextType = {
   data: mockCharactersList,
   request: '',
   currentPage: DEFAULT_PAGE,
-  totalPages: DEFAULT_PAGE,
+  totalPages: 10,
   numberOfCards: DEFAULT_CARDS,
   loading: false,
   updateData: jest.fn(),
 };
+
+jest.mock('../../../componets/shared/api', () => ({
+  getCharacters: jest.fn(() => Promise.resolve(mockResult)),
+}));
+
+const getCharactersSpy = jest.spyOn(api, 'getCharacters');
 
 describe('ContentContainer', () => {
   test('ContentContainer renders the default number of cards (5)', () => {
@@ -61,5 +70,28 @@ describe('ContentContainer', () => {
     const message = screen.getByText(/Nothing Not Found/i);
     expect(message).toBeInTheDocument();
     expect(contentContainer?.children.length).not.toBe(5);
+  });
+
+  test('onPageChange updates state correctly', async () => {
+    renderWithRouteAndContext(
+      <ContentContainer context={mockContextIfCardsFound} />
+    );
+    const nextPage = screen.getByTestId('next-page');
+    await act(async () => {
+      fireEvent.click(nextPage);
+    });
+    expect(getCharactersSpy).toHaveBeenCalled();
+  });
+  test('changeNumberOfCards updates state and buttons correctly', async () => {
+    const { container } = renderWithRouteAndContext(
+      <ContentContainer context={mockContextIfCardsFound} />
+    );
+    const buttons = container.querySelectorAll('.button');
+    const changeNumButton = buttons[1];
+    await act(async () => {
+      fireEvent.click(changeNumButton);
+    });
+    expect(changeNumButton).toHaveClass('active');
+    expect(getCharactersSpy).toHaveBeenCalled();
   });
 });

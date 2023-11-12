@@ -64,7 +64,7 @@ describe('Click on CharacterCard', () => {
     expect(cardInfoAside).toBeInTheDocument();
     expect(cardInfoAside).toHaveClass('opened');
   });
-  test('Check that clicking triggers an additional API call to fetch detailed information', async () => {
+  test('Check that clicking triggers an additional api call to fetch detailed information', async () => {
     expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(fetchMock).toHaveBeenCalledWith(`${URL}/slug`);
   });
