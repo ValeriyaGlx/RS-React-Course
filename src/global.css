@@ -24,3 +24,16 @@ button {
   background-color: inherit;
   cursor: pointer;
 }
+
+@media (max-width: 950px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 350px) {
+  body {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+}

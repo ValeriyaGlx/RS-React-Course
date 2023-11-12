@@ -28,7 +28,7 @@ const NumbersOfCardsButtons: FC<NumbersOfCardsButtonsProps> = ({
 
   return (
     <div className={styles.container}>
-      Number Of Characters:
+      <div>Number Of Characters:</div>
       {buttons.map((btn) => (
         <button
           className={[

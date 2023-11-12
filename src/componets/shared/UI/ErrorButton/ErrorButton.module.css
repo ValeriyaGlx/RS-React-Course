@@ -1,6 +1,8 @@
 .errorButton {
+  position: absolute;
+  top:0;
+  left: 0;
   letter-spacing: 1px;
-  font-size: 20px;
   padding: 5px 10px;
   background-image: linear-gradient(
     rgba(243, 6, 49, 0.8),

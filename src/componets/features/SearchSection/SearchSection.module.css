@@ -7,7 +7,7 @@
 
 .searchInput {
   height: 100%;
-  width: 300px;
+  width: auto;
   font-family: 'Vollkorn SC', serif;
   letter-spacing: 1px;
   font-size: 20px;
@@ -49,4 +49,21 @@
 
 .searchButton:hover {
   box-shadow: 0 10px 10px rgba(91, 114, 18, 0.5) inset;
+}
+
+@media (max-width: 720px) {
+  .searchInput,
+  .searchButton {
+    font-size: 14px;
+    padding: 2px;
+  }
+}
+
+@media (max-width: 560px) {
+  .searchInput,
+  .searchButton {
+    position: relative;
+    bottom: 50px;
+    left: 20px;
+  }
 }
