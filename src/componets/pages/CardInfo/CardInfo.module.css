@@ -67,3 +67,27 @@
   right: 0;
   opacity: 1;
 }
+
+@media (max-width: 800px) {
+  .imageContainer,
+  .image {
+    width: 200px;
+    height: 250px;
+  }
+
+  .card {
+    width: 300px;
+  }
+}
+
+@media (max-width: 650px) {
+  .container.opened {
+    right: 20%;
+  }
+}
+
+@media (max-width: 470px) {
+  .container.opened {
+    right: 40%;
+  }
+}
