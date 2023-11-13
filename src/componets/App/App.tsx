@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from '../pages/Layout/Layout';
 import CardInfo from '../pages/CardInfo/CardInfo';
 import FallDownUI from '../shared/UI/FallDownUI/FallDownUI';
+import NotFound from '../pages/NotFound/NotFound';
 
 const router = createBrowserRouter([
   {
@@ -13,8 +14,13 @@ const router = createBrowserRouter([
       {
         path: ':id',
         element: <CardInfo />,
+        errorElement: <NotFound />,
       },
     ],
+  },
+  {
+    path: '*',
+    element: <NotFound />,
   },
 ]);
 const App = () => {

@@ -1,13 +1,15 @@
 module.exports = {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest": true
     },
     "extends": [
         "airbnb",
         "airbnb-typescript",
         "airbnb/hooks",
         "plugin:react/recommended",
+        "plugin:jest/recommended",
         "plugin:@typescript-eslint/recommended",
       "plugin:prettier/recommended",
     ],
@@ -29,6 +31,7 @@ module.exports = {
         "react",
         "@typescript-eslint",
         "prettier",
+        "jest"
     ],
     "rules": {
         "react/react-in-jsx-scope": "off",
@@ -52,6 +55,7 @@ module.exports = {
         "class-methods-use-this": "off",
         "react/jsx-no-constructed-context-values": "off",
         "react/function-component-definition": "off",
+        "jest/no-mocks-import": "off",
         "import/order": [
             2,
             {

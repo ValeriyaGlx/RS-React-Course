@@ -28,6 +28,7 @@ const SearchSection = () => {
 
   const handleClick = async (res: string) => {
     const updateData = context?.updateData;
+    setDataLocalStorage('characterSearch', res);
 
     if (updateData) {
       updateData({ loading: true });
@@ -44,7 +45,6 @@ const SearchSection = () => {
         updateData({ data: undefined });
       }
       updateData({ loading: false });
-      setDataLocalStorage('characterSearch', res);
     }
   };
   useEffect(() => {
