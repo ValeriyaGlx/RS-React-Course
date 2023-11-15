@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 
 import { fireEvent, screen, act } from '@testing-library/react';
 
-import ContentContainer from '../../../componets/shared/UI/ContentContainer/ContentContainer';
+import ContentContainer from '../../../componets/widgets/ContentContainer/ContentContainer';
 import { DataContextType } from '../../../types/types';
 import {
   mockAddedCharacters,

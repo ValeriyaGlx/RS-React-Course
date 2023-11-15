@@ -1,10 +1,10 @@
 import { FC, useState } from 'react';
 
-import { DataContextType, IResult } from '../../../../types/types';
-import NotFoundSection from '../NotFoundSection/NotFoundSection';
-import { getCharacters } from '../../api';
-import CardsContainer from '../CardsContainer/CardsContainer';
-import { DEFAULT_PAGE } from '../../constants/constants';
+import { DataContextType, IResult } from '../../../types/types';
+import NotFoundSection from '../../shared/UI/NotFoundSection/NotFoundSection';
+import { getCharacters } from '../../shared/api';
+import CardsContainer from '../../shared/UI/CardsContainer/CardsContainer';
+import { DEFAULT_PAGE } from '../../shared/constants/constants';
 
 import styles from './ContentContainer.module.css';
 

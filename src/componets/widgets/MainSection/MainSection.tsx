@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { DataContext } from '../../App/DataProvider/DataProvider';
 import Spinner from '../../shared/UI/Spinner/Spinner';
 import { DataContextType } from '../../../types/types';
-import ContentContainer from '../../shared/UI/ContentContainer/ContentContainer';
+import ContentContainer from '../ContentContainer/ContentContainer';
 
 import styles from './MainSection.module.css';
 
