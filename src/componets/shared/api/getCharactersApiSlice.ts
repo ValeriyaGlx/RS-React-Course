@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import URL, { DEFAULT_CARDS, DEFAULT_PAGE } from '../constants/constants';
-import { IResult } from '../../../types/types';
+import { IResult, ISingleResult } from '../../../types/types';
 
 export const getCharactersApi = createApi({
   reducerPath: 'getCharacters',
@@ -26,7 +26,11 @@ export const getCharactersApi = createApi({
             ]
           : [{ type: 'Characters', id: 'PARTIAL-LIST' }],
     }),
+    getSingleCharacter: build.query<ISingleResult, unknown>({
+      query: ({ slug }) => slug,
+    }),
   }),
 });
 
-export const { useGetCharactersQuery } = getCharactersApi;
+export const { useGetCharactersQuery, useGetSingleCharacterQuery } =
+  getCharactersApi;

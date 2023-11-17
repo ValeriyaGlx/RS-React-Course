@@ -30,21 +30,10 @@ export type ISingleResponse = {
 };
 
 export type ISingleResult = {
+  id: string;
   data: {
     attributes: ISingleResponse;
   };
-};
-
-export type DataContextType = {
-  data: IResponse[];
-  request: string;
-  updateData: (newData: {
-    [key: string]: string | number | boolean | IResponse[] | undefined;
-  }) => void;
-  loading: boolean;
-  totalPages: number;
-  currentPage: number;
-  numberOfCards: number;
 };
 
 export type SearchSectionSliceType = {
