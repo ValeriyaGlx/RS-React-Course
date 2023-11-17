@@ -1,10 +1,7 @@
 import setDataLocalStorage from '../../../shared/lib/localStorage';
 import { setValue } from '../searchSectionSlice';
 import { useAppDispatch } from '../../../App/store/hooks';
-import {
-  DEFAULT_PAGE,
-  LOCAL_STORAGE_KEY,
-} from '../../../shared/constants/constants';
+import { LOCAL_STORAGE_KEY } from '../../../shared/constants/constants';
 
 import useStartedSearchParams from './useStartedSearchParams';
 
@@ -15,9 +12,7 @@ const useCharacterSearch = (res: string) => {
     setDataLocalStorage(LOCAL_STORAGE_KEY, res);
     setInitSearchParams();
     dispatch(setValue({ key: 'inputValue', value: res.trim() }));
-    dispatch(
-      setValue({ key: 'currentPage', value: Number(page) ?? DEFAULT_PAGE })
-    );
+    dispatch(setValue({ key: 'currentPage', value: page }));
   };
 
   return { getAllCharacters };

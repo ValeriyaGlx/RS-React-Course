@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { getDataLocalStorage } from '../../shared/lib/localStorage';
 
@@ -20,8 +20,6 @@ const SearchSection = () => {
       handleClick();
     }
   };
-
-  useEffect(() => handleClick(), []);
 
   const onHandleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setInputValue(e.target.value);

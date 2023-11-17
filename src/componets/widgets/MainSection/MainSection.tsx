@@ -11,7 +11,6 @@ import styles from './MainSection.module.css';
 
 const MainSection = () => {
   const dispatch = useDispatch();
-
   const { inputValue, size, currentPage } = useAppSelector(
     (state) => state.searchReducer
   );
