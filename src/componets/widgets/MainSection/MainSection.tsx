@@ -1,26 +1,45 @@
-import { useContext } from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { DataContext } from '../../App/DataProvider/DataProvider';
 import Spinner from '../../shared/UI/Spinner/Spinner';
-import { DataContextType } from '../../../types/types';
 import ContentContainer from '../ContentContainer/ContentContainer';
+import { useGetCharactersQuery } from '../../shared/api/getCharactersApiSlice';
+import { useAppSelector } from '../../App/store/hooks';
+import { setValue } from '../../features/SearchSection/searchSectionSlice';
 
 import styles from './MainSection.module.css';
 
 const MainSection = () => {
-  const context = useContext(DataContext);
+  const dispatch = useDispatch();
 
-  const renderCharacterCards = (cnx: DataContextType | undefined) => {
-    return cnx?.loading ? <Spinner /> : <ContentContainer context={context} />;
+  const { inputValue, size, currentPage } = useAppSelector(
+    (state) => state.searchReducer
+  );
+  const { data, isFetching } = useGetCharactersQuery(
+    {
+      inputValue,
+      page: currentPage,
+      size,
+    },
+    { refetchOnMountOrArgChange: true }
+  );
+
+  useEffect(() => {
+    dispatch(
+      setValue({ key: 'totalPages', value: data?.meta.pagination.last })
+    );
+  }, [data]);
+
+  const renderCharacterCards = () => {
+    return isFetching ? <Spinner /> : <ContentContainer data={data} />;
   };
 
   return (
     <section className={styles.container}>
       <h1>
-        Search Results{' '}
-        <span className={styles.request}>{context?.request}</span>:
+        Search Results <span className={styles.request}>{inputValue}</span>:
       </h1>
-      {renderCharacterCards(context)}
+      {renderCharacterCards()}
     </section>
   );
 };

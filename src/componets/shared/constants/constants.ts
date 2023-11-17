@@ -8,4 +8,6 @@ export const DEFAULT_CARDS = 5;
 
 export const STARS_NUMBER = 100;
 
+export const LOCAL_STORAGE_KEY = 'characterSearch';
+
 export default URL;

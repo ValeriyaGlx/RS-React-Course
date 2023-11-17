@@ -3,16 +3,12 @@ import { FC } from 'react';
 import styles from '../SearchSection.module.css';
 
 type ButtonProps = {
-  handleClick: (res: string) => Promise<void>;
-  inputValue: string;
+  handleClick: () => void;
 };
 
-const Button: FC<ButtonProps> = ({ handleClick, inputValue }) => {
+const Button: FC<ButtonProps> = ({ handleClick }) => {
   return (
-    <button
-      className={styles.searchButton}
-      onClick={() => handleClick(inputValue.trim())}
-    >
+    <button className={styles.searchButton} onClick={() => handleClick()}>
       Search
     </button>
   );

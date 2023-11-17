@@ -11,22 +11,17 @@ const SearchSection = () => {
   const [inputValue, setInputValue] = useState(
     getDataLocalStorage('characterSearch')
   );
-  const { getAllCharacters } = useCharacterSearch();
+  const { getAllCharacters } = useCharacterSearch(inputValue);
 
-  const handleClick = (res: string) => getAllCharacters(res);
-  useEffect(() => {
-    const value = getDataLocalStorage('characterSearch');
-    handleClick(value);
-  }, []);
+  const handleClick = () => getAllCharacters();
 
-  const handleKeyPress = (
-    event: React.KeyboardEvent<HTMLInputElement>,
-    res: string
-  ) => {
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      handleClick(res);
+      handleClick();
     }
   };
+
+  useEffect(() => handleClick(), []);
 
   const onHandleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setInputValue(e.target.value);
@@ -38,7 +33,7 @@ const SearchSection = () => {
         inputValue={inputValue}
         onHandleChange={onHandleChange}
       />
-      <Button handleClick={handleClick} inputValue={inputValue} />
+      <Button handleClick={handleClick} />
     </div>
   );
 };

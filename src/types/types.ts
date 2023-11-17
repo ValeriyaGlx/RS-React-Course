@@ -1,4 +1,5 @@
 export type IResponse = {
+  id: string;
   attributes: {
     slug: string;
     name: string;
@@ -44,4 +45,12 @@ export type DataContextType = {
   totalPages: number;
   currentPage: number;
   numberOfCards: number;
+};
+
+export type SearchSectionSliceType = {
+  inputValue: string;
+  size: number;
+  totalPages: number;
+  currentPage: number;
+  isLoading: boolean;
 };
