@@ -41,5 +41,6 @@ export type SearchSectionSliceType = {
   size: number;
   totalPages: number;
   currentPage: number;
-  isLoading: boolean;
+  isLoadingCharacters: boolean;
+  isLoadingSingleCharacter: boolean;
 };

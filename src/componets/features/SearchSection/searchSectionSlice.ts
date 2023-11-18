@@ -14,7 +14,8 @@ const initialState: SearchSectionSliceType = {
   size: 5,
   currentPage: 1,
   totalPages: 1,
-  isLoading: false,
+  isLoadingCharacters: false,
+  isLoadingSingleCharacter: false,
 };
 
 const searchSectionSlice = createSlice({

@@ -27,6 +27,7 @@ const MainSection = () => {
     dispatch(
       setValue({ key: 'totalPages', value: data?.meta.pagination.last })
     );
+    dispatch(setValue({ key: 'isLoadingCharacters', value: isFetching }));
   }, [data]);
 
   const renderCharacterCards = () => {
