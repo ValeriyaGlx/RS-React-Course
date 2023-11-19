@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
 import { useGetSingleCharacterQuery } from '../../shared/api/getCharactersApiSlice';
 import { ISingleResponse } from '../../../types/types';
 import NotFoundSection from '../../shared/UI/NotFoundSection/NotFoundSection';
 import Spinner from '../../shared/UI/Spinner/Spinner';
 import { setValue } from '../../features/SearchSection/searchSectionSlice';
+import { useAppDispatch } from '../../App/store/hooks';
 
 import CardInfo from './UI/CardInfo';
 import styles from './CardInfo.module.css';
@@ -17,7 +17,7 @@ const SingleCharacterCard = () => {
   const [cardInfo, setCardInfo] = useState<ISingleResponse | null>(null);
   const [openCard, setOpenCard] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const { data, isError, isLoading } = useGetSingleCharacterQuery({
     slug: pathname,

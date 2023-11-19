@@ -1,16 +1,15 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 
 import Spinner from '../../shared/UI/Spinner/Spinner';
 import ContentContainer from '../ContentContainer/ContentContainer';
 import { useGetCharactersQuery } from '../../shared/api/getCharactersApiSlice';
-import { useAppSelector } from '../../App/store/hooks';
+import { useAppDispatch, useAppSelector } from '../../App/store/hooks';
 import { setValue } from '../../features/SearchSection/searchSectionSlice';
 
 import styles from './MainSection.module.css';
 
 const MainSection = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { inputValue, size, currentPage } = useAppSelector(
     (state) => state.searchReducer
   );

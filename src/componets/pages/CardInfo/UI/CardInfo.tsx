@@ -9,7 +9,6 @@ type CardInfoProps = {
   cardInfo: ISingleResponse | null;
 };
 
-// eslint-disable-next-line consistent-return
 const CardInfo: FC<CardInfoProps> = ({ closeSideBar, cardInfo }) => {
   if (cardInfo) {
     return (
@@ -33,6 +32,8 @@ const CardInfo: FC<CardInfoProps> = ({ closeSideBar, cardInfo }) => {
       </div>
     );
   }
+
+  return null;
 };
 
 export default CardInfo;

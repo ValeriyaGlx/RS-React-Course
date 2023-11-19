@@ -2,7 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { SearchSectionSliceType } from '../../../types/types';
 import { getDataLocalStorage } from '../../shared/lib/localStorage';
-import { LOCAL_STORAGE_KEY } from '../../shared/constants/constants';
+import {
+  DEFAULT_CARDS,
+  DEFAULT_PAGE,
+  LOCAL_STORAGE_KEY,
+} from '../../shared/constants/constants';
 
 interface SetValuePayload {
   key: keyof SearchSectionSliceType;
@@ -11,9 +15,9 @@ interface SetValuePayload {
 
 const initialState: SearchSectionSliceType = {
   inputValue: getDataLocalStorage(LOCAL_STORAGE_KEY),
-  size: 5,
-  currentPage: 1,
-  totalPages: 1,
+  size: DEFAULT_CARDS,
+  currentPage: DEFAULT_PAGE,
+  totalPages: DEFAULT_PAGE,
   isLoadingCharacters: false,
   isLoadingSingleCharacter: false,
 };

@@ -1,7 +1,6 @@
 import { FC } from 'react';
-import { useDispatch } from 'react-redux';
 
-import { useAppSelector } from '../../App/store/hooks';
+import { useAppDispatch, useAppSelector } from '../../App/store/hooks';
 import { IResult } from '../../../types/types';
 import NotFoundSection from '../../shared/UI/NotFoundSection/NotFoundSection';
 import CardsContainer from '../../shared/UI/CardsContainer/CardsContainer';
@@ -18,7 +17,7 @@ const ContentContainer: FC<CardsContainerProps> = ({ data }) => {
   const { inputValue, currentPage, totalPages } = useAppSelector(
     (state) => state.searchReducer
   );
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const cards = data?.data;
 
   const onPageChange = (page: number) => {
