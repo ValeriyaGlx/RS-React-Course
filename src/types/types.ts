@@ -3,10 +3,10 @@ export type IResponse = {
   attributes: {
     slug: string;
     name: string;
-    gender: string;
+    gender: string | null;
     image?: string;
-    species: string;
-    blood_status: string;
+    species: string | null;
+    blood_status: string | null;
   };
 };
 
@@ -23,10 +23,10 @@ export type IResult = {
 export type ISingleResponse = {
   slug: string;
   name: string;
-  gender: string;
+  gender: string | null;
   image?: string;
-  species: string;
-  blood_status: string;
+  species: string | null;
+  blood_status: string | null;
 };
 
 export type ISingleResult = {
