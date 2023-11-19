@@ -1,25 +1,21 @@
 import '@testing-library/jest-dom';
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 
-import renderWithRouteAndContext from '../utils/renderWithRouteAndContext';
-import { mockResult } from '../../__mocks__/mockResponce';
+import renderWithRouterAndProvider, {
+  mockStore,
+} from '../utils/renderWithRouterAndProvider';
 import SearchSection from '../../componets/features/SearchSection/SearchSection';
-import { getCharacters } from '../../componets/shared/api';
 
-jest.mock('../../componets/shared/api', () => ({
-  getCharacters: jest.fn(() => Promise.resolve(mockResult)),
-}));
+const dispatchSpy = jest.spyOn(mockStore, 'dispatch');
 
 describe('SearchSection', () => {
   const localStorageKey = 'characterSearch';
-
   beforeEach(() => {
-    jest.clearAllMocks();
     localStorage.clear();
   });
 
   test('Renders the SearchSection', () => {
-    renderWithRouteAndContext(<SearchSection />);
+    renderWithRouterAndProvider(<SearchSection />);
 
     const btn = screen.getByRole('button');
     const input = screen.getByPlaceholderText('Enter Character Name');
@@ -28,7 +24,7 @@ describe('SearchSection', () => {
   });
 
   test('Verify that clicking the Search button saves the entered value to the local storage', () => {
-    renderWithRouteAndContext(<SearchSection />);
+    renderWithRouterAndProvider(<SearchSection />);
 
     const input = screen.getByPlaceholderText('Enter Character Name');
     fireEvent.change(input, { target: { value: 'Saved Value' } });
@@ -39,15 +35,21 @@ describe('SearchSection', () => {
 
   test('Check that the component retrieves the value from the local storage upon mounting', () => {
     localStorage.setItem(localStorageKey, 'Stored Value');
-    renderWithRouteAndContext(<SearchSection />);
+    renderWithRouterAndProvider(<SearchSection />);
     const input = screen.getByPlaceholderText('Enter Character Name');
     expect(input).toHaveValue('Stored Value');
   });
-  test('Verify that pushing on the Enter keyboard button sends request', () => {
-    renderWithRouteAndContext(<SearchSection />);
+  test('Verify that pushing on the Enter keyboard dispatch input value', async () => {
+    renderWithRouterAndProvider(<SearchSection />);
     const input = screen.getByPlaceholderText('Enter Character Name');
     fireEvent.change(input, { target: { value: 'Testing Value' } });
     fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
-    expect(getCharacters).toHaveBeenCalledWith('Testing Value', null, 5);
+
+    await waitFor(() => {
+      expect(dispatchSpy).toHaveBeenCalledWith({
+        type: 'data/setValue',
+        payload: { key: 'inputValue', value: 'Testing Value' },
+      });
+    });
   });
 });

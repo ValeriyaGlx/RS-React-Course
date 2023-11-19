@@ -1,85 +1,46 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
-import { DataContext } from '../../App/DataProvider/DataProvider';
-import setDataLocalStorage, {
-  getDataLocalStorage,
-} from '../../shared/lib/localStorage';
-import { getCharacters } from '../../shared/api';
-import { DEFAULT_PAGE } from '../../shared/constants/constants';
-import { DataContextType } from '../../../types/types';
+import { getDataLocalStorage } from '../../shared/lib/localStorage';
+import { useAppDispatch } from '../../App/store/hooks';
 
 import styles from './SearchSection.module.css';
+import Input from './ui/Input';
+import Button from './ui/Button';
+import useCharacterSearch from './hooks/useCharacterSearch';
+import useStartedSearchParams from './hooks/useStartedSearchParams';
+import { setValue } from './searchSectionSlice';
 
 const SearchSection = () => {
+  const dispatch = useAppDispatch();
   const [inputValue, setInputValue] = useState(
     getDataLocalStorage('characterSearch')
   );
-  const context = useContext(DataContext);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const page = searchParams.get('page') as string;
-  const { numberOfCards } = context as DataContextType;
+  const { getAllCharacters } = useCharacterSearch(inputValue);
+  const { page } = useStartedSearchParams();
 
-  const setInitSearchParams = () => {
-    if (searchParams.has('page')) {
-      setSearchParams({ page: String(DEFAULT_PAGE) });
-    }
-  };
+  const handleClick = () => getAllCharacters();
 
-  const handleClick = async (res: string) => {
-    const updateData = context?.updateData;
-    setDataLocalStorage('characterSearch', res);
-
-    if (updateData) {
-      updateData({ loading: true });
-      const characters = await getCharacters(res, page, numberOfCards);
-
-      if (typeof characters !== 'number') {
-        updateData({
-          data: characters.data,
-          totalPages: characters.meta.pagination.last,
-          request: res,
-          currentPage: characters.meta.pagination.current,
-        });
-      } else {
-        updateData({ data: undefined });
-      }
-      updateData({ loading: false });
-    }
-  };
-  useEffect(() => {
-    const value = getDataLocalStorage('characterSearch');
-    handleClick(value);
-  }, []);
-
-  const handleKeyPress = (
-    event: React.KeyboardEvent<HTMLInputElement>,
-    res: string
-  ) => {
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      handleClick(res);
-      setInitSearchParams();
+      handleClick();
     }
   };
+
+  const onHandleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setInputValue(e.target.value);
+
+  useEffect(() => {
+    dispatch(setValue({ key: 'currentPage', value: page }));
+  }, []);
 
   return (
     <div className={styles.searchContainer}>
-      <input
-        className={styles.searchInput}
-        placeholder="Enter Character Name"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        onKeyDown={(e) => handleKeyPress(e, inputValue.trim())}
+      <Input
+        handleKeyPress={handleKeyPress}
+        inputValue={inputValue}
+        onHandleChange={onHandleChange}
       />
-      <button
-        className={styles.searchButton}
-        onClick={() => {
-          handleClick(inputValue.trim());
-          setInitSearchParams();
-        }}
-      >
-        Search
-      </button>
+      <Button handleClick={handleClick} />
     </div>
   );
 };

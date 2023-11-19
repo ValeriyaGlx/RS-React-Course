@@ -120,7 +120,7 @@ export const mockResult: IResult = {
   data: mockCharactersList,
   meta: {
     pagination: {
-      last: 1,
+      last: 10,
       current: 1,
     },
   },
@@ -136,6 +136,7 @@ export const mockCardResponse: ISingleResponse = {
 };
 
 export const mockSingleCard: IResponse = {
+  id: '1',
   attributes: mockCardResponse,
 };
 

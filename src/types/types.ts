@@ -1,11 +1,12 @@
 export type IResponse = {
+  id: string;
   attributes: {
     slug: string;
     name: string;
-    gender: string;
+    gender: string | null;
     image?: string;
-    species: string;
-    blood_status: string;
+    species: string | null;
+    blood_status: string | null;
   };
 };
 
@@ -22,26 +23,25 @@ export type IResult = {
 export type ISingleResponse = {
   slug: string;
   name: string;
-  gender: string;
+  gender: string | null;
   image?: string;
-  species: string;
-  blood_status: string;
+  species: string | null;
+  blood_status: string | null;
 };
 
 export type ISingleResult = {
+  id: string;
   data: {
     attributes: ISingleResponse;
   };
 };
 
-export type DataContextType = {
-  data: IResponse[];
-  request: string;
-  updateData: (newData: {
-    [key: string]: string | number | boolean | IResponse[] | undefined;
-  }) => void;
-  loading: boolean;
+export type SearchSectionSliceType = {
+  cardsInfo: IResponse[] | [];
+  inputValue: string;
+  size: number;
   totalPages: number;
   currentPage: number;
-  numberOfCards: number;
+  isLoadingCharacters: boolean;
+  isLoadingSingleCharacter: boolean;
 };
