@@ -11,7 +11,7 @@ import { setValue } from '../../features/SearchSection/searchSectionSlice';
 import CardInfo from './UI/CardInfo';
 import styles from './CardInfo.module.css';
 
-const CharacterCard = () => {
+const SingleCharacterCard = () => {
   const { pathname, search } = useLocation();
   const navigate = useNavigate();
   const [cardInfo, setCardInfo] = useState<ISingleResponse | null>(null);
@@ -60,4 +60,4 @@ const CharacterCard = () => {
   );
 };
 
-export default CharacterCard;
+export default SingleCharacterCard;

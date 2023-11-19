@@ -3,20 +3,34 @@ import { fireEvent, screen, act } from '@testing-library/react';
 import fetchMock from 'jest-fetch-mock';
 
 import { mockSingleResult } from '../../__mocks__/mockResponce';
-import CardInfo from '../../componets/pages/CardInfo/CardInfo';
-import renderWithRouteAndContext from '../utils/renderWithRouteAndContext';
+import SingleCharacterCard from '../../componets/pages/CardInfo/SingleCharacterCard';
+import renderWithRouterAndProvider from '../utils/renderWithRouterAndProvider';
 
-describe('CardInfo', () => {
+describe('SingleCharacterCard if response returns with error', () => {
+  test('Show notFound section if response returns with error', async () => {
+    fetchMock.enableMocks();
+    fetchMock.mockResponseOnce(JSON.stringify({}), { status: 404 });
+
+    await act(async () => {
+      renderWithRouterAndProvider(<SingleCharacterCard />);
+    });
+    const message = screen.getByText(/Nothing Not Found/i);
+    expect(message).toBeInTheDocument();
+  });
+});
+
+describe('SingleCharacterCard', () => {
   let container: HTMLElement;
   beforeEach(async () => {
     fetchMock.enableMocks();
     fetchMock.mockResponseOnce(JSON.stringify(mockSingleResult));
 
     await act(async () => {
-      const result = await renderWithRouteAndContext(<CardInfo />);
+      const result = await renderWithRouterAndProvider(<SingleCharacterCard />);
       container = result.container;
     });
   });
+
   test('The loading indicator is displayed while fetching data', () => {
     const indicator = container.querySelector('.spinner');
     expect(indicator).toBeInTheDocument();
@@ -48,17 +62,5 @@ describe('CardInfo', () => {
     });
     const cardInfo = container.querySelector('.container');
     expect(cardInfo).not.toHaveClass('opened');
-  });
-});
-
-describe('CardInfo if response returns with error', () => {
-  test('Show notFound section if response returns with error', async () => {
-    fetchMock.enableMocks();
-    fetchMock.mockResponseOnce(JSON.stringify({}), { status: 404 });
-    await act(async () => {
-      renderWithRouteAndContext(<CardInfo />);
-    });
-    const message = screen.getByText(/Nothing Not Found/i);
-    expect(message).toBeInTheDocument();
   });
 });

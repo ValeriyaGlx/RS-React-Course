@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import Layout from '../pages/Layout/Layout';
-import CharacterCard from '../pages/CardInfo/CharacterCard';
+import SingleCharacterCard from '../pages/CardInfo/SingleCharacterCard';
 import FallDownUI from '../shared/UI/FallDownUI/FallDownUI';
 import NotFound from '../pages/NotFound/NotFound';
 
@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: ':id',
-        element: <CharacterCard />,
+        element: <SingleCharacterCard />,
         errorElement: <NotFound />,
       },
     ],

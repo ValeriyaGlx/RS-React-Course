@@ -4,17 +4,17 @@ import { fireEvent, act } from '@testing-library/react';
 import { Route, Routes } from 'react-router-dom';
 
 import URL from '../../../componets/shared/constants/constants';
-import renderWithRouteAndContext from '../../utils/renderWithRouteAndContext';
+import renderWithRouterAndProvider from '../../utils/renderWithRouterAndProvider';
 import CharacterCard from '../../../componets/shared/UI/CharacterCard/CharacterCard';
 import {
   mockSingleCard,
   mockSingleResult,
 } from '../../../__mocks__/mockResponce';
-import CardInfo from '../../../componets/pages/CardInfo/CardInfo';
+import SingleCharacterCard from '../../../componets/pages/CardInfo/SingleCharacterCard';
 
 describe('CharacterCard', () => {
-  test('The CharacterCard component renders the relevant card data', () => {
-    const { container } = renderWithRouteAndContext(
+  test('The SingleCharacterCard component renders the relevant card data', () => {
+    const { container } = renderWithRouterAndProvider(
       <CharacterCard character={mockSingleCard} request="" />
     );
     const { image, name } = mockSingleCard.attributes;
@@ -24,7 +24,7 @@ describe('CharacterCard', () => {
     expect(inner).toHaveTextContent(name);
   });
 
-  test("The CharacterCard image rendered backup image if response haven't image", () => {
+  test("The SingleCharacterCard image rendered backup image if response haven't image", () => {
     const mockSingleCardWithoutImage = {
       ...mockSingleCard,
       attributes: {
@@ -32,7 +32,7 @@ describe('CharacterCard', () => {
         image: undefined,
       },
     };
-    const { container } = renderWithRouteAndContext(
+    const { container } = renderWithRouterAndProvider(
       <CharacterCard character={mockSingleCardWithoutImage} request="" />
     );
     const img = container.querySelector('.card-image');
@@ -40,20 +40,23 @@ describe('CharacterCard', () => {
   });
 });
 
-describe('Click on CharacterCard', () => {
+describe('Click on SingleCharacterCard', () => {
   beforeEach(() => {
     fetchMock.enableMocks();
     fetchMock.mockResponseOnce(JSON.stringify(mockSingleResult));
   });
 
   test('Clicking on a card opens a detailed card component', async () => {
-    const { container } = renderWithRouteAndContext(
+    const { container } = renderWithRouterAndProvider(
       <Routes>
         <Route
           path="/"
           element={<CharacterCard character={mockSingleCard} request="" />}
         />
-        <Route path={mockSingleCard.attributes.slug} element={<CardInfo />} />
+        <Route
+          path={mockSingleCard.attributes.slug}
+          element={<SingleCharacterCard />}
+        />
       </Routes>
     );
     const link = container.querySelector('.cardContainer');
@@ -65,6 +68,9 @@ describe('Click on CharacterCard', () => {
   });
   test('Check that clicking triggers an additional api call to fetch detailed information', async () => {
     expect(fetchMock).toHaveBeenCalledTimes(1);
-    expect(fetchMock).toHaveBeenCalledWith(`${URL}/slug`);
+    const [actualArg] = fetchMock.mock.calls[0];
+    const actualUrl =
+      typeof actualArg === 'string' ? actualArg : actualArg?.url;
+    expect(actualUrl).toBe(`${URL}/slug`);
   });
 });

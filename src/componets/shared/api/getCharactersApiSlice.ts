@@ -8,6 +8,8 @@ export const getCharactersApi = createApi({
   tagTypes: ['Characters'],
   baseQuery: fetchBaseQuery({
     baseUrl: URL,
+    fetchFn: (url: RequestInfo, options?: RequestInit): Promise<Response> =>
+      fetch(url, options),
   }),
   endpoints: (build) => ({
     getCharacters: build.query<IResult, unknown>({

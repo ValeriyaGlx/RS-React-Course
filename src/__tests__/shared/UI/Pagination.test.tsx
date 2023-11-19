@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { fireEvent, screen } from '@testing-library/react';
 
-import renderWithRouteAndContext from '../../utils/renderWithRouteAndContext';
+import renderWithRouterAndProvider from '../../utils/renderWithRouterAndProvider';
 import Pagination from '../../../componets/shared/UI/Pagination/Pagination';
 import { DEFAULT_PAGE } from '../../../componets/shared/constants/constants';
 
@@ -18,7 +18,7 @@ jest.mock('react-router-dom', () => ({
 
 describe('Pagination', () => {
   test('The Pagination updates URL query parameter when page changes. Check next page.', () => {
-    const { container } = renderWithRouteAndContext(
+    const { container } = renderWithRouterAndProvider(
       <Pagination
         currentPage={DEFAULT_PAGE}
         onPageChange={jest.fn()}
@@ -34,7 +34,7 @@ describe('Pagination', () => {
   test('The Pagination updates URL query parameter when page changes. Check prev page.', () => {
     mockSearchParams.delete('page');
     mockSearchParams.append('page', '10');
-    renderWithRouteAndContext(
+    renderWithRouterAndProvider(
       <Pagination currentPage={10} onPageChange={jest.fn()} totalPages={10} />
     );
     expect(mockSearchParams.get('page')).toBe('10');
@@ -45,7 +45,7 @@ describe('Pagination', () => {
   test('The Pagination updates URL query parameter when page changes. Check last page.', () => {
     mockSearchParams.delete('page');
     mockSearchParams.append('page', '1');
-    renderWithRouteAndContext(
+    renderWithRouterAndProvider(
       <Pagination
         currentPage={DEFAULT_PAGE}
         onPageChange={jest.fn()}
@@ -60,7 +60,7 @@ describe('Pagination', () => {
   test('The Pagination updates URL query parameter when page changes. Check first page.', () => {
     mockSearchParams.delete('page');
     mockSearchParams.append('page', '10');
-    renderWithRouteAndContext(
+    renderWithRouterAndProvider(
       <Pagination currentPage={10} onPageChange={jest.fn()} totalPages={10} />
     );
     expect(mockSearchParams.get('page')).toBe('10');
