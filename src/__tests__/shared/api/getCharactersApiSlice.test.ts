@@ -24,13 +24,13 @@ describe('useGetCharactersQuery', () => {
       isSuccess: true,
     });
 
-    const { result } = renderHook(() => useGetCharactersQuery(''), {
+    const { result } = renderHook(() => useGetCharactersQuery({}), {
       wrapper: Wrapper,
     });
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
     expect(result.current.data).toBe(mockResult);
-    expect(useGetCharactersQuery).toHaveBeenCalledWith('');
+    expect(useGetCharactersQuery).toHaveBeenCalledWith({});
   });
 
   test('useGetCharactersQuery get error response from server', async () => {
@@ -40,7 +40,7 @@ describe('useGetCharactersQuery', () => {
       isLoading: false,
     });
 
-    const { result } = renderHook(() => useGetCharactersQuery(''), {
+    const { result } = renderHook(() => useGetCharactersQuery({}), {
       wrapper: Wrapper,
     });
     await waitFor(() => expect(result.current.isError).toBe(true));
@@ -59,13 +59,16 @@ describe('useGetSingleCharacterQuery', () => {
       isSuccess: true,
     });
 
-    const { result } = renderHook(() => useGetSingleCharacterQuery(''), {
-      wrapper: Wrapper,
-    });
+    const { result } = renderHook(
+      () => useGetSingleCharacterQuery({ slug: '' }),
+      {
+        wrapper: Wrapper,
+      }
+    );
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
     expect(result.current.data).toBe(mockSingleCard);
-    expect(useGetSingleCharacterQuery).toHaveBeenCalledWith('');
+    expect(useGetSingleCharacterQuery).toHaveBeenCalledWith({ slug: '' });
   });
 
   test('useGetSingleCharacterQuery get error response from server', async () => {
@@ -75,9 +78,12 @@ describe('useGetSingleCharacterQuery', () => {
       isLoading: false,
     });
 
-    const { result } = renderHook(() => useGetSingleCharacterQuery(''), {
-      wrapper: Wrapper,
-    });
+    const { result } = renderHook(
+      () => useGetSingleCharacterQuery({ slug: '' }),
+      {
+        wrapper: Wrapper,
+      }
+    );
     await waitFor(() => expect(result.current.isError).toBe(true));
     expect(result.current.data).toStrictEqual([]);
   });

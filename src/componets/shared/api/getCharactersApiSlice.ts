@@ -3,6 +3,16 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import URL, { DEFAULT_CARDS, DEFAULT_PAGE } from '../constants/constants';
 import { IResult, ISingleResult } from '../../../types/types';
 
+type CharactersQueryParams = {
+  inputValue?: string;
+  page?: number | string;
+  size?: number;
+};
+
+type SingleCharacterQueryParams = {
+  slug: string;
+};
+
 export const getCharactersApi = createApi({
   reducerPath: 'getCharacters',
   tagTypes: ['Characters'],
@@ -12,7 +22,7 @@ export const getCharactersApi = createApi({
       fetch(url, options),
   }),
   endpoints: (build) => ({
-    getCharacters: build.query<IResult, unknown>({
+    getCharacters: build.query<IResult, CharactersQueryParams>({
       query: ({ inputValue, page, size }) =>
         `?filter[name_cont]=${inputValue ?? ''}&page[number]=${
           page ?? DEFAULT_PAGE
@@ -28,7 +38,7 @@ export const getCharactersApi = createApi({
             ]
           : [{ type: 'Characters', id: 'PARTIAL-LIST' }],
     }),
-    getSingleCharacter: build.query<ISingleResult, unknown>({
+    getSingleCharacter: build.query<ISingleResult, SingleCharacterQueryParams>({
       query: ({ slug }) => slug,
     }),
   }),
