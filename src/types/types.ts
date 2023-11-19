@@ -37,6 +37,7 @@ export type ISingleResult = {
 };
 
 export type SearchSectionSliceType = {
+  cardsInfo: IResponse[] | [];
   inputValue: string;
   size: number;
   totalPages: number;

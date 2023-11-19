@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { SearchSectionSliceType } from '../../../types/types';
+import { IResponse, SearchSectionSliceType } from '../../../types/types';
 import { getDataLocalStorage } from '../../shared/lib/localStorage';
 import {
   DEFAULT_CARDS,
@@ -10,10 +10,11 @@ import {
 
 interface SetValuePayload {
   key: keyof SearchSectionSliceType;
-  value: string | number | boolean | undefined;
+  value: string | number | boolean | undefined | IResponse[];
 }
 
 const initialState: SearchSectionSliceType = {
+  cardsInfo: [],
   inputValue: getDataLocalStorage(LOCAL_STORAGE_KEY),
   size: DEFAULT_CARDS,
   currentPage: DEFAULT_PAGE,

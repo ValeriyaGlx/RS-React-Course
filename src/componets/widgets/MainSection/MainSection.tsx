@@ -23,6 +23,7 @@ const MainSection = () => {
   );
 
   useEffect(() => {
+    dispatch(setValue({ key: 'cardsInfo', value: data?.data }));
     dispatch(
       setValue({ key: 'totalPages', value: data?.meta.pagination.last })
     );
