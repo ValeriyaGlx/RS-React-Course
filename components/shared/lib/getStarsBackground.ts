@@ -1,9 +1,10 @@
 import { STARS_NUMBER } from '@/components/shared/constants/constants';
 import styles from '@/components/shared/UI/StarBackground/StarBackground.module.css';
+import { StarsBackgroundType } from '@/types/types';
 
-const getStarsBackground = () => {
+const getStarsBackground = (): StarsBackgroundType[] => {
   const numStars = STARS_NUMBER;
-  const stars = [];
+  const stars: StarsBackgroundType[] = [];
 
   for (let i = 0; i < numStars; i += 1) {
     const style = {

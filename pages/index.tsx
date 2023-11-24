@@ -16,7 +16,7 @@ import {
 import getStarsBackground from '@/components/shared/lib/getStarsBackground';
 
 type HomeProps = {
-  stars: StarsBackgroundType;
+  stars: StarsBackgroundType[];
   data: IResult | undefined;
 };
 
@@ -37,7 +37,7 @@ const Home: FC<HomeProps> = ({ stars, data }) => {
       </Head>
 
       <HomeLayout data={data}>
-        <StarBackground stars={stars as StarsBackgroundType} />
+        <StarBackground stars={stars} />
       </HomeLayout>
     </>
   );

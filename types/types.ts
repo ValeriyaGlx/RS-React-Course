@@ -52,9 +52,7 @@ export type ChildrenType = {
 };
 
 export type StarsBackgroundType = {
-  stars: {
-    className: string;
-    style: { left: string; top: string; animationDelay: string };
-    key: number;
-  }[];
+  className: string;
+  style: { left: string; top: string; animationDelay: string };
+  key: number;
 };

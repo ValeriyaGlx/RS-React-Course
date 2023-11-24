@@ -4,7 +4,11 @@ import { StarsBackgroundType } from '@/types/types';
 
 import styles from './StarBackground.module.css';
 
-const StarBackground: FC<StarsBackgroundType> = ({ stars }) => {
+type StarBackgroundProps = {
+  stars: StarsBackgroundType[];
+};
+
+const StarBackground: FC<StarBackgroundProps> = ({ stars }) => {
   return (
     <div className={styles.stars}>
       {stars.map(({ className, style, key }) => (
