@@ -41,6 +41,7 @@ const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
           className={styles['card-image']}
           src={image || imageIfNull}
           alt="character"
+          loading="eager"
         />
       </div>
       <div className={styles['card-info']}>

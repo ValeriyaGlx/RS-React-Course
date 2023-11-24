@@ -24,7 +24,7 @@ const Pagination: FC<PaginationProps> = ({ totalPages }) => {
   };
 
   const { page } = router.query;
-  const numberOfPage = Number(page) ?? DEFAULT_PAGE;
+  const numberOfPage = Number(page) || DEFAULT_PAGE;
 
   return (
     <div className={styles.pagination}>
@@ -48,7 +48,7 @@ const Pagination: FC<PaginationProps> = ({ totalPages }) => {
       </button>
 
       <span className={styles.paginationPageInfo}>
-        {page} out of {totalPages ?? numberOfPage}
+        {numberOfPage} out of {totalPages ?? numberOfPage}
       </span>
 
       <button

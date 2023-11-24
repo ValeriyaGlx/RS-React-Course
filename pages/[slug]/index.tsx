@@ -13,7 +13,7 @@ import {
 import { IResult, ISingleResult } from '@/types/types';
 import CardInfo from '@/components/widgets/CardInfo/CardInfo';
 import { wrapper } from '@/components/widgets/store/store';
-import HomeLayout from '@/components/widgets/HomeLayout';
+import HomeLayout from '@/components/widgets/HomeLayout/HomeLayout';
 import NotFound from '@/components/shared/UI/NotFound/NotFound';
 
 import styles from './index.module.css';
