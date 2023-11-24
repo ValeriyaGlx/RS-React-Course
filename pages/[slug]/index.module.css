@@ -1,0 +1,55 @@
+.background {
+  background-color: rgba(0, 0, 0, 0.7);
+  background-image: url('../../public/assets/images/smoke.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 100px;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: relative;
+  right: -100%;
+  opacity: 0;
+  z-index: 5;
+  transition: all 1s ease;
+}
+
+.container.opened {
+  right: 0;
+  opacity: 1;
+}
+
+@media (max-width: 800px) {
+  .imageContainer,
+  .image {
+    width: 200px;
+    height: 250px;
+  }
+
+  .card {
+    width: 300px;
+  }
+}
+
+@media (max-width: 650px) {
+  .container.opened {
+    right: 20%;
+  }
+}
+
+@media (max-width: 470px) {
+  .container.opened {
+    right: 40%;
+  }
+}

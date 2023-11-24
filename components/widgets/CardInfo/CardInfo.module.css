@@ -1,0 +1,37 @@
+.card {
+  width: 400px;
+  height: fit-content;
+  padding: 30px 50px;
+  border: 1px solid rgba(224, 188, 9, 0.8);
+  background-color: rgba(0, 4, 11, 0.8);
+  position: fixed;
+  bottom: 8%;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background-image: url('../../../public/assets/icons/close-icon.png');
+  background-size: 100%;
+}
+
+.inner {
+  font-size: 24px;
+  color: #e0bc09;
+}
+
+.imageContainer,
+.image {
+  width: 300px;
+  height: 350px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 10px;
+}
+
+.imageContainer {
+  border-radius: 10px;
+}
