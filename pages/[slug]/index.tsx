@@ -16,7 +16,7 @@ import { wrapper } from '@/components/widgets/store/store';
 import HomeLayout from '@/components/widgets/HomeLayout/HomeLayout';
 import NotFound from '@/components/shared/UI/NotFound/NotFound';
 
-import styles from './index.module.css';
+import styles from '../../styles/index.module.css';
 
 type SingleCharacterCardProps = {
   data: {

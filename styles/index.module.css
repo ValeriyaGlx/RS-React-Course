@@ -1,6 +1,6 @@
 .background {
   background-color: rgba(0, 0, 0, 0.7);
-  background-image: url('../../public/assets/images/smoke.png');
+  background-image: url('../public/assets/images/smoke.png');
   background-size: 100%;
   background-repeat: no-repeat;
   width: 100%;
