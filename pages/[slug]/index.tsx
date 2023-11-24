@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
@@ -12,7 +12,6 @@ import {
 } from '@/components/shared/constants/constants';
 import { IResult, ISingleResult } from '@/types/types';
 import CardInfo from '@/components/widgets/CardInfo/CardInfo';
-import Spinner from '@/components/shared/UI/Spinner/Spinner';
 import { wrapper } from '@/components/widgets/store/store';
 import HomeLayout from '@/components/widgets/HomeLayout';
 import NotFound from '@/components/shared/UI/NotFound/NotFound';
@@ -28,22 +27,24 @@ type SingleCharacterCardProps = {
 
 const SingleCharacterCard: FC<SingleCharacterCardProps> = ({ data }) => {
   const router = useRouter();
-  const [isLoaded, setIsLoaded] = useState(false);
 
   const { page, value, size } = router.query;
 
+  const [newPage, newValue, newSize] = [
+    page ?? DEFAULT_PAGE,
+    value ?? '',
+    size ?? DEFAULT_CARDS,
+  ];
+
   return (
     <HomeLayout data={data.characters}>
-      {isLoaded && <Spinner />}
       <aside
         className={[styles.container, styles.opened].join(' ')}
-        onClick={(e) => e.stopPropagation()}
-        onTransitionEnd={() => setIsLoaded(false)}
         aria-hidden="true"
       >
         <Link
           className={styles.background}
-          href={`/?page=${page}&value=${value}&size=${size}`}
+          href={`/?page=${newPage}&value=${newValue}&size=${newSize}`}
           aria-hidden="true"
         >
           {!data.singleCharacter && <NotFound />}
