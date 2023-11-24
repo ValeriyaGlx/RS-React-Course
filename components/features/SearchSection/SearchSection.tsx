@@ -1,13 +1,9 @@
 import React, { useRef } from 'react';
 import { useRouter } from 'next/router';
 
-import { setDataLocalStorage } from '@/components/shared/lib/localStorage';
 import Button from '@/components/features/SearchSection/UI/Button';
 import Input from '@/components/features/SearchSection/UI/Input';
-import {
-  DEFAULT_PAGE,
-  LOCAL_STORAGE_KEY,
-} from '@/components/shared/constants/constants';
+import { DEFAULT_PAGE } from '@/components/shared/constants/constants';
 
 import styles from './SearchSection.module.css';
 
@@ -29,7 +25,6 @@ const SearchSection = () => {
 
   const handleClick = () => {
     const inputValue = inputRef.current?.value ?? '';
-    setDataLocalStorage(LOCAL_STORAGE_KEY, inputValue);
     changeUrl(inputValue);
   };
 

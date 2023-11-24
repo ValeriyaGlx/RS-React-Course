@@ -30,6 +30,7 @@
     }
   },
   "include": [
+    "jest.config.ts",
     "next.config.js",
     "next-env.d.ts",
     "**/*.ts",
