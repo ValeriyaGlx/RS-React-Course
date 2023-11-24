@@ -37,7 +37,7 @@ const Home: FC<HomeProps> = ({ stars, data }) => {
       </Head>
 
       <HomeLayout data={data}>
-        <StarBackground stars={stars} />
+        <StarBackground stars={stars as StarsBackgroundType} />
       </HomeLayout>
     </>
   );

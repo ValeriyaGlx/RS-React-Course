@@ -9,7 +9,7 @@ import arrowIcon from '../../../public/assets/icons/arrow-icon.png';
 import styles from './Pagination.module.css';
 
 type PaginationProps = {
-  totalPages: number;
+  totalPages?: number;
 };
 
 const Pagination: FC<PaginationProps> = ({ totalPages }) => {
@@ -48,13 +48,13 @@ const Pagination: FC<PaginationProps> = ({ totalPages }) => {
       </button>
 
       <span className={styles.paginationPageInfo}>
-        {page} out of {totalPages}
+        {page} out of {totalPages ?? numberOfPage}
       </span>
 
       <button
         className={styles.paginationButton}
         onClick={() => changeUrl(String(numberOfPage + 1))}
-        disabled={numberOfPage === totalPages}
+        disabled={!totalPages}
         data-testid="next-page"
       >
         <Image src={arrowIcon} alt="arrow" />
@@ -63,7 +63,7 @@ const Pagination: FC<PaginationProps> = ({ totalPages }) => {
       <button
         className={styles.paginationButton}
         onClick={() => changeUrl(String(totalPages))}
-        disabled={numberOfPage === totalPages}
+        disabled={!totalPages}
         data-testid="last-page"
       >
         <Image src={arrowIcon} alt="arrow" />

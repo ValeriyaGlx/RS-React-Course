@@ -1,11 +1,15 @@
-import HomeLayout from '@/components/widgets/HomeLayout';
+import Link from 'next/link';
+
 import NotFound from '@/components/shared/UI/NotFound/NotFound';
+import Header from '@/components/widgets/Header/Header';
 
 const ServerError = () => {
   return (
-    <HomeLayout>
+    <>
+      <Header />
       <NotFound />
-    </HomeLayout>
+      <Link href="/">Go To Main</Link>
+    </>
   );
 };
 

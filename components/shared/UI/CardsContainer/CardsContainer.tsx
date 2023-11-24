@@ -9,9 +9,10 @@ import styles from './CardsContainer.module.css';
 
 type CardsContainerProps = {
   cards: IResponse[] | undefined;
+  totalPages?: number;
 };
 
-const CardsContainer: FC<CardsContainerProps> = ({ cards }) => {
+const CardsContainer: FC<CardsContainerProps> = ({ cards, totalPages }) => {
   return (
     <>
       <NumbersOfCardsButtons />
@@ -23,7 +24,7 @@ const CardsContainer: FC<CardsContainerProps> = ({ cards }) => {
           />
         ))}
       </div>
-      <Pagination totalPages={10} />
+      <Pagination totalPages={totalPages} />
     </>
   );
 };

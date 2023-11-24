@@ -13,10 +13,10 @@ type MainSectionProps = {
 const MainSection: FC<MainSectionProps> = ({ data }) => {
   const router = useRouter();
   const inputValue = router.query.value;
+  const totalPages = data?.meta.pagination.last;
 
   const renderCharacterCards = () => {
-    return <ContentContainer data={data} />;
-    // <Spinner /> :
+    return <ContentContainer data={data} totalPages={totalPages} />;
   };
 
   return (

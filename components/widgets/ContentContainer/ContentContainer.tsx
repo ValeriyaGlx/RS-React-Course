@@ -8,20 +8,17 @@ import { IResult } from '../../../types/types';
 import styles from './ContentContainer.module.css';
 
 type CardsContainerProps = {
-  data: IResult | undefined;
+  data?: IResult;
+  totalPages?: number;
 };
 
-const ContentContainer: FC<CardsContainerProps> = ({ data }) => {
+const ContentContainer: FC<CardsContainerProps> = ({ data, totalPages }) => {
   const cards = data?.data;
 
   return (
     <section className={styles.contentСontainer}>
       {cards?.length !== 0 ? (
-        <CardsContainer
-          cards={cards}
-          // currentPage={currentPage}
-          // totalPages={totalPages ?? currentPage}
-        />
+        <CardsContainer cards={cards} totalPages={totalPages} />
       ) : (
         <NotFound />
       )}
