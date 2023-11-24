@@ -38,15 +38,6 @@ export type ISingleResult = {
   };
 };
 
-export type SearchSectionSliceType = {
-  inputValue: string;
-  size: number;
-  totalPages: number;
-  currentPage: number;
-  isLoadingCharacters: boolean;
-  isLoadingSingleCharacter: boolean;
-};
-
 export type ChildrenType = {
   children: ReactNode;
 };

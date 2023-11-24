@@ -3,10 +3,7 @@ import { createWrapper } from 'next-redux-wrapper';
 
 import { getCharactersApi } from '@/components/shared/api/getCharactersApiSlice';
 
-import searchReducer from '../../features/SearchSection/SearchSectionSlice';
-
 const rootReducer = combineReducers({
-  searchReducer,
   [getCharactersApi.reducerPath]: getCharactersApi.reducer,
 });
 
