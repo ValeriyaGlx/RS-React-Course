@@ -48,7 +48,7 @@
 }
 
 .searchButton:hover {
-  box-shadow: 0 10px 10px rgba(91, 114, 18, 0.5) inset;
+  box-shadow: 0 10px 10px rgba(121, 49, 4, 0.5) inset;
 }
 
 @media (max-width: 720px) {
