@@ -4,8 +4,8 @@ import { RouterContext } from 'next/dist/shared/lib/router-context.shared-runtim
 
 import createMockRouter from '@/__tests__/utils/createMockRouter';
 
-import renderWithRouterAndProvider from '../../../utils/renderWithProviderAndRouter';
-import Pagination from '../../../../components/features/Pagination/Pagination';
+import renderWithRouterAndProvider from '../../utils/renderWithProviderAndRouter';
+import Pagination from '../../../components/features/Pagination/Pagination';
 
 describe('Pagination', () => {
   test('The Pagination get property from url query params.', () => {
@@ -85,5 +85,17 @@ describe('Pagination', () => {
       pathname: '/',
       query: { page: '10' },
     });
+  });
+
+  test('View default page if query "page" undefined', () => {
+    const router = createMockRouter({ query: { page: undefined } });
+    const { container } = render(
+      <RouterContext.Provider value={router}>
+        <Pagination totalPages={10} />
+      </RouterContext.Provider>
+    );
+
+    const paginationValue = container.querySelector('.paginationPageInfo');
+    expect(paginationValue).toHaveTextContent('1 out of 10');
   });
 });
