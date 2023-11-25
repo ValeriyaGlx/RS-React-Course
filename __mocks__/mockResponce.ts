@@ -1,4 +1,9 @@
-import { IResponse, IResult, ISingleResponse } from '../types/types';
+import {
+  IResponse,
+  IResult,
+  ISingleResponse,
+  ISingleResult,
+} from '../types/types';
 
 export const mockCharactersList = [
   {
@@ -140,7 +145,8 @@ export const mockSingleCard: IResponse = {
   attributes: mockCardResponse,
 };
 
-export const mockSingleResult = {
+export const mockSingleResult: ISingleResult = {
+  id: '1',
   data: {
     attributes: mockCardResponse,
   },
