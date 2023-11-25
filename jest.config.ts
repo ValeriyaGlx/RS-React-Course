@@ -5,10 +5,10 @@ const createJestConfig = nextJest({
 });
 
 const customJestConfig = {
-  testRegex: '/(__tests__)/.*\\.test.(ts|tsx|js)$',
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
+  testRegex: '/(__tests__)/.*\\.test.(ts|tsx|js)$',
   testEnvironment: 'jest-environment-jsdom',
 };
 
