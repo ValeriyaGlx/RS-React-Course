@@ -24,7 +24,7 @@ module.exports = {
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "ignorePatterns": ["next.config.js"],
+  "ignorePatterns": ["next.config.js", "jest.config.ts"],
   "plugins": [
     "import",
     "react",

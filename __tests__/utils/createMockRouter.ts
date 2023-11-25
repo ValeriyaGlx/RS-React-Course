@@ -23,6 +23,7 @@ const createMockRouter = (router: Partial<NextRouter>): NextRouter => {
     asPath: '/',
     route: '/',
     pathname: '/',
+    push: jest.fn(),
     ...router,
   };
 };

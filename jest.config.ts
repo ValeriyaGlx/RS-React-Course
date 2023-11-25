@@ -2,10 +2,10 @@ const nextJest = require('next/jest');
 
 const createJestConfig = nextJest({
   dir: './',
-  testRegex: '/(__tests__)/.*\\.test.(ts|tsx|js)$',
 });
 
 const customJestConfig = {
+  testRegex: '/(__tests__)/.*\\.test.(ts|tsx|js)$',
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
