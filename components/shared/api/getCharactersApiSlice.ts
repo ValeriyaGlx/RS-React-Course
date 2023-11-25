@@ -3,11 +3,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
 
-import {
-  DEFAULT_CARDS,
-  DEFAULT_PAGE,
-  URL,
-} from '@/components/shared/constants/constants';
+import { URL } from '@/components/shared/constants/constants';
 
 import { IResult, ISingleResult } from '../../../types/types';
 
@@ -37,9 +33,7 @@ export const getCharactersApi = createApi({
   endpoints: (build) => ({
     getCharacters: build.query<IResult, CharactersQueryParams>({
       query: ({ inputValue, page, size }) =>
-        `?filter[name_cont]=${inputValue ?? ''}&page[number]=${
-          page ?? DEFAULT_PAGE
-        }&page[size]=${size ?? DEFAULT_CARDS}`,
+        `?filter[name_cont]=${inputValue}&page[number]=${page}&page[size]=${size}`,
       providesTags: (result) =>
         result
           ? [
