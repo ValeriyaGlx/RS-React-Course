@@ -1,5 +1,3 @@
-'use client';
-
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
 
@@ -52,8 +50,6 @@ export const getCharactersApi = createApi({
 });
 
 export const {
-  useGetCharactersQuery,
-  useGetSingleCharacterQuery,
   util: { getRunningQueriesThunk },
 } = getCharactersApi;
 
