@@ -1,0 +1,12 @@
+.main {
+  padding: 0 30px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+@media (max-width: 560px) {
+  .main {
+    padding: 0 6px;
+  }
+}
