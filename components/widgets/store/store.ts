@@ -17,4 +17,4 @@ export const setupStore = () => {
 
 export type AppStore = ReturnType<typeof setupStore>;
 
-export const wrapper = createWrapper<AppStore>(setupStore, { debug: true });
+export const wrapper = createWrapper<AppStore>(setupStore);
