@@ -1,0 +1,32 @@
+.label {
+  cursor: pointer;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  width: 100%;
+}
+
+.error {
+  color: #a22a2a;
+  text-align: start;
+  height: 15px;
+  font: 13px sans-serif;
+  margin: 2px 0 5px;
+}
+
+/*.label:before,*/
+/*.label:after{*/
+/*    content: '';*/
+/*    height: 1px;*/
+/*    width: 100%;*/
+/*    background-color: #ccc;*/
+/*    display: block;*/
+/*    position: absolute;*/
+/*    bottom: 25px;*/
+/*}*/
+
+/*.label:after {*/
+/*    top: 25px;*/
+/*}*/

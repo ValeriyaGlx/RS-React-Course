@@ -5,23 +5,27 @@ import { IInputValidation } from '../../../../types/types';
 import styles from './ValidationInput.module.css';
 
 interface InputValidationProps extends IInputValidation {
-  errorMessage: string;
+  // errorMessage: string;
   inputRef: MutableRefObject<HTMLInputElement | null>;
 }
 
-const InputValidation: FC<InputValidationProps> = ({
+const ValidationInput: FC<InputValidationProps> = ({
   type,
   placeholder,
   // showPassword,
-  errorMessage,
+  // errorMessage,
   inputName,
   min,
   inputRef,
 }) => {
   // const [isVisible, setIsVisible] = useState(false);
   return (
-    <div>
-      <div className="input-area">
+    <div
+      className={[styles.container, type === 'number' ? styles.age : ''].join(
+        ' '
+      )}
+    >
+      <div>
         <input
           className={styles.input}
           type={type}
@@ -47,9 +51,9 @@ const InputValidation: FC<InputValidationProps> = ({
         {/*  </button> */}
         {/* )} */}
       </div>
-      <div className="error-message">{errorMessage}</div>
+      <div className={styles.error}>error message</div>
     </div>
   );
 };
 
-export default InputValidation;
+export default ValidationInput;

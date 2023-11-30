@@ -1,3 +1,7 @@
+.container {
+  width: 500px;
+}
+
 .input {
   outline: none;
   width: 100%;
@@ -6,4 +10,20 @@
   border-radius: 20px;
   padding: 5px 20px;
   margin-top: 4px;
+}
+
+.age {
+  width: 150px;
+}
+
+.error {
+  color: #a22a2a;
+  text-align: end;
+  height: 15px;
+  font: 13px sans-serif;
+  margin: 2px 0 5px;
+}
+
+.age .error {
+  text-align: start;
 }

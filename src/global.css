@@ -25,3 +25,7 @@ button {
   background-color: inherit;
   cursor: pointer;
 }
+
+li {
+  list-style-type: none;
+}

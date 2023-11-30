@@ -7,12 +7,6 @@ export const INPUT_TYPES: IInputValidation[] = [
     inputName: 'name',
   },
   {
-    type: 'number',
-    placeholder: 'Enter Age',
-    inputName: 'age',
-    min: 1,
-  },
-  {
     type: 'text',
     placeholder: 'Enter Email',
     inputName: 'email',
@@ -26,6 +20,12 @@ export const INPUT_TYPES: IInputValidation[] = [
     type: 'password',
     placeholder: 'Confirm Password',
     inputName: 'password',
+  },
+  {
+    type: 'number',
+    placeholder: 'Enter Age',
+    inputName: 'age',
+    min: 1,
   },
 ];
 
