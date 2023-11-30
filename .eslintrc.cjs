@@ -56,6 +56,7 @@ module.exports = {
         "react/jsx-no-constructed-context-values": "off",
         "react/function-component-definition": "off",
         "jest/no-mocks-import": "off",
+        "react-hooks/rules-of-hooks": "off",
         "import/order": [
             2,
             {

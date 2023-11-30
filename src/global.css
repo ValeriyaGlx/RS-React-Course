@@ -5,12 +5,13 @@
 }
 
 body {
-  font-family: 'Vollkorn SC', serif;
+  font-family: 'DM Sans', sans-serif;
   letter-spacing: 1px;
   font-size: 16px;
-  overflow-x: hidden;
-  background-color: #00040b;
-  color: #e5e2e2;
+  background-image: url('./assets/images/background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #000;
 }
 
 a {
@@ -19,21 +20,8 @@ a {
 }
 
 button {
-  font-family: 'Vollkorn SC', serif;
+  font-family: 'DM Sans', sans-serif;
   border: none;
   background-color: inherit;
   cursor: pointer;
-}
-
-@media (max-width: 950px) {
-  body {
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 350px) {
-  body {
-    font-size: 12px;
-    letter-spacing: 0.5px;
-  }
 }
