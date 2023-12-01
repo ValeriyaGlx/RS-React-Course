@@ -1,6 +1,9 @@
 import { ChangeEvent, FormEvent, useRef } from 'react';
 
-import { INPUT_TYPES } from '../../shared/constants/constants';
+import {
+  INPUT_TYPES,
+  NON_TEXT_INPUT_NAME,
+} from '../../shared/constants/constants';
 import InputValidation from '../../shared/UI/ValidationInput/ValidationInput';
 import GenderFieldset from '../../shared/UI/GenderFieldset/GenderFieldset';
 import AcceptInput from '../../shared/UI/AccetpInput/AcceptInput';
@@ -17,7 +20,7 @@ const UncontrolledFormWidget = () => {
   );
   const genderFieldsetRef = useRef<string | null>(null);
   const acceptInputRef = useRef<boolean | null>(null);
-  const imageUploadRef = useRef<File | null>(null);
+  const imageUploadRef = useRef<string | null>(null);
 
   const dispatch = useAppDispatch();
 
@@ -29,19 +32,35 @@ const UncontrolledFormWidget = () => {
     acceptInputRef.current = event.target.checked;
   };
 
-  const onFileChange = (file: File | null) => {
-    imageUploadRef.current = file;
+  const onFileChange = (base64: string | null) => {
+    imageUploadRef.current = base64;
   };
 
   const handleClick = (e: FormEvent) => {
     e.preventDefault();
-    const inputValues = inputRefs.map((ref) => ref.current?.value || '');
-    const genderValue = genderFieldsetRef.current;
-    const acceptValue = acceptInputRef.current;
-    const imageValue = imageUploadRef.current;
-    console.log([...inputValues, genderValue, acceptValue, imageValue]);
 
-    dispatch(setInputValueWithValidation('email', inputValues[0]));
+    const nonTextInputRefs = [
+      genderFieldsetRef.current,
+      acceptInputRef.current,
+      imageUploadRef.current,
+    ];
+
+    const textInputValues = inputRefs.map((ref, index) => ({
+      inputName: INPUT_TYPES[index].inputName,
+      inputValue: ref.current?.value || '',
+    }));
+
+    const nonTextInputValues = nonTextInputRefs.map((ref, index) => ({
+      inputName: NON_TEXT_INPUT_NAME[index],
+      inputValue: ref || '',
+    }));
+
+    textInputValues.forEach((value) => {
+      dispatch(setInputValueWithValidation(value.inputName, value.inputValue));
+    });
+    nonTextInputValues.forEach((value) => {
+      dispatch(setInputValueWithValidation(value.inputName, value.inputValue));
+    });
   };
 
   return (

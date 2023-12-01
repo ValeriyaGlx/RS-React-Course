@@ -1,6 +1,7 @@
 import { ChangeEvent, FC } from 'react';
 
 import { GENDER_TYPE } from '../../constants/constants';
+import { useAppSelector } from '../../../App/store/hooks';
 
 import styles from './GenderFieldset.module.css';
 
@@ -9,6 +10,9 @@ type GenderFieldsetProps = {
 };
 
 const GenderFieldset: FC<GenderFieldsetProps> = ({ onGenderChange }) => {
+  const errorMessage = useAppSelector(
+    (state) => state.uncontrolledFormWidgetReducer.gender.validationError
+  );
   const handleGenderChange = (event: ChangeEvent<HTMLInputElement>) => {
     onGenderChange(event.target.defaultValue);
   };
@@ -29,7 +33,7 @@ const GenderFieldset: FC<GenderFieldsetProps> = ({ onGenderChange }) => {
           </label>
         ))}
       </fieldset>
-      <div className={styles.error}>error message</div>
+      <div className={styles.error}>{errorMessage}</div>
     </div>
   );
 };

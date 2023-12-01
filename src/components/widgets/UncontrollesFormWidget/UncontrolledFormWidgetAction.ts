@@ -9,7 +9,11 @@ import {
   setInputValue,
 } from './UncontrolledFormWidgetSlice';
 import {
+  ageValidationSchema,
+  confirmPasswordValidationSchema,
   emailValidationSchema,
+  fileValidationSchema,
+  nameValidationSchema,
   passwordValidationSchema,
 } from './utils/validationSchema';
 import emptyFieldValidationSchema from './utils/validationSchema/requiredValidationSchema';
@@ -23,31 +27,33 @@ type AppThunk<ReturnType = void> = ThunkAction<
   Action<string>
 >;
 
-type InputNameType =
-  | 'name'
-  | 'age'
-  | 'email'
-  | 'password'
-  | 'gender'
-  | 'accept'
-  | 'image'
-  | 'country';
-
 const setInputValueWithValidation = (
-  inputName: InputNameType,
-  inputValue: string
+  inputName: string,
+  inputValue: string | boolean
 ): AppThunk => {
   return (dispatch) => {
     dispatch(setInputValue({ inputName, inputValue }));
 
-    let validationSchema: yup.StringSchema | yup.DateSchema;
+    let validationSchema: yup.StringSchema | yup.NumberSchema | yup.MixedSchema;
 
     switch (inputName) {
+      case 'name':
+        validationSchema = nameValidationSchema;
+        break;
       case 'email':
         validationSchema = emailValidationSchema;
         break;
       case 'password':
         validationSchema = passwordValidationSchema;
+        break;
+      case 'confirmPassword':
+        validationSchema = confirmPasswordValidationSchema;
+        break;
+      case 'age':
+        validationSchema = ageValidationSchema;
+        break;
+      case 'image':
+        validationSchema = fileValidationSchema;
         break;
       default:
         validationSchema = emptyFieldValidationSchema;

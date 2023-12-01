@@ -1,6 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
+type FormState = {
+  [key: string]: {
+    value: string | boolean;
+    validationError: string;
+  };
+};
+
+const initialState: FormState = {
   name: {
     value: '',
     validationError: '',
@@ -14,6 +21,10 @@ const initialState = {
     validationError: '',
   },
   password: {
+    value: '',
+    validationError: '',
+  },
+  confirmPassword: {
     value: '',
     validationError: '',
   },
@@ -42,8 +53,8 @@ const UncontrolledFormWidgetSlice = createSlice({
     setInputValue: (
       state,
       action: PayloadAction<{
-        inputName: keyof typeof initialState;
-        inputValue: string;
+        inputName: string;
+        inputValue: string | boolean;
       }>
     ) => {
       const { inputName, inputValue } = action.payload;
@@ -52,7 +63,7 @@ const UncontrolledFormWidgetSlice = createSlice({
     setInputValidationError: (
       state,
       action: PayloadAction<{
-        inputName: keyof typeof initialState;
+        inputName: string;
         validationError: string;
       }>
     ) => {
@@ -61,7 +72,7 @@ const UncontrolledFormWidgetSlice = createSlice({
     },
     clearInputValidationError: (
       state,
-      action: PayloadAction<{ inputName: keyof typeof initialState }>
+      action: PayloadAction<{ inputName: string }>
     ) => {
       const { inputName } = action.payload;
       state[inputName].validationError = '';

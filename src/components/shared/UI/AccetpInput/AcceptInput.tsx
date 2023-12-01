@@ -1,5 +1,7 @@
 import { ChangeEvent, FC } from 'react';
 
+import { useAppSelector } from '../../../App/store/hooks';
+
 import styles from './AcceptInput.module.css';
 
 type AcceptInputType = {
@@ -7,6 +9,9 @@ type AcceptInputType = {
 };
 
 const AcceptInput: FC<AcceptInputType> = ({ handleAcceptChange }) => {
+  const errorMessage = useAppSelector(
+    (state) => state.uncontrolledFormWidgetReducer.accept.validationError
+  );
   return (
     <div>
       <label htmlFor="accept" className={styles.label}>
@@ -18,7 +23,7 @@ const AcceptInput: FC<AcceptInputType> = ({ handleAcceptChange }) => {
         />
         I accept the Terms and Conditions
       </label>
-      <div className={styles.error}>error message</div>
+      <div className={styles.error}>{errorMessage}</div>
     </div>
   );
 };
