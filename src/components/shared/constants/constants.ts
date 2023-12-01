@@ -32,3 +32,5 @@ export const INPUT_TYPES: IInputValidation[] = [
 export const GENDER_TYPE = ['Male', 'Female'];
 
 export const NON_TEXT_INPUT_NAME = ['gender', 'accept', 'image', 'country'];
+
+export const MAX_IMAGE_SIZE = 0.5 * 1024 * 1024;

@@ -1,4 +1,5 @@
-import { ChangeEvent, FormEvent, useRef } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import {
   INPUT_TYPES,
@@ -9,11 +10,14 @@ import GenderFieldset from '../../shared/UI/GenderFieldset/GenderFieldset';
 import AcceptInput from '../../shared/UI/AccetpInput/AcceptInput';
 import ImageUpload from '../../shared/UI/ImageUpload/ImageUpload';
 import AutocompleteCountry from '../../shared/UI/CountrySelect/CountrySelect';
-import { useAppDispatch } from '../../App/store/hooks';
+import { useAppDispatch, useAppSelector } from '../../App/store/hooks';
 import { ImageInfoType } from '../../../types/types';
+import { setForm } from '../../pages/MainPage/MainPageSlice';
 
 import styles from './UncontrolledFormWidget.module.css';
 import setInputValueWithValidation from './UncontrolledFormWidgetAction';
+import createFillForm from './utils/createFillForm';
+import { resetState } from './UncontrolledFormWidgetSlice';
 
 const UncontrolledFormWidget = () => {
   const inputRefs = INPUT_TYPES.map(() =>
@@ -26,8 +30,11 @@ const UncontrolledFormWidget = () => {
     imageInfo: null,
   });
   const countryInputRef = useRef<string | null>(null);
-
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const formState = useAppSelector(
+    (state) => state.uncontrolledFormWidgetReducer
+  );
 
   const onCountryChanged = (country: string) => {
     countryInputRef.current = country;
@@ -76,6 +83,23 @@ const UncontrolledFormWidget = () => {
     });
   };
 
+  useEffect(() => {
+    const validationErrors = Object.values(formState).reduce(
+      (errors: Array<string | null>, field) => {
+        return errors.concat(field.validationError);
+      },
+      []
+    );
+    const rightForm = validationErrors.every((el) => el === '');
+
+    if (rightForm) {
+      const fillForm = createFillForm(formState);
+      dispatch(setForm({ formName: 'uncontrolledForms', newForm: fillForm }));
+      navigate('/');
+      dispatch(resetState());
+    }
+  }, [formState]);
+
   return (
     <form className={styles.form}>
       {INPUT_TYPES.map(({ type, inputName, placeholder }, index) => (
@@ -91,7 +115,7 @@ const UncontrolledFormWidget = () => {
       <AutocompleteCountry onCountryChanged={onCountryChanged} />
       <AcceptInput handleAcceptChange={handleAcceptChange} />
       <ImageUpload onFileChange={onFileChange} />
-      <input type="reset" value="reset" />
+      {/* <input type="reset" value="reset" /> */}
       <input type="submit" value="submit" onClick={handleClick} />
     </form>
   );

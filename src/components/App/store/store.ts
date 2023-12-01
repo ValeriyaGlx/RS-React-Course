@@ -2,9 +2,11 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import uncontrolledFormWidgetReducer from '../../widgets/UncontrollesFormWidget/UncontrolledFormWidgetSlice';
 import countriesList from '../../shared/UI/CountrySelect/CountrySelectSlice';
+import MainPageSlice from '../../pages/MainPage/MainPageSlice';
 
 const rootReducer = combineReducers({
   uncontrolledFormWidgetReducer,
+  MainPageSlice,
   countriesList,
 });
 
