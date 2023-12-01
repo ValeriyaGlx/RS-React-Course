@@ -5,11 +5,15 @@ import { useAppSelector } from '../../../App/store/hooks';
 import styles from './ImageUpload.module.css';
 
 type ImageUploadProps = {
-  onFileChange: (base64: string | null) => void;
+  onFileChange: (
+    base64: string | null,
+    imageInfo: { size: number; name: string } | null
+  ) => void;
 };
 
 const ImageUpload: FC<ImageUploadProps> = ({ onFileChange }) => {
   const [selectedFileName, setSelectedFileName] = useState('');
+  const [selectedFileSize, setSelectedFileSize] = useState<number | null>(null);
 
   const errorMessage = useAppSelector(
     (state) => state.uncontrolledFormWidgetReducer.image.validationError
@@ -21,17 +25,22 @@ const ImageUpload: FC<ImageUploadProps> = ({ onFileChange }) => {
 
     if (selectedFile) {
       setSelectedFileName(selectedFile.name);
+      setSelectedFileSize(selectedFile.size);
 
       const reader = new FileReader();
       reader.onloadend = () => {
+        const imageInfo = {
+          size: selectedFile.size,
+          name: selectedFile.name,
+        };
         const base64 = reader.result as string;
-        onFileChange(base64);
+        onFileChange(base64, imageInfo);
       };
 
       reader.readAsDataURL(selectedFile);
     } else {
       setSelectedFileName('');
-      onFileChange(null);
+      onFileChange(null, null);
     }
   };
 
@@ -46,6 +55,7 @@ const ImageUpload: FC<ImageUploadProps> = ({ onFileChange }) => {
       />
       <label htmlFor="fileInput" className={styles.fileInputLabel}>
         {selectedFileName || 'Choose a file'}
+        {selectedFileSize && <p>{selectedFileSize}</p>}
       </label>
       <div className={styles.error}>{errorMessage}</div>
     </div>

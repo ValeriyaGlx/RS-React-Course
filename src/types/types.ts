@@ -4,3 +4,8 @@ export interface IInputValidation {
   inputName: string;
   min?: number;
 }
+
+export type ImageInfoType = {
+  imageInfo: { size: number; name: string } | null;
+  base64: string | null;
+};

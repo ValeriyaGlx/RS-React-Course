@@ -1,8 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { ImageInfoType } from '../../../types/types';
+
 type FormState = {
   [key: string]: {
-    value: string | boolean;
+    value: string | boolean | number | ImageInfoType;
     validationError: string;
   };
 };
@@ -13,7 +15,7 @@ const initialState: FormState = {
     validationError: '',
   },
   age: {
-    value: '',
+    value: NaN,
     validationError: '',
   },
   email: {
@@ -37,7 +39,13 @@ const initialState: FormState = {
     validationError: '',
   },
   image: {
-    value: '',
+    value: {
+      imageInfo: {
+        size: 0,
+        name: '',
+      },
+      base64: '',
+    },
     validationError: '',
   },
   country: {
@@ -54,7 +62,7 @@ const UncontrolledFormWidgetSlice = createSlice({
       state,
       action: PayloadAction<{
         inputName: string;
-        inputValue: string | boolean;
+        inputValue: string | boolean | ImageInfoType;
       }>
     ) => {
       const { inputName, inputValue } = action.payload;

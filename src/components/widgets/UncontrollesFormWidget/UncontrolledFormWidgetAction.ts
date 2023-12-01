@@ -2,6 +2,7 @@ import * as yup from 'yup';
 import { Action, ThunkAction } from '@reduxjs/toolkit';
 
 import { store } from '../../App/store/store';
+import { ImageInfoType } from '../../../types/types';
 
 import {
   clearInputValidationError,
@@ -10,7 +11,7 @@ import {
 } from './UncontrolledFormWidgetSlice';
 import {
   ageValidationSchema,
-  confirmPasswordValidationSchema,
+  countryValidationSchema,
   emailValidationSchema,
   fileValidationSchema,
   nameValidationSchema,
@@ -29,7 +30,7 @@ type AppThunk<ReturnType = void> = ThunkAction<
 
 const setInputValueWithValidation = (
   inputName: string,
-  inputValue: string | boolean
+  inputValue: string | boolean | ImageInfoType
 ): AppThunk => {
   return (dispatch) => {
     dispatch(setInputValue({ inputName, inputValue }));
@@ -44,13 +45,14 @@ const setInputValueWithValidation = (
         validationSchema = emailValidationSchema;
         break;
       case 'password':
-        validationSchema = passwordValidationSchema;
-        break;
-      case 'confirmPassword':
-        validationSchema = confirmPasswordValidationSchema;
+        validationSchema = passwordValidationSchema.fields
+          .password as yup.StringSchema;
         break;
       case 'age':
         validationSchema = ageValidationSchema;
+        break;
+      case 'country':
+        validationSchema = countryValidationSchema;
         break;
       case 'image':
         validationSchema = fileValidationSchema;
@@ -58,15 +60,38 @@ const setInputValueWithValidation = (
       default:
         validationSchema = emptyFieldValidationSchema;
     }
-
-    try {
-      validationSchema.validateSync(inputValue);
-      dispatch(clearInputValidationError({ inputName }));
-    } catch (error) {
-      if (error instanceof yup.ValidationError) {
-        dispatch(
-          setInputValidationError({ inputName, validationError: error.message })
-        );
+    if (inputName !== 'confirmPassword') {
+      try {
+        validationSchema.validateSync(inputValue);
+        dispatch(clearInputValidationError({ inputName }));
+      } catch (error) {
+        if (error instanceof yup.ValidationError) {
+          dispatch(
+            setInputValidationError({
+              inputName,
+              validationError: error.message,
+            })
+          );
+        }
+      }
+    } else {
+      const data = {
+        password: store.getState().uncontrolledFormWidgetReducer.password.value,
+        confirmPassword:
+          store.getState().uncontrolledFormWidgetReducer.confirmPassword.value,
+      };
+      try {
+        passwordValidationSchema.validateSync(data);
+        dispatch(clearInputValidationError({ inputName }));
+      } catch (error) {
+        if (error instanceof yup.ValidationError) {
+          dispatch(
+            setInputValidationError({
+              inputName,
+              validationError: error.message,
+            })
+          );
+        }
       }
     }
   };

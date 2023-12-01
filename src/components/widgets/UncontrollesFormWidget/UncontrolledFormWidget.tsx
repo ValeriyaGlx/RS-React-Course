@@ -10,6 +10,7 @@ import AcceptInput from '../../shared/UI/AccetpInput/AcceptInput';
 import ImageUpload from '../../shared/UI/ImageUpload/ImageUpload';
 import AutocompleteCountry from '../../shared/UI/CountrySelect/CountrySelect';
 import { useAppDispatch } from '../../App/store/hooks';
+import { ImageInfoType } from '../../../types/types';
 
 import styles from './UncontrolledFormWidget.module.css';
 import setInputValueWithValidation from './UncontrolledFormWidgetAction';
@@ -20,9 +21,17 @@ const UncontrolledFormWidget = () => {
   );
   const genderFieldsetRef = useRef<string | null>(null);
   const acceptInputRef = useRef<boolean | null>(null);
-  const imageUploadRef = useRef<string | null>(null);
+  const imageUploadRef = useRef<ImageInfoType | null>({
+    base64: null,
+    imageInfo: null,
+  });
+  const countryInputRef = useRef<string | null>(null);
 
   const dispatch = useAppDispatch();
+
+  const onCountryChanged = (country: string) => {
+    countryInputRef.current = country;
+  };
 
   const onGenderChange = (value: string) => {
     genderFieldsetRef.current = value;
@@ -32,8 +41,11 @@ const UncontrolledFormWidget = () => {
     acceptInputRef.current = event.target.checked;
   };
 
-  const onFileChange = (base64: string | null) => {
-    imageUploadRef.current = base64;
+  const onFileChange = (
+    base64: string | null,
+    imageInfo: { size: number; name: string } | null
+  ) => {
+    imageUploadRef.current = { imageInfo, base64 };
   };
 
   const handleClick = (e: FormEvent) => {
@@ -43,6 +55,7 @@ const UncontrolledFormWidget = () => {
       genderFieldsetRef.current,
       acceptInputRef.current,
       imageUploadRef.current,
+      countryInputRef.current,
     ];
 
     const textInputValues = inputRefs.map((ref, index) => ({
@@ -75,9 +88,9 @@ const UncontrolledFormWidget = () => {
         />
       ))}
       <GenderFieldset onGenderChange={onGenderChange} />
+      <AutocompleteCountry onCountryChanged={onCountryChanged} />
       <AcceptInput handleAcceptChange={handleAcceptChange} />
       <ImageUpload onFileChange={onFileChange} />
-      <AutocompleteCountry />
       <input type="reset" value="reset" />
       <input type="submit" value="submit" onClick={handleClick} />
     </form>

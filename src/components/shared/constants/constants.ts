@@ -31,4 +31,4 @@ export const INPUT_TYPES: IInputValidation[] = [
 
 export const GENDER_TYPE = ['Male', 'Female'];
 
-export const NON_TEXT_INPUT_NAME = ['gender', 'accept', 'image'];
+export const NON_TEXT_INPUT_NAME = ['gender', 'accept', 'image', 'country'];
