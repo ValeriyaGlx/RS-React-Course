@@ -19,7 +19,7 @@ export const INPUT_TYPES: IInputValidation[] = [
   {
     type: 'password',
     placeholder: 'Confirm Password',
-    inputName: 'password',
+    inputName: 'confirmPassword',
   },
   {
     type: 'number',
