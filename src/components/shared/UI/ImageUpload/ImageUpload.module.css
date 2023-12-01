@@ -1,45 +1,42 @@
 .fileInputContainer {
-    position: relative;
-    width: 100%;
-    margin-top: 10px;
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
 }
 
 .fileInput {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 1px;
-    height: 1px;
-    opacity: 0;
-    overflow: hidden;
-    z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+  z-index: -1;
 }
 
 .fileInputLabel {
-    display: flex;
-    padding: 10px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    border-radius: 15px;
-    position: relative;
+  display: flex;
+  padding: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  border-radius: 15px;
+  position: relative;
 }
 
 .fileInputLabel:before {
-    content: '';
-    background-image: url("../../../../assets/icons/picture-icon.svg");
-    background-size: contain;
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
+  content: '';
+  background-image: url('../../../../assets/icons/picture-icon.svg');
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }
 
 .error {
-    color: #a22a2a;
-    text-align: start;
-    height: 15px;
-    font: 13px sans-serif;
-    margin: 2px 0 5px;
+  color: #a22a2a;
+  text-align: start;
+  height: 15px;
+  font: 13px sans-serif;
+  margin: 2px 0 5px;
 }
-
-
-

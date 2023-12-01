@@ -6,8 +6,10 @@ import GenderFieldset from '../../shared/UI/GenderFieldset/GenderFieldset';
 import AcceptInput from '../../shared/UI/AccetpInput/AcceptInput';
 import ImageUpload from '../../shared/UI/ImageUpload/ImageUpload';
 import AutocompleteCountry from '../../shared/UI/CountrySelect/CountrySelect';
+import { useAppDispatch } from '../../App/store/hooks';
 
 import styles from './UncontrolledFormWidget.module.css';
+import setInputValueWithValidation from './UncontrolledFormWidgetAction';
 
 const UncontrolledFormWidget = () => {
   const inputRefs = INPUT_TYPES.map(() =>
@@ -16,6 +18,8 @@ const UncontrolledFormWidget = () => {
   const genderFieldsetRef = useRef<string | null>(null);
   const acceptInputRef = useRef<boolean | null>(null);
   const imageUploadRef = useRef<File | null>(null);
+
+  const dispatch = useAppDispatch();
 
   const onGenderChange = (value: string) => {
     genderFieldsetRef.current = value;
@@ -36,6 +40,8 @@ const UncontrolledFormWidget = () => {
     const acceptValue = acceptInputRef.current;
     const imageValue = imageUploadRef.current;
     console.log([...inputValues, genderValue, acceptValue, imageValue]);
+
+    dispatch(setInputValueWithValidation('email', inputValues[0]));
   };
 
   return (
@@ -43,7 +49,6 @@ const UncontrolledFormWidget = () => {
       {INPUT_TYPES.map(({ type, inputName, placeholder }, index) => (
         <InputValidation
           key={placeholder}
-          errorMessage=""
           type={type}
           placeholder={placeholder}
           inputName={inputName}

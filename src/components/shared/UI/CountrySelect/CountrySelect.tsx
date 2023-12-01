@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 
-import styles from './CountrySelect.module.css';
+import { useAppSelector } from '../../../App/store/hooks';
 
-const countries = ['Afghanistan', 'Albania', 'Algeria', 'Zimbabwe'];
+import styles from './CountrySelect.module.css';
 
 const AutocompleteCountry = () => {
   const [inputValue, setInputValue] = useState('');
   const [isDropdownVisible, setDropdownVisible] = useState(false);
+  const countries = useAppSelector((store) => store.countriesList);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;

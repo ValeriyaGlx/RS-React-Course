@@ -2,16 +2,14 @@ module.exports = {
     "env": {
         "browser": true,
         "es2021": true,
-        "jest": true
     },
     "extends": [
         "airbnb",
         "airbnb-typescript",
         "airbnb/hooks",
         "plugin:react/recommended",
-        "plugin:jest/recommended",
         "plugin:@typescript-eslint/recommended",
-      "plugin:prettier/recommended",
+        "plugin:prettier/recommended",
     ],
     "overrides": [
     ],
@@ -31,12 +29,10 @@ module.exports = {
         "react",
         "@typescript-eslint",
         "prettier",
-        "jest"
     ],
     "rules": {
         "react/react-in-jsx-scope": "off",
         "react/button-has-type": "off",
-        "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "off",
         "comma-dangle": ["error", "only-multiline"],
         "react/prop-types": "off",
@@ -55,7 +51,7 @@ module.exports = {
         "class-methods-use-this": "off",
         "react/jsx-no-constructed-context-values": "off",
         "react/function-component-definition": "off",
-        "jest/no-mocks-import": "off",
+        "no-param-reassign": "off",
         "react-hooks/rules-of-hooks": "off",
         "import/order": [
             2,

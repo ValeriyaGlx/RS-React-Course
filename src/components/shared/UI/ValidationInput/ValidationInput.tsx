@@ -1,24 +1,27 @@
-import { FC, MutableRefObject } from 'react';
+import { FC, MutableRefObject, useState } from 'react';
 
 import { IInputValidation } from '../../../../types/types';
+import { useAppSelector } from '../../../App/store/hooks';
 
 import styles from './ValidationInput.module.css';
+import PasswordType from './PasswordType/PasswordType';
 
 interface InputValidationProps extends IInputValidation {
-  // errorMessage: string;
   inputRef: MutableRefObject<HTMLInputElement | null>;
 }
 
 const ValidationInput: FC<InputValidationProps> = ({
   type,
   placeholder,
-  // showPassword,
-  // errorMessage,
   inputName,
   min,
   inputRef,
 }) => {
-  // const [isVisible, setIsVisible] = useState(false);
+  const [passwordType, setPasswordType] = useState('password');
+  const errorMessage = useAppSelector(
+    (state) => state.uncontrolledFormWidgetReducer[inputName].validationError
+  );
+
   return (
     <div
       className={[styles.container, type === 'number' ? styles.age : ''].join(
@@ -28,30 +31,18 @@ const ValidationInput: FC<InputValidationProps> = ({
       <div>
         <input
           className={styles.input}
-          type={type}
+          type={type === 'password' ? passwordType : type}
           placeholder={placeholder}
           name={inputName}
           defaultValue=""
           min={type === 'number' ? min : undefined}
           ref={inputRef}
         />
-        {/* {type === 'password' && ( */}
-        {/*  <button */}
-        {/*    className={ */}
-        {/*      isVisible ? 'show-password' : 'show-password hide-password' */}
-        {/*    } */}
-        {/*    onClick={(e) => { */}
-        {/*      if (showPassword) { */}
-        {/*        setIsVisible(!isVisible); */}
-        {/*        showPassword(e); */}
-        {/*      } */}
-        {/*    }} */}
-        {/*  > */}
-        {/*    <img className={'password-visible'} src={logoVisible} alt="eye" /> */}
-        {/*  </button> */}
-        {/* )} */}
+        {type === 'password' && (
+          <PasswordType setPasswordType={setPasswordType} />
+        )}
       </div>
-      <div className={styles.error}>error message</div>
+      <div className={styles.error}>{errorMessage}</div>
     </div>
   );
 };
