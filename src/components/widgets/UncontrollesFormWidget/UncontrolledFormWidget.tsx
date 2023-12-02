@@ -12,12 +12,10 @@ import ImageUpload from '../../shared/UI/ImageUpload/ImageUpload';
 import AutocompleteCountry from '../../shared/UI/CountrySelect/CountrySelect';
 import { useAppDispatch, useAppSelector } from '../../App/store/hooks';
 import { ImageInfoType } from '../../../types/types';
-import { setForm } from '../../pages/MainPage/MainPageSlice';
 
 import styles from './UncontrolledFormWidget.module.css';
-import setInputValueWithValidation from './UncontrolledFormWidgetAction';
-import createFillForm from './utils/createFillForm';
-import { resetState } from './UncontrolledFormWidgetSlice';
+import useFormDispatch from './hooks/useFormDispatch';
+import useSubmitForm from './hooks/useSubmitForm';
 
 const UncontrolledFormWidget = () => {
   const inputRefs = INPUT_TYPES.map(() =>
@@ -74,13 +72,7 @@ const UncontrolledFormWidget = () => {
       inputName: NON_TEXT_INPUT_NAME[index],
       inputValue: ref || '',
     }));
-
-    textInputValues.forEach((value) => {
-      dispatch(setInputValueWithValidation(value.inputName, value.inputValue));
-    });
-    nonTextInputValues.forEach((value) => {
-      dispatch(setInputValueWithValidation(value.inputName, value.inputValue));
-    });
+    useFormDispatch(dispatch, textInputValues, nonTextInputValues);
   };
 
   useEffect(() => {
@@ -93,10 +85,8 @@ const UncontrolledFormWidget = () => {
     const rightForm = validationErrors.every((el) => el === '');
 
     if (rightForm) {
-      const fillForm = createFillForm(formState);
-      dispatch(setForm({ formName: 'uncontrolledForms', newForm: fillForm }));
+      useSubmitForm(dispatch, formState);
       navigate('/');
-      dispatch(resetState());
     }
   }, [formState]);
 
