@@ -53,6 +53,7 @@ module.exports = {
         "react/function-component-definition": "off",
         "no-param-reassign": "off",
         "react-hooks/rules-of-hooks": "off",
+        "react/jsx-props-no-spreading": "off",
         "import/order": [
             2,
             {

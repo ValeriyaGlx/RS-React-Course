@@ -1,13 +1,23 @@
 import { FC, MutableRefObject, useState } from 'react';
+import { UseFormRegister } from 'react-hook-form';
 
 import { IInputValidation } from '../../../../types/types';
-import { useAppSelector } from '../../../App/store/hooks';
 
 import styles from './ValidationInput.module.css';
 import PasswordType from './PasswordType/PasswordType';
 
+interface FormData {
+  name: string;
+  email: string;
+  password: string | undefined;
+  confirmPassword: string | undefined;
+  age: number;
+}
+
 interface InputValidationProps extends IInputValidation {
-  inputRef: MutableRefObject<HTMLInputElement | null>;
+  inputRef: MutableRefObject<HTMLInputElement | null> | null;
+  errorMessage: string | undefined | null;
+  register: UseFormRegister<FormData> | null;
 }
 
 const ValidationInput: FC<InputValidationProps> = ({
@@ -16,11 +26,10 @@ const ValidationInput: FC<InputValidationProps> = ({
   inputName,
   min,
   inputRef,
+  errorMessage,
+  register,
 }) => {
   const [passwordType, setPasswordType] = useState('password');
-  const errorMessage = useAppSelector(
-    (state) => state.uncontrolledFormWidgetReducer[inputName].validationError
-  );
 
   return (
     <div
@@ -37,6 +46,7 @@ const ValidationInput: FC<InputValidationProps> = ({
           defaultValue=""
           min={type === 'number' ? min : undefined}
           ref={inputRef}
+          {...(register ? { ...register(inputName as keyof FormData) } : '')}
         />
         {type === 'password' && (
           <PasswordType setPasswordType={setPasswordType} />

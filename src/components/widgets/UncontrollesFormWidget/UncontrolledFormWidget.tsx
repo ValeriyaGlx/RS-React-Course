@@ -99,6 +99,10 @@ const UncontrolledFormWidget = () => {
           placeholder={placeholder}
           inputName={inputName}
           inputRef={inputRefs[index]}
+          errorMessage={useAppSelector(
+            (state) =>
+              state.uncontrolledFormWidgetReducer[inputName].validationError
+          )}
         />
       ))}
       <GenderFieldset onGenderChange={onGenderChange} />
