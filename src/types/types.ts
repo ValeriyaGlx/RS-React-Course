@@ -28,3 +28,15 @@ export type fillFormState = {
   country: string;
   image: ImageInfoType;
 };
+
+export interface FormData {
+  name: string;
+  email: string;
+  password: string | undefined;
+  confirmPassword: string | undefined;
+  age: number;
+  gender: boolean;
+  country: string;
+  accept: string;
+  image: string;
+}

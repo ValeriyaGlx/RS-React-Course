@@ -2,11 +2,17 @@ import * as yup from 'yup';
 
 import {
   ageValidationSchema,
-  // countryValidationSchema,
+  countryValidationSchema,
   emailValidationSchema,
   nameValidationSchema,
   passwordValidationSchema,
+  requiredValidationSchema,
 } from '../../UncontrollesFormWidget/utils/validationSchema';
+
+import {
+  acceptHookFormValidationSchema,
+  fileHookFormValidationSchema,
+} from './hookFormValidationSchema';
 
 const validationSchema = yup.object({
   name: nameValidationSchema,
@@ -15,10 +21,10 @@ const validationSchema = yup.object({
   confirmPassword: passwordValidationSchema.fields
     .confirmPassword as yup.StringSchema,
   age: ageValidationSchema,
-  // country: countryValidationSchema,
-  // image: fileValidationSchema,
+  gender: requiredValidationSchema,
+  accept: acceptHookFormValidationSchema,
+  country: countryValidationSchema,
+  image: fileHookFormValidationSchema,
 });
-
-// emptyFieldValidationSchema
 
 export default validationSchema;

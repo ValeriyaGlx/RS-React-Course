@@ -16,6 +16,7 @@ import { ImageInfoType } from '../../../types/types';
 import styles from './UncontrolledFormWidget.module.css';
 import useFormDispatch from './hooks/useFormDispatch';
 import useSubmitForm from './hooks/useSubmitForm';
+import useValidationError from './hooks/useValidationError';
 
 const UncontrolledFormWidget = () => {
   const inputRefs = INPUT_TYPES.map(() =>
@@ -99,16 +100,28 @@ const UncontrolledFormWidget = () => {
           placeholder={placeholder}
           inputName={inputName}
           inputRef={inputRefs[index]}
-          errorMessage={useAppSelector(
-            (state) =>
-              state.uncontrolledFormWidgetReducer[inputName].validationError
-          )}
+          errorMessage={useValidationError(inputName)}
+          register={null}
         />
       ))}
-      <GenderFieldset onGenderChange={onGenderChange} />
-      <AutocompleteCountry onCountryChanged={onCountryChanged} />
-      <AcceptInput handleAcceptChange={handleAcceptChange} />
-      <ImageUpload onFileChange={onFileChange} />
+      <GenderFieldset
+        onGenderChange={onGenderChange}
+        register={null}
+        errorMessage={useValidationError('gender')}
+      />
+      <AutocompleteCountry
+        onCountryChanged={onCountryChanged}
+        errorMessage={useValidationError('country')}
+      />
+      <AcceptInput
+        handleAcceptChange={handleAcceptChange}
+        errorMessage={useValidationError('accept')}
+        register={null}
+      />
+      <ImageUpload
+        onFileChange={onFileChange}
+        errorMessage={useValidationError('image')}
+      />
       {/* <input type="reset" value="reset" /> */}
       <input type="submit" value="submit" onClick={handleClick} />
     </form>

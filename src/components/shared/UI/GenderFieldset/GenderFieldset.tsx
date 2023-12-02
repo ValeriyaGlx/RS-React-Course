@@ -1,21 +1,28 @@
 import { ChangeEvent, FC } from 'react';
+import { UseFormRegister } from 'react-hook-form';
 
 import { GENDER_TYPE } from '../../constants/constants';
-import { useAppSelector } from '../../../App/store/hooks';
+import { FormData } from '../../../../types/types';
 
 import styles from './GenderFieldset.module.css';
 
 type GenderFieldsetProps = {
-  onGenderChange: (value: string) => void;
+  errorMessage: string | undefined | null;
+  onGenderChange: null | ((value: string) => void);
+  register: UseFormRegister<FormData> | null;
 };
 
-const GenderFieldset: FC<GenderFieldsetProps> = ({ onGenderChange }) => {
-  const errorMessage = useAppSelector(
-    (state) => state.uncontrolledFormWidgetReducer.gender.validationError
-  );
+const GenderFieldset: FC<GenderFieldsetProps> = ({
+  onGenderChange,
+  register,
+  errorMessage,
+}) => {
   const handleGenderChange = (event: ChangeEvent<HTMLInputElement>) => {
-    onGenderChange(event.target.defaultValue);
+    if (onGenderChange) {
+      onGenderChange(event.target.defaultValue);
+    }
   };
+
   return (
     <div className={styles.container}>
       <fieldset>
@@ -28,6 +35,7 @@ const GenderFieldset: FC<GenderFieldsetProps> = ({ onGenderChange }) => {
               name="gender"
               defaultValue={gender}
               onChange={handleGenderChange}
+              {...(register ? { ...register('gender' as keyof FormData) } : '')}
             />
             {gender}
           </label>

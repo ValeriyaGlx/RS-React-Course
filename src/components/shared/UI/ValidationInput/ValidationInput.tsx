@@ -1,18 +1,10 @@
 import { FC, MutableRefObject, useState } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 
-import { IInputValidation } from '../../../../types/types';
+import { IInputValidation, FormData } from '../../../../types/types';
 
 import styles from './ValidationInput.module.css';
 import PasswordType from './PasswordType/PasswordType';
-
-interface FormData {
-  name: string;
-  email: string;
-  password: string | undefined;
-  confirmPassword: string | undefined;
-  age: number;
-}
 
 interface InputValidationProps extends IInputValidation {
   inputRef: MutableRefObject<HTMLInputElement | null> | null;
