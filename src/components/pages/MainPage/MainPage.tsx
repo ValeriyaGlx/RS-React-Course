@@ -10,7 +10,7 @@ const MainPage = () => {
   if (filledForms.length === 0) {
     return (
       <>
-        <h1 className={styles.inner}>Hi! There are no filled forms yet.</h1>
+        <h1 className={styles.inner}>There are no filled forms yet.</h1>
         <img className={styles.image} src={image} alt="fillform" />
         <h2> Please, move to the Forms Pages and fill it up first!</h2>
       </>
@@ -19,7 +19,7 @@ const MainPage = () => {
 
   return (
     <>
-      <h1>Filled Forms:</h1>
+      <h1 className={styles.inner}>Filled Forms:</h1>
       <div className={styles.container}>
         {filledForms.map((form, index) => (
           <FilledForm

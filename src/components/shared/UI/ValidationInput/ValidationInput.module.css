@@ -28,3 +28,35 @@
 .age .error {
   text-align: start;
 }
+
+.strength {
+  position: absolute;
+  font: 13px sans-serif;
+}
+
+.weak {
+ border: 1px solid #a22a2a;
+}
+
+.medium {
+  border: 1px solid #eccd08;
+}
+
+.strong {
+  border: 1px solid #006600;
+}
+
+.strength.weak {
+  border: none;
+  color: #a22a2a;
+}
+
+.strength.medium {
+  border: none;
+  color: #eccd08;
+}
+
+.strength.strong{
+  border: none;
+  color: #006600;
+}

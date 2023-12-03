@@ -45,6 +45,7 @@ const ReactHookFormWidget = () => {
     handleSubmit,
     formState: { errors, isValid },
     reset,
+    getValues,
   } = useForm({
     resolver: yupResolver(validationSchema),
     mode: 'onBlur',
@@ -74,6 +75,7 @@ const ReactHookFormWidget = () => {
           type={type}
           placeholder={placeholder}
           inputName={inputName}
+          password={getValues('password')}
         />
       ))}
       <GenderFieldset
@@ -81,7 +83,7 @@ const ReactHookFormWidget = () => {
         register={register as UseFormRegister<FormData>}
         errorMessage={errors.gender?.message}
       />
-      <div className={styles.container}>
+      <div className={[styles.container, 'country'].join(' ')}>
         <input
           {...register('country')}
           placeholder="Enter Country"
