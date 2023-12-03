@@ -1,12 +1,12 @@
-import { fillFormState, FormState } from '../../../../types/types';
+import { filledForm, FormState } from '../../../../types/types';
 
 const createFillForm = (form: FormState) => {
-  const newForm: fillFormState = Object.keys(form).reduce(
-    (result: fillFormState, key) => {
+  const newForm: filledForm = Object.keys(form).reduce(
+    (result: filledForm, key) => {
       result[key] = form[key].value;
       return result;
     },
-    {}
+    {} as filledForm
   );
   return newForm;
 };

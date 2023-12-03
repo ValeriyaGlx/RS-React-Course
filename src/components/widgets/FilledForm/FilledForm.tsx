@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 
-import { fillFormState } from '../../../types/types';
+import { fillFormState, ImageInfoType } from '../../../types/types';
 
 import styles from './FilledForm.module.css';
 import fromTheCapitalLetter from './utils/FromTheCapitalLetter';
@@ -8,9 +8,10 @@ import fromTheCapitalLetter from './utils/FromTheCapitalLetter';
 type FilledFormType = {
   form: fillFormState;
   index: number;
+  type: string;
 };
 
-const FilledForm: FC<FilledFormType> = ({ form, index }) => {
+const FilledForm: FC<FilledFormType> = ({ form, index, type }) => {
   const [fillForm, setFillForm] = useState(form);
 
   useEffect(() => setFillForm(form), []);
@@ -25,8 +26,14 @@ const FilledForm: FC<FilledFormType> = ({ form, index }) => {
 
   return (
     <form className={styles.form}>
-      <h3 className={styles.inner}>Form #{index + 1}</h3>
-      <img className={styles.image} src={image.base64 ?? ''} alt="uploaded" />
+      <h3 className={styles.inner}>
+        {type} Form #{index + 1}
+      </h3>
+      <img
+        className={styles.image}
+        src={(image as ImageInfoType).base64 ?? (image as string) ?? ''}
+        alt="uploaded"
+      />
       {formArray.map(
         (property) =>
           !notMappedValues.includes(property.key) && (
