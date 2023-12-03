@@ -48,7 +48,7 @@ const ReactHookFormWidget = () => {
     getValues,
   } = useForm({
     resolver: yupResolver(validationSchema),
-    mode: 'onChange',
+    mode: 'all',
   });
 
   const onSubmit = (data: FormData | fillFormState) => {
@@ -93,18 +93,6 @@ const ReactHookFormWidget = () => {
         register={register as UseFormRegister<FormData>}
         errorMessage={errors.gender?.message}
       />
-      <div className={[styles.container, 'country'].join(' ')}>
-        <input
-          {...register('country')}
-          placeholder="Enter Country"
-          className={styles.input}
-          type="text"
-          id="country"
-          list="countryList"
-        />
-        <div className={styles.error}>{errors.country?.message}</div>
-        <CountryDataList />
-      </div>
       <AcceptInput
         handleAcceptChange={null}
         errorMessage={errors.accept?.message}
@@ -123,6 +111,18 @@ const ReactHookFormWidget = () => {
           {selectedFileName || 'Choose a file'}
         </label>
         <div className={styles.error}>{errors.image?.message}</div>
+      </div>
+      <div className={[styles.container, 'country'].join(' ')}>
+        <input
+          {...register('country')}
+          placeholder="Enter Country"
+          className={styles.input}
+          type="text"
+          id="country"
+          list="countryList"
+        />
+        <div className={styles.error}>{errors.country?.message}</div>
+        <CountryDataList />
       </div>
       <input
         className={styles.button}

@@ -114,10 +114,6 @@ const UncontrolledFormWidget = () => {
         register={null}
         errorMessage={useValidationError('gender')}
       />
-      <AutocompleteCountry
-        onCountryChanged={onCountryChanged}
-        errorMessage={useValidationError('country')}
-      />
       <AcceptInput
         handleAcceptChange={handleAcceptChange}
         errorMessage={useValidationError('accept')}
@@ -126,6 +122,10 @@ const UncontrolledFormWidget = () => {
       <ImageUpload
         onFileChange={onFileChange}
         errorMessage={useValidationError('image')}
+      />
+      <AutocompleteCountry
+        onCountryChanged={onCountryChanged}
+        errorMessage={useValidationError('country')}
       />
       <input className={styles.button} type="submit" value="Submit" />
     </form>

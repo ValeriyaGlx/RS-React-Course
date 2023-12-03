@@ -35,9 +35,13 @@ const FilledForm: FC<FilledFormType> = ({ form, index, isNew }) => {
       {formArray.map(
         (property) =>
           !notMappedValues.includes(property.key) && (
-            <div key={Math.random()} className={styles.container}>
+            <div key={property.key} className={styles.container}>
               <label htmlFor={property.key}>
-                {fromTheCapitalLetter(property.key)}:
+                {fromTheCapitalLetter(property.key)}
+                {property.key === 'password' && (
+                  <span className={styles.confirmed}> confirmed</span>
+                )}
+                :
               </label>
               <input
                 className={styles.input}

@@ -26,6 +26,13 @@
 
 .container {
   width: 70%;
+  margin-top: 4px;
+}
+
+.confirmed {
+  /*font-size: 12px;*/
+  color: #eccd08;
+  font-weight: 600;
 }
 
 .input {
