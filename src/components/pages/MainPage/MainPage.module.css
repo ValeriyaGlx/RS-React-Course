@@ -6,4 +6,10 @@
   flex-wrap: wrap;
 }
 
+.inner {
+  text-align: center;
+}
 
+.image {
+  width: 500px;
+}
