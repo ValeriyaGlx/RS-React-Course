@@ -1,0 +1,22 @@
+.header {
+  font-weight: 600;
+  font-size: 22px;
+  padding: 0 30px;
+  margin-bottom: 20px;
+  height: 66px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 20px;
+}
+
+.active {
+  color: #eccd08;
+}
+
+a:hover {
+  color: #fcda05;
+}

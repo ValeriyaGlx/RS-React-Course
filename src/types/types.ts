@@ -1,47 +1,46 @@
-export type IResponse = {
-  id: string;
-  attributes: {
-    slug: string;
-    name: string;
-    gender: string | null;
-    image?: string;
-    species: string | null;
-    blood_status: string | null;
+export interface IInputValidation {
+  type: string;
+  placeholder: string;
+  inputName: string;
+  min?: number;
+}
+
+export type ImageInfoType = {
+  imageInfo: { size: number; name: string } | null;
+  base64: string | null;
+};
+
+export type FormState = {
+  [key: string]: {
+    value: string | boolean | number | ImageInfoType;
+    validationError: string | null;
   };
 };
 
-export type IResult = {
-  data: IResponse[];
-  meta: {
-    pagination: {
-      last: number;
-      current: number;
-    };
-  };
-};
-
-export type ISingleResponse = {
-  slug: string;
+export type fillFormState = {
   name: string;
-  gender: string | null;
-  image?: string;
-  species: string | null;
-  blood_status: string | null;
+  age: string | number;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  gender: string;
+  accept: boolean;
+  country: string;
+  image: ImageInfoType | string;
 };
 
-export type ISingleResult = {
-  id: string;
-  data: {
-    attributes: ISingleResponse;
-  };
-};
+export interface FormData {
+  name?: string | undefined;
+  email?: string | undefined;
+  password?: string | undefined;
+  confirmPassword?: string | undefined;
+  age?: number | undefined;
+  gender?: string | undefined;
+  country?: string | undefined;
+  accept?: boolean | undefined;
+  image?: FileList | undefined;
+}
 
-export type SearchSectionSliceType = {
-  cardsInfo: IResponse[] | [];
-  inputValue: string;
-  size: number;
-  totalPages: number;
-  currentPage: number;
-  isLoadingCharacters: boolean;
-  isLoadingSingleCharacter: boolean;
+export type filledForm = {
+  [key: string]: string | number | boolean | ImageInfoType;
 };
