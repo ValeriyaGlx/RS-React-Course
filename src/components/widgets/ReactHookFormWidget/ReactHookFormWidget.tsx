@@ -43,7 +43,7 @@ const ReactHookFormWidget = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     reset,
   } = useForm({
     resolver: yupResolver(validationSchema),
@@ -112,7 +112,12 @@ const ReactHookFormWidget = () => {
         </label>
         <div className={styles.error}>{errors.image?.message}</div>
       </div>
-      <input type="submit" value="submit" />
+      <input
+        className={styles.button}
+        type="submit"
+        value="submit"
+        disabled={!isValid}
+      />
     </form>
   );
 };

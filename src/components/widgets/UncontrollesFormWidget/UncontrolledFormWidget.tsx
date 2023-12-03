@@ -92,7 +92,7 @@ const UncontrolledFormWidget = () => {
   }, [formState]);
 
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={handleClick}>
       {INPUT_TYPES.map(({ type, inputName, placeholder }, index) => (
         <InputValidation
           key={placeholder}
@@ -122,8 +122,7 @@ const UncontrolledFormWidget = () => {
         onFileChange={onFileChange}
         errorMessage={useValidationError('image')}
       />
-      {/* <input type="reset" value="reset" /> */}
-      <input type="submit" value="submit" onClick={handleClick} />
+      <input className={styles.button} type="submit" value="Submit" />
     </form>
   );
 };
