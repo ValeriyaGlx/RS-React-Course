@@ -17,6 +17,7 @@ import styles from './UncontrolledFormWidget.module.css';
 import useFormDispatch from './hooks/useFormDispatch';
 import useSubmitForm from './hooks/useSubmitForm';
 import useValidationError from './hooks/useValidationError';
+import { resetState } from './UncontrolledFormWidgetSlice';
 
 const UncontrolledFormWidget = () => {
   const inputRefs = INPUT_TYPES.map(() =>
@@ -34,6 +35,10 @@ const UncontrolledFormWidget = () => {
   const formState = useAppSelector(
     (state) => state.uncontrolledFormWidgetReducer
   );
+
+  useEffect(() => {
+    dispatch(resetState());
+  }, []);
 
   const onCountryChanged = (country: string) => {
     countryInputRef.current = country;

@@ -52,8 +52,18 @@ const ReactHookFormWidget = () => {
   });
 
   const onSubmit = (data: FormData | fillFormState) => {
-    const fillForm = { ...data };
-    fillForm.image = uploadedImage;
+    const fillForm = {
+      name: data.name,
+      age: data.age,
+      email: data.email,
+      password: data.password,
+      confirmPassword: data.confirmPassword,
+      gender: data.gender,
+      country: data.country,
+      accept: data.accept,
+      image: uploadedImage,
+    };
+
     dispatch(
       setForm({
         formName: 'filledForms',

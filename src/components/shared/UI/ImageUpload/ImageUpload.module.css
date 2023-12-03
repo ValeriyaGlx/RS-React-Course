@@ -27,6 +27,7 @@
 .fileInputLabel:before {
   content: '';
   background-image: url('../../../../assets/icons/picture-icon.svg');
+  background-repeat: no-repeat;
   background-size: contain;
   width: 20px;
   height: 20px;
