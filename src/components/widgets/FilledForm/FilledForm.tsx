@@ -8,10 +8,10 @@ import fromTheCapitalLetter from './utils/FromTheCapitalLetter';
 type FilledFormType = {
   form: fillFormState;
   index: number;
-  type: string;
+  isNew: boolean;
 };
 
-const FilledForm: FC<FilledFormType> = ({ form, index, type }) => {
+const FilledForm: FC<FilledFormType> = ({ form, index, isNew }) => {
   const [fillForm, setFillForm] = useState(form);
 
   useEffect(() => setFillForm(form), []);
@@ -26,9 +26,7 @@ const FilledForm: FC<FilledFormType> = ({ form, index, type }) => {
 
   return (
     <form className={styles.form}>
-      <h3 className={styles.inner}>
-        {type} Form #{index + 1}
-      </h3>
+      <h3 className={styles.inner}>Form #{index + 1}</h3>
       <img
         className={styles.image}
         src={(image as ImageInfoType).base64 ?? (image as string) ?? ''}
@@ -50,10 +48,11 @@ const FilledForm: FC<FilledFormType> = ({ form, index, type }) => {
             </div>
           )
       )}
-      <label htmlFor="accept">
+      <label htmlFor="accept" className={styles.label}>
         <input type="checkbox" name="accept" id="accept" checked readOnly />I
         accept the Terms and Conditions
       </label>
+      {isNew && <div className={styles.new}>New!</div>}
     </form>
   );
 };

@@ -15,18 +15,3 @@
   font: 13px sans-serif;
   margin: 2px 0 5px;
 }
-
-/*.label:before,*/
-/*.label:after{*/
-/*    content: '';*/
-/*    height: 1px;*/
-/*    width: 100%;*/
-/*    background-color: #ccc;*/
-/*    display: block;*/
-/*    position: absolute;*/
-/*    bottom: 25px;*/
-/*}*/
-
-/*.label:after {*/
-/*    top: 25px;*/
-/*}*/

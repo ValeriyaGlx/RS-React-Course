@@ -8,6 +8,7 @@
   flex-wrap: nowrap;
   position: relative;
   margin-top: 20px;
+  position: relative;
 }
 
 .inner {
@@ -36,4 +37,25 @@
   padding: 2px 10px;
   margin-top: 4px;
   cursor: default;
+}
+
+.label {
+  cursor: pointer;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  width: 100%;
+}
+
+.new {
+  position: absolute;
+  top: -15px;
+  right: -30px;
+  background-color: #006600;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 16px;
+  padding: 10px;
 }

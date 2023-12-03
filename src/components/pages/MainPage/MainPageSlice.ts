@@ -7,8 +7,7 @@ type initialStateType = {
 };
 
 const initialState: initialStateType = {
-  uncontrolledForms: [],
-  reactHookForms: [],
+  filledForms: [],
 };
 
 const MainPageSlice = createSlice({

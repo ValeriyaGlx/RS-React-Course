@@ -55,7 +55,7 @@ const ReactHookFormWidget = () => {
     fillForm.image = uploadedImage;
     dispatch(
       setForm({
-        formName: 'reactHookForms',
+        formName: 'filledForms',
         newForm: fillForm as fillFormState,
       })
     );

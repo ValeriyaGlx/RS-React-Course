@@ -8,7 +8,7 @@ const useSubmitForm = (dispatch: AppDispatch, formState: FormState) => {
   const fillForm = createFillForm(formState);
   dispatch(
     setForm({
-      formName: 'uncontrolledForms',
+      formName: 'filledForms',
       newForm: fillForm as fillFormState,
     })
   );
