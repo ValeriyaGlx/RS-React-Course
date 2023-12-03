@@ -40,7 +40,7 @@
 }
 
 .label {
-  cursor: pointer;
+  cursor: default;
   margin-top: 20px;
   display: flex;
   align-items: center;

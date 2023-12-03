@@ -48,10 +48,10 @@ const FilledForm: FC<FilledFormType> = ({ form, index, isNew }) => {
             </div>
           )
       )}
-      <label htmlFor="accept" className={styles.label}>
+      <div className={styles.label}>
         <input type="checkbox" name="accept" id="accept" checked readOnly />I
         accept the Terms and Conditions
-      </label>
+      </div>
       {isNew && <div className={styles.new}>New!</div>}
     </form>
   );
