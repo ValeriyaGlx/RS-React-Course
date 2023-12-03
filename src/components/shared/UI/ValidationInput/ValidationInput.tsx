@@ -18,7 +18,6 @@ const ValidationInput: FC<InputValidationProps> = ({
   type,
   placeholder,
   inputName,
-  min,
   inputRef,
   errorMessage,
   register,
@@ -52,7 +51,6 @@ const ValidationInput: FC<InputValidationProps> = ({
           placeholder={placeholder}
           name={inputName}
           defaultValue=""
-          min={type === 'number' ? min : undefined}
           ref={inputRef}
           {...(register ? { ...register(inputName as keyof FormData) } : '')}
         />

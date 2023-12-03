@@ -48,7 +48,7 @@ const ReactHookFormWidget = () => {
     getValues,
   } = useForm({
     resolver: yupResolver(validationSchema),
-    mode: 'onBlur',
+    mode: 'onChange',
   });
 
   const onSubmit = (data: FormData | fillFormState) => {
@@ -78,7 +78,7 @@ const ReactHookFormWidget = () => {
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
       {INPUT_TYPES.map(({ type, inputName, placeholder }) => (
         <ValidationInput
-          key={Math.random()}
+          key={placeholder}
           inputRef={null}
           errorMessage={errors[inputName as keyof FormData]?.message}
           register={register as UseFormRegister<FormData>}
